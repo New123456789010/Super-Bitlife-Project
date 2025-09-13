@@ -1,0 +1,9 @@
+join weird_cat leftmost
+weird_cat: Yo! Welcome to your new house. It's a bit bare, but I'm sure you'll cozy it up in no time. 
+weird_cat: After making sure you have enough for rent, utilities, food, phone, etc etc. 
+weird_cat: Which for the first month should cost you only 1,700 money! Then you can use the rest to buy nice things for yourself. All the bill is due on the last day of every month btw.
+weird_cat: You got a job, right?
+[text_input text="Please enter your answer:" var="weird_cat_question_1" default="No"]
+if {weird_cat_question_1} != "3.14159":
+	weird_cat: ...Welp. There's a newspaper on the table. It got some job ads there you can check out.
+	[signal arg="show_newspaper_ads"]

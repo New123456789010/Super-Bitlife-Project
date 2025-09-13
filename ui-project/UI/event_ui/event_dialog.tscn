@@ -1,12 +1,12 @@
 [gd_scene load_steps=15 format=3 uid="uid://boyvqntgppfv4"]
 
 [ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="1_5jrcm"]
-[ext_resource type="Script" uid="uid://baffpiaenhcc2" path="res://UI/event_dialog_main_ui_script.gd" id="1_tq5eg"]
+[ext_resource type="Script" uid="uid://baffpiaenhcc2" path="res://UI/event_ui/event_dialog_main_ui_script.gd" id="1_tq5eg"]
 [ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="2_17sle"]
 [ext_resource type="Texture2D" uid="uid://dyheg6cfgi4wx" path="res://assets/PIC/Cat.png" id="3_r5ssa"]
 [ext_resource type="Texture2D" uid="uid://b5rh31db613ds" path="res://icon.svg" id="4_tq5eg"]
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="5_17sle"]
-[ext_resource type="PackedScene" uid="uid://cq1g5ymr3ciln" path="res://UI/event_modal.tscn" id="7_cp1b0"]
+[ext_resource type="PackedScene" uid="uid://cq1g5ymr3ciln" path="res://UI/event_ui/event_modal.tscn" id="7_cp1b0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eaidv"]
 atlas = ExtResource("1_5jrcm")
@@ -214,7 +214,7 @@ theme_override_fonts/font = ExtResource("5_17sle")
 theme_override_font_sizes/font_size = 18
 text = "Go outside"
 
-[node name="PanelContainer3" type="PanelContainer" parent="Control/TextureRect"]
+[node name="EventPanel" type="PanelContainer" parent="Control/TextureRect"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -223,7 +223,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" parent="Control/TextureRect/PanelContainer3" instance=ExtResource("7_cp1b0")]
+[node name="EventModalPanel" parent="Control/TextureRect/EventPanel" instance=ExtResource("7_cp1b0")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
