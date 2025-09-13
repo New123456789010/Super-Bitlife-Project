@@ -1,0 +1,237 @@
+[gd_scene load_steps=11 format=3 uid="uid://6rftjtdyw523"]
+
+[ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="1_l8lo6"]
+[ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="2_s1tid"]
+[ext_resource type="Texture2D" uid="uid://dyheg6cfgi4wx" path="res://assets/PIC/Cat.png" id="3_s1tid"]
+[ext_resource type="PackedScene" uid="uid://wso3wt2mjuu" path="res://UI/stats_bar.tscn" id="4_2y2wt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yjjb"]
+atlas = ExtResource("1_l8lo6")
+region = Rect2(507, 1131, 25, 22)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kngm5"]
+texture = SubResource("AtlasTexture_6yjjb")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lm2w6"]
+atlas = ExtResource("1_l8lo6")
+region = Rect2(282, 1463, 173, 49)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lm2w6"]
+texture = SubResource("AtlasTexture_lm2w6")
+texture_margin_left = 5.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="Theme" id="Theme_nv067"]
+main_action_button/base_type = &"Button"
+main_action_button/styles/normal = SubResource("StyleBoxTexture_kngm5")
+main_action_panel/base_type = &"PanelContainer"
+main_action_panel/styles/panel = SubResource("StyleBoxTexture_lm2w6")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2y2wt"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+custom_minimum_size = Vector2(540, 960)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(540, 960)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="SubViewportContainer/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_nv067")
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_s1tid")
+
+[node name="MainButtons" type="PanelContainer" parent="SubViewportContainer/SubViewport/Control"]
+custom_minimum_size = Vector2(0, 99)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 1.0
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"main_action_panel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control/MainButtons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/Control/MainButtons/HBoxContainer"]
+custom_minimum_size = Vector2(110, 50)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
+theme_override_font_sizes/font_size = 24
+text = "Stats"
+
+[node name="Button2" type="Button" parent="SubViewportContainer/SubViewport/Control/MainButtons/HBoxContainer"]
+custom_minimum_size = Vector2(110, 50)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
+theme_override_font_sizes/font_size = 24
+text = "Action"
+
+[node name="Button3" type="Button" parent="SubViewportContainer/SubViewport/Control/MainButtons/HBoxContainer"]
+custom_minimum_size = Vector2(110, 50)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
+theme_override_font_sizes/font_size = 24
+text = "Relation"
+
+[node name="StatsWindow" type="PanelContainer" parent="SubViewportContainer/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.1
+anchor_right = 0.8
+anchor_bottom = 0.7
+offset_left = -45.0
+offset_top = -38.5
+offset_right = 45.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/Control/StatsWindow"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer"]
+layout_mode = 2
+
+[node name="spacer" type="Control" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CharacterProtrait" type="PanelContainer" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_type_variation = &"main_action_panel"
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/CharacterProtrait"]
+custom_minimum_size = Vector2(300, 450)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("3_s1tid")
+expand_mode = 1
+
+[node name="spacer2" type="Control" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SideBar" type="VBoxContainer" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="spacer" type="Control" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/SideBar/PanelContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_s1tid")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/SideBar/PanelContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_2y2wt")
+
+[node name="PanelContainer2" type="PanelContainer" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/SideBar/PanelContainer2"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_s1tid")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/SideBar/PanelContainer2"]
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_styles/normal = SubResource("StyleBoxFlat_2y2wt")
+
+[node name="PanelContainer3" type="PanelContainer" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/SideBar/PanelContainer3"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_s1tid")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/SideBar/PanelContainer3"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_2y2wt")
+
+[node name="PanelContainer4" type="PanelContainer" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/SideBar/PanelContainer4"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_s1tid")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer/HBoxContainer/SideBar/PanelContainer4"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_2y2wt")
+
+[node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport/Control/StatsWindow/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"main_action_panel"
+
+[node name="Control" parent="SubViewportContainer/SubViewport/Control" instance=ExtResource("4_2y2wt")]
+layout_mode = 1

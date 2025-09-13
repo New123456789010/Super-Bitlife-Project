@@ -1,37 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcb6ipk4klja1"]
+[gd_scene load_steps=3 format=3 uid="uid://dcb6ipk4klja1"]
 
-[ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="1_eaidv"]
-[ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="1_kngm5"]
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_eaidv"]
+[ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="2_kngm5"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eaidv"]
-atlas = ExtResource("1_kngm5")
-region = Rect2(507, 1131, 25, 22)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kngm5"]
-texture = SubResource("AtlasTexture_eaidv")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 5.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6yjjb"]
-atlas = ExtResource("1_kngm5")
-region = Rect2(282, 1463, 173, 49)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lm2w6"]
-texture = SubResource("AtlasTexture_6yjjb")
-texture_margin_left = 5.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 5.0
-
-[sub_resource type="Theme" id="Theme_nv067"]
-main_action_button/base_type = &"Button"
-main_action_button/styles/normal = SubResource("StyleBoxTexture_kngm5")
-main_action_panel/base_type = &"PanelContainer"
-main_action_panel/styles/panel = SubResource("StyleBoxTexture_lm2w6")
-
-[node name="9By16Resolution" type="Control"]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,7 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_nv067")
+theme = ExtResource("1_eaidv")
 
 [node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/Control"]
 layout_mode = 1
@@ -75,7 +47,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_eaidv")
+texture = ExtResource("2_kngm5")
 
 [node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport/Control"]
 custom_minimum_size = Vector2(0, 99)
