@@ -1,0 +1,84 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8q7a23ar8a74"]
+
+[ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="1_fsom3"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="MarginContainer" parent="MenuContainer"]
+layout_mode = 2
+
+[node name="TitleContainer" type="Control" parent="MenuContainer/Title"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MenuContainer/Title/TitleContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 260.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 108
+text = "Project 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButtonMargin" type="MarginContainer" parent="MenuContainer"]
+layout_mode = 2
+
+[node name="MenuButtonContainer" type="Control" parent="MenuContainer/MenuButtonMargin"]
+layout_mode = 2
+
+[node name="BoxContainer" type="VBoxContainer" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -68.0
+offset_right = 46.5
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="NewGame" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 54
+text = "New Game"
+
+[node name="Continue" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 54
+text = "Continue
+"
+
+[node name="Options" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 54
+text = "Options"
+
+[node name="Exit" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 54
+text = "Exit"
