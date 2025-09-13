@@ -1,0 +1,123 @@
+[gd_scene load_steps=5 format=3 uid="uid://cedgx7yyue1ol"]
+
+[ext_resource type="Script" uid="uid://bdhkuvfq60yr6" path="res://scenes/character_creation/character_creation_menu.gd" id="1_4xea1"]
+[ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="1_e0w55"]
+[ext_resource type="Texture2D" uid="uid://dyheg6cfgi4wx" path="res://assets/PIC/Cat.png" id="2_fyv5c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l01c1"]
+atlas = ExtResource("2_fyv5c")
+region = Rect2(15, 15, 50, 33)
+
+[node name="character_creation_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4xea1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/TitleContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TitleContainer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 260.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_e0w55")
+theme_override_font_sizes/font_size = 72
+text = "Select Your Character"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CharacterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CharacterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CharacterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_l01c1")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="MarginContainer/CharacterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_e0w55")
+theme_override_font_sizes/font_size = 108
+text = "Character 1"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/CharacterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CharacterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_l01c1")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="MarginContainer/CharacterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_e0w55")
+theme_override_font_sizes/font_size = 108
+text = "Character 2"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/CharacterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CharacterContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_l01c1")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="MarginContainer/CharacterContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_e0w55")
+theme_override_font_sizes/font_size = 108
+text = "Character 3"
+
+[node name="BackButtonContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 164.0
+offset_bottom = 68.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="BackButton" type="Button" parent="BackButtonContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_e0w55")
+theme_override_font_sizes/font_size = 72
+text = "Back"
+
+[connection signal="pressed" from="BackButtonContainer/BackButton" to="." method="_on_back_button_pressed"]
