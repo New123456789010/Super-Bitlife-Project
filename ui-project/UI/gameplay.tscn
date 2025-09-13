@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcb6ipk4klja1"]
+
+[ext_resource type="Script" uid="uid://2ubw75xpw7eo" path="res://UI/gameplay.gd" id="1_uxk2v"]
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="2_w7wln"]
+[ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="3_rdqmk"]
+[ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="4_4jqck"]
+[ext_resource type="PackedScene" uid="uid://wso3wt2mjuu" path="res://UI/stats_bar.tscn" id="5_4jvk0"]
+
+[node name="Gameplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uxk2v")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_w7wln")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_rdqmk")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 99)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 1.0
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"main_action_panel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+
+[node name="Button" type="Button" parent="Control/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(110, 50)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
+theme_override_fonts/font = ExtResource("4_4jqck")
+theme_override_font_sizes/font_size = 27
+text = "Stats"
+
+[node name="Button2" type="Button" parent="Control/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(110, 50)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
+theme_override_fonts/font = ExtResource("4_4jqck")
+theme_override_font_sizes/font_size = 27
+text = "Action"
+
+[node name="Button3" type="Button" parent="Control/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(110, 50)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
+theme_override_fonts/font = ExtResource("4_4jqck")
+theme_override_font_sizes/font_size = 27
+text = "Relation"
+
+[node name="Control2" parent="." instance=ExtResource("5_4jvk0")]
+layout_mode = 1
+offset_left = -316.0
+offset_right = 316.0
+offset_bottom = 118.0
+
+[node name="Control3" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -15.5
+offset_right = 46.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_4jqck")
+theme_override_font_sizes/font_size = 54
+text = "Get Money"
+
+[connection signal="pressed" from="Control3/Button" to="." method="_on_button_pressed"]
