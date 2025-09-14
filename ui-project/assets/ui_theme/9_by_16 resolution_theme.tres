@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bg1ma7hebf0y2"]
+
+[ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="1_tnco2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yjjb"]
+atlas = ExtResource("1_tnco2")
+region = Rect2(507, 1131, 25, 22)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kngm5"]
+texture = SubResource("AtlasTexture_6yjjb")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lm2w6"]
+atlas = ExtResource("1_tnco2")
+region = Rect2(282, 1463, 173, 49)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lm2w6"]
+texture = SubResource("AtlasTexture_lm2w6")
+texture_margin_left = 5.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 5.0
+
+[resource]
+main_action_button/base_type = &"Button"
+main_action_button/styles/normal = SubResource("StyleBoxTexture_kngm5")
+main_action_panel/base_type = &"PanelContainer"
+main_action_panel/styles/panel = SubResource("StyleBoxTexture_lm2w6")

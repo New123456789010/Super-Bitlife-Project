@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2xem2k84ns01"]
+
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_7wq7i"]
+[ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="2_gsek3"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+custom_minimum_size = Vector2(540, 960)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(540, 960)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="SubViewportContainer/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7wq7i")
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gsek3")
+
+[node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/SubViewport/Control"]
+custom_minimum_size = Vector2(0, 99)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 1.0
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"main_action_panel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+
+[node name="Button" type="Button" parent="SubViewportContainer/SubViewport/Control/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(110, 50)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
+theme_override_font_sizes/font_size = 24
+text = "Stats"
+
+[node name="Button2" type="Button" parent="SubViewportContainer/SubViewport/Control/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(110, 50)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
+theme_override_font_sizes/font_size = 24
+text = "Action"
+
+[node name="Button3" type="Button" parent="SubViewportContainer/SubViewport/Control/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(110, 50)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
+theme_override_font_sizes/font_size = 24
+text = "Relation"

@@ -1,0 +1,103 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8q7a23ar8a74"]
+
+[ext_resource type="Script" uid="uid://yl6reo6alr04" path="res://scenes/main_menu/main_menu.gd" id="1_0ebjn"]
+[ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="1_fsom3"]
+[ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="2_ob46e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqeha"]
+atlas = ExtResource("2_ob46e")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ebjn")
+
+[node name="MenuContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_uqeha")
+
+[node name="ColorRect" type="ColorRect" parent="MenuContainer"]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="MarginContainer" parent="MenuContainer"]
+layout_mode = 2
+
+[node name="TitleContainer" type="Control" parent="MenuContainer/Title"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MenuContainer/Title/TitleContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 260.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 108
+text = "Project 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButtonMargin" type="MarginContainer" parent="MenuContainer"]
+layout_mode = 2
+
+[node name="MenuButtonContainer" type="Control" parent="MenuContainer/MenuButtonMargin"]
+layout_mode = 2
+
+[node name="BoxContainer" type="VBoxContainer" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -68.0
+offset_right = 46.5
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="NewGame" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 54
+text = "New Game"
+
+[node name="Continue" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 54
+text = "Continue
+"
+
+[node name="Options" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 54
+text = "Options"
+
+[node name="Exit" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 54
+text = "Exit"
+
+[connection signal="pressed" from="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer/Exit" to="." method="_on_exit_pressed"]

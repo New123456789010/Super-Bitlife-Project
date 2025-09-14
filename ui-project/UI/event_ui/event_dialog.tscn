@@ -1,0 +1,231 @@
+[gd_scene load_steps=15 format=3 uid="uid://boyvqntgppfv4"]
+
+[ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="1_5jrcm"]
+[ext_resource type="Script" uid="uid://baffpiaenhcc2" path="res://UI/event_ui/event_dialog_main_ui_script.gd" id="1_tq5eg"]
+[ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="2_17sle"]
+[ext_resource type="Texture2D" uid="uid://dyheg6cfgi4wx" path="res://assets/PIC/Cat.png" id="3_r5ssa"]
+[ext_resource type="Texture2D" uid="uid://b5rh31db613ds" path="res://icon.svg" id="4_tq5eg"]
+[ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="5_17sle"]
+[ext_resource type="PackedScene" uid="uid://cq1g5ymr3ciln" path="res://UI/event_ui/event_modal.tscn" id="7_cp1b0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaidv"]
+atlas = ExtResource("1_5jrcm")
+region = Rect2(507, 1131, 25, 22)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ly387"]
+texture = SubResource("AtlasTexture_eaidv")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yjjb"]
+atlas = ExtResource("1_5jrcm")
+region = Rect2(282, 1463, 173, 49)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eq8w5"]
+texture = SubResource("AtlasTexture_6yjjb")
+texture_margin_left = 5.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="Theme" id="Theme_nv067"]
+main_action_button/base_type = &"Button"
+main_action_button/styles/normal = SubResource("StyleBoxTexture_ly387")
+main_action_panel/base_type = &"PanelContainer"
+main_action_panel/styles/panel = SubResource("StyleBoxTexture_eq8w5")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jrcm"]
+atlas = ExtResource("3_r5ssa")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmllx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="event_dialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tq5eg")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_nv067")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_17sle")
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.5
+offset_top = -247.5
+offset_right = 190.5
+offset_bottom = 247.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/TextureRect/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/TextureRect/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="spacer" type="Control" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CharacterProtrait" type="PanelContainer" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_type_variation = &"main_action_panel"
+
+[node name="TextureRect" type="TextureRect" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/CharacterProtrait"]
+custom_minimum_size = Vector2(300, 450)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_5jrcm")
+stretch_mode = 5
+
+[node name="spacer2" type="Control" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SideBar" type="VBoxContainer" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="spacer" type="Control" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("4_tq5eg")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bmllx")
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer2"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("4_tq5eg")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer2"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bmllx")
+
+[node name="PanelContainer3" type="PanelContainer" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer3"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("4_tq5eg")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer3"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bmllx")
+
+[node name="PanelContainer4" type="PanelContainer" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer4"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("4_tq5eg")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="Control/TextureRect/PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer4"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bmllx")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/TextureRect/PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 280)
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"main_action_panel"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TextureRect/PanelContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/TextureRect/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/TextureRect/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("5_17sle")
+theme_override_font_sizes/bold_italics_font_size = 0
+theme_override_font_sizes/italics_font_size = 0
+theme_override_font_sizes/mono_font_size = 0
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 0
+text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+
+[node name="Button" type="Button" parent="Control/TextureRect/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_17sle")
+theme_override_font_sizes/font_size = 18
+text = "Newspaper ads"
+
+[node name="Button2" type="Button" parent="Control/TextureRect/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_17sle")
+theme_override_font_sizes/font_size = 18
+text = "Go outside"
+
+[node name="EventPanel" type="PanelContainer" parent="Control/TextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EventModalPanel" parent="Control/TextureRect/EventPanel" instance=ExtResource("7_cp1b0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[connection signal="pressed" from="Control/TextureRect/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
