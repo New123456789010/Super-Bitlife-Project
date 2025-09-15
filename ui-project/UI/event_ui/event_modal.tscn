@@ -1,12 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq1g5ymr3ciln"]
+[gd_scene load_steps=11 format=3 uid="uid://cq1g5ymr3ciln"]
 
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_2nisb"]
 [ext_resource type="Texture2D" uid="uid://dyheg6cfgi4wx" path="res://assets/PIC/Cat.png" id="2_3v0g2"]
+[ext_resource type="Script" uid="uid://l1vntfo3e6b5" path="res://UI/event_ui/event_modal_first_job.gd" id="2_uvuna"]
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="3_3v0g2"]
+[ext_resource type="Texture2D" uid="uid://dyppsnk2sb3yo" path="res://assets/background_PNGs/pixel_art_Job_ads_in_newspaper.jpeg" id="4_6k45u"]
+[ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="5_wg5tr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j73ye"]
 atlas = ExtResource("2_3v0g2")
 region = Rect2(15, 15, 50, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvuna"]
+atlas = ExtResource("5_wg5tr")
+region = Rect2(57, 1496, 17, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw1t7"]
+atlas = ExtResource("5_wg5tr")
+region = Rect2(105, 1496, 17, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1kyo"]
+atlas = ExtResource("5_wg5tr")
+region = Rect2(105, 1496, 17, 31)
 
 [node name="EventModalPanel" type="PanelContainer"]
 custom_minimum_size = Vector2(300, 400)
@@ -14,6 +29,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("1_2nisb")
 theme_type_variation = &"main_action_panel"
+script = ExtResource("2_uvuna")
 
 [node name="PanelContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -27,21 +43,36 @@ texture = SubResource("AtlasTexture_j73ye")
 stretch_mode = 3
 flip_h = true
 
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_3v0g2")
+theme_override_font_sizes/normal_font_size = 24
+text = "JOBS WANTED"
+fit_content = true
+horizontal_alignment = 1
+
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 16
+theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
+theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 16
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
+theme_override_colors/default_color = Color(0.0509804, 0.0666667, 0.0901961, 1)
 theme_override_fonts/normal_font = ExtResource("3_3v0g2")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum "
 fit_content = true
 scroll_following = true
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("4_6k45u")
+expand_mode = 5
 
 [node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -55,17 +86,42 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_3v0g2")
 theme_override_font_sizes/font_size = 18
-text = "Option 1"
+text = "Dock Worker $15/hr"
 
 [node name="Option2" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer2/PanelContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_3v0g2")
 theme_override_font_sizes/font_size = 18
-text = "Option 2"
+text = "Store clerk $7/HR"
 
 [node name="Option3" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer2/PanelContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_3v0g2")
 theme_override_font_sizes/font_size = 18
-text = "Option 3
-"
+text = "Go outside"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="BackButton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = SubResource("AtlasTexture_uvuna")
+texture_pressed = SubResource("AtlasTexture_qw1t7")
+flip_h = true
+
+[node name="spacer" type="Control" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ForwardButton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_uvuna")
+texture_pressed = SubResource("AtlasTexture_w1kyo")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/Option1" to="." method="_on_option_1_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/Option3" to="." method="_on_option_3_pressed"]
+[connection signal="pressed" from="HBoxContainer/ForwardButton" to="." method="_on_forward_button_pressed"]
