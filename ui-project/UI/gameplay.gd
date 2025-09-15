@@ -2,7 +2,7 @@ extends Control
 
 @onready var control_2: Label = $Control2/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/%Label2
 @onready var event_modal_panel: PanelContainer = $Control/EventModalPanel
-
+@onready var get_money_button: Control = $GetMoneyButton
 
 var timeline : DialogicTimeline = DialogicTimeline.new()
 var money: int
@@ -24,3 +24,5 @@ func _on_action_pressed() -> void:
 func _on_dialogic_signal(argument: String):
 	if argument == "show_newspaper_ads":
 		event_modal_panel.visible = true
+		get_money_button.visible = false
+		
