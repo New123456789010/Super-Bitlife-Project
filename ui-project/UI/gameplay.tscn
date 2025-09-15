@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcb6ipk4klja1"]
+[gd_scene load_steps=8 format=3 uid="uid://dcb6ipk4klja1"]
 
 [ext_resource type="Script" uid="uid://2ubw75xpw7eo" path="res://scenes/gameplay/gameplay.gd" id="1_uxk2v"]
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="2_w7wln"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="4_4jqck"]
 [ext_resource type="PackedScene" uid="uid://wso3wt2mjuu" path="res://UI/stats_bar.tscn" id="5_4jvk0"]
 [ext_resource type="PackedScene" uid="uid://cq1g5ymr3ciln" path="res://UI/event_ui/event_modal.tscn" id="5_w7wln"]
+[ext_resource type="Script" path="res://assets/background_PNGs/event_modal_first_job.gd" id="6_rdqmk"]
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -94,6 +95,7 @@ offset_right = 150.0
 offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_rdqmk")
 
 [node name="Control2" parent="." instance=ExtResource("5_4jvk0")]
 layout_mode = 1

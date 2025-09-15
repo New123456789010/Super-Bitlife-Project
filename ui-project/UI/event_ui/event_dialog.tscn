@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://boyvqntgppfv4"]
+[gd_scene load_steps=16 format=3 uid="uid://boyvqntgppfv4"]
 
 [ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="1_5jrcm"]
 [ext_resource type="Script" uid="uid://baffpiaenhcc2" path="res://UI/event_ui/event_dialog_main_ui_script.gd" id="1_tq5eg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b5rh31db613ds" path="res://icon.svg" id="4_tq5eg"]
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="5_17sle"]
 [ext_resource type="PackedScene" uid="uid://cq1g5ymr3ciln" path="res://UI/event_ui/event_modal.tscn" id="7_cp1b0"]
+[ext_resource type="Script" path="res://assets/background_PNGs/event_modal_first_job.gd" id="8_m81nn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eaidv"]
 atlas = ExtResource("1_5jrcm")
@@ -227,5 +228,6 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("8_m81nn")
 
 [connection signal="pressed" from="Control/TextureRect/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
