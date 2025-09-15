@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcb6ipk4klja1"]
+[gd_scene load_steps=9 format=3 uid="uid://bmkdu4n5bq41i"]
 
-[ext_resource type="Script" uid="uid://2ubw75xpw7eo" path="res://scenes/gameplay/gameplay.gd" id="1_uxk2v"]
-[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="2_w7wln"]
-[ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="3_rdqmk"]
-[ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="4_4jqck"]
-[ext_resource type="PackedScene" uid="uid://wso3wt2mjuu" path="res://UI/stats_bar.tscn" id="5_4jvk0"]
-[ext_resource type="PackedScene" uid="uid://cq1g5ymr3ciln" path="res://UI/event_ui/event_modal.tscn" id="5_w7wln"]
+[ext_resource type="Script" uid="uid://2ubw75xpw7eo" path="res://scenes/gameplay/gameplay.gd" id="1_0w2j2"]
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="2_gh441"]
+[ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="3_pa1on"]
+[ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="4_elju3"]
+[ext_resource type="PackedScene" uid="uid://cq1g5ymr3ciln" path="res://UI/event_ui/event_modal.tscn" id="5_lb4ud"]
+[ext_resource type="PackedScene" uid="uid://ulnrrmnhkxt6" path="res://scenes/components/MoneyIndicator.tscn" id="6_0w2j2"]
+[ext_resource type="PackedScene" uid="uid://dn2d1kbkfmfei" path="res://scenes/components/setting_button.tscn" id="7_gh441"]
+[ext_resource type="PackedScene" uid="uid://burh7luf5a1is" path="res://scenes/components/option_menu.tscn" id="8_pa1on"]
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -14,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_uxk2v")
+script = ExtResource("1_0w2j2")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -23,7 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_w7wln")
+theme = ExtResource("2_gh441")
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 1
@@ -32,7 +34,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_rdqmk")
+texture = ExtResource("3_pa1on")
 
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
 custom_minimum_size = Vector2(0, 99)
@@ -58,7 +60,7 @@ custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_type_variation = &"main_action_button"
 theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
-theme_override_fonts/font = ExtResource("4_4jqck")
+theme_override_fonts/font = ExtResource("4_elju3")
 theme_override_font_sizes/font_size = 27
 text = "Stats"
 
@@ -67,7 +69,7 @@ custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_type_variation = &"main_action_button"
 theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
-theme_override_fonts/font = ExtResource("4_4jqck")
+theme_override_fonts/font = ExtResource("4_elju3")
 theme_override_font_sizes/font_size = 27
 text = "Action"
 
@@ -76,11 +78,11 @@ custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_type_variation = &"main_action_button"
 theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
-theme_override_fonts/font = ExtResource("4_4jqck")
+theme_override_fonts/font = ExtResource("4_elju3")
 theme_override_font_sizes/font_size = 27
 text = "Contact"
 
-[node name="EventModalPanel" parent="Control" instance=ExtResource("5_w7wln")]
+[node name="EventModalPanel" parent="Control" instance=ExtResource("5_lb4ud")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -95,13 +97,48 @@ offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control2" parent="." instance=ExtResource("5_4jvk0")]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 189.0
+offset_bottom = 107.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+
+[node name="MoneyIndicator" parent="MarginContainer" instance=ExtResource("6_0w2j2")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
-offset_left = -316.0
-offset_right = 316.0
-offset_bottom = 118.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+
+[node name="SettingButton" parent="MarginContainer2" instance=ExtResource("7_gh441")]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="OptionMenu" parent="." instance=ExtResource("8_pa1on")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.5
+offset_top = -100.5
+offset_right = 84.5
+offset_bottom = 100.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="GetMoneyButton" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -123,9 +160,10 @@ offset_right = 46.0
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_4jqck")
+theme_override_fonts/font = ExtResource("4_elju3")
 theme_override_font_sizes/font_size = 54
 text = "Get Money"
 
 [connection signal="pressed" from="Control/PanelContainer/HBoxContainer/Action" to="." method="_on_action_pressed"]
+[connection signal="pressed" from="MarginContainer2/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="GetMoneyButton/Button" to="." method="_on_money_button_pressed"]

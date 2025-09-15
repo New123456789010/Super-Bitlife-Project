@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://ulnrrmnhkxt6"]
+
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_r3pl1"]
+[ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="2_6nor3"]
+[ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="3_j8cnu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bryty"]
+atlas = ExtResource("2_6nor3")
+region = Rect2(584, 232, 16, 16)
+
+[node name="MoneyIndicator" type="PanelContainer"]
+offset_right = 139.0
+offset_bottom = 57.0
+size_flags_vertical = 4
+theme = ExtResource("1_r3pl1")
+theme_type_variation = &"main_action_panel"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_bryty")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_j8cnu")
+theme_override_font_sizes/font_size = 18
+text = "Money:"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_j8cnu")
+theme_override_font_sizes/font_size = 18
+text = "0"

@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn2d1kbkfmfei"]
+
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_itnth"]
+[ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="2_yavku"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6tnk"]
+atlas = ExtResource("2_yavku")
+region = Rect2(657, 176, 15, 15)
+
+[node name="SettingButton" type="Button"]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 50.0
+offset_bottom = 50.0
+theme = ExtResource("1_itnth")
+theme_type_variation = &"main_action_panel"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 46.0
+offset_bottom = 45.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_p6tnk")

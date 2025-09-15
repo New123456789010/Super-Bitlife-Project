@@ -40,6 +40,12 @@ window/size/viewport_height=990
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://scenes/": "green"
+}
+
 [input]
 
 dialogic_default_action={
