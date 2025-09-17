@@ -79,6 +79,7 @@ alignment = 1
 [node name="NewGame" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
+theme = ExtResource("4_uqeha")
 theme_type_variation = &"main_action_button"
 theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("1_fsom3")

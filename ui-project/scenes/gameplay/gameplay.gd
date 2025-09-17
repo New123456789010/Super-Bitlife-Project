@@ -4,6 +4,7 @@ extends Control
 @onready var event_modal_panel: PanelContainer = $Control/EventModalPanel
 @onready var get_money_button: Control = $GetMoneyButton
 @onready var option_menu: PanelContainer = $OptionMenu
+@onready var stats_menu: Control = $StatsMenu
 
 var timeline : DialogicTimeline = DialogicTimeline.new()
 var money: int
@@ -32,3 +33,7 @@ func _on_dialogic_signal(argument: String):
 func _on_setting_button_pressed() -> void:
 	option_menu.visible = !option_menu.visible   
 	
+
+
+func _on_schedule_button_pressed() -> void:
+	stats_menu.visible = !stats_menu.visible   
