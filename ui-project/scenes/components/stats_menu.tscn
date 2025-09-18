@@ -2,9 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_u0kk2"]
 [ext_resource type="Texture2D" uid="uid://dyheg6cfgi4wx" path="res://assets/PIC/Cat.png" id="2_u0kk2"]
-[ext_resource type="Texture2D" uid="uid://cmbkpxkysw04y" path="res://assets/ui_assets/Int Icon.png" id="3_rhod7"]
-[ext_resource type="Texture2D" uid="uid://b35unoo2v5g3u" path="res://assets/ui_assets/Cha Icon.png" id="4_ppkqe"]
-[ext_resource type="Texture2D" uid="uid://c4xcabg7erm4g" path="res://assets/ui_assets/Str Icon.png" id="5_cgo0a"]
+[ext_resource type="Texture2D" uid="uid://dc62eikll5qg" path="res://assets/ui_assets/Int Icon.png" id="3_rhod7"]
+[ext_resource type="Texture2D" uid="uid://d4imkpyft56o3" path="res://assets/ui_assets/Cha Icon.png" id="4_ppkqe"]
+[ext_resource type="Texture2D" uid="uid://o6wk46reyk4c" path="res://assets/ui_assets/Str Icon.png" id="5_cgo0a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhod7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)

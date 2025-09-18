@@ -88,11 +88,13 @@ text = "New Game"
 
 [node name="Continue" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
 visible = false
+custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("1_fsom3")
-theme_override_font_sizes/font_size = 54
-text = "Continue
-"
+theme_override_font_sizes/font_size = 36
+text = "Continue"
 
 [node name="Options" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
 custom_minimum_size = Vector2(250, 50)

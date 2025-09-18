@@ -8,8 +8,10 @@ extends Control
 
 var timeline : DialogicTimeline = DialogicTimeline.new()
 var money: int
+var menus := []
 
 func _ready():
+	menus = [option_menu, stats_menu]
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 
 func _on_money_button_pressed() -> void:
@@ -29,11 +31,20 @@ func _on_dialogic_signal(argument: String):
 		get_money_button.visible = false
 		
 
-
-func _on_setting_button_pressed() -> void:
-	option_menu.visible = !option_menu.visible   
+func close_all() -> void:
+	for m in menus:
+		m.visible = false
 	
-
-
+func _on_setting_button_pressed() -> void:
+	if option_menu.visible:
+		close_all()
+	else:
+		close_all()
+		option_menu.visible = true
+	
 func _on_schedule_button_pressed() -> void:
-	stats_menu.visible = !stats_menu.visible   
+	if stats_menu.visible:
+		close_all()
+	else:
+		close_all()
+		stats_menu.visible = true
