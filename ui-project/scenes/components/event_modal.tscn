@@ -109,14 +109,8 @@ theme_override_constants/margin_bottom = 16
 [node name="PanelContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="Option1" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_fat2q")
-theme_override_font_sizes/font_size = 18
-text = "Dock Worker $15/hr"
-
 [node name="ApplyJob" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer"]
+visible = false
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_type_variation = &"main_action_button"
@@ -125,7 +119,7 @@ theme_override_font_sizes/font_size = 27
 text = "Apply Job"
 
 [node name="Option3" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_type_variation = &"main_action_button"
 theme_override_fonts/font = ExtResource("4_fat2q")
@@ -139,6 +133,6 @@ texture_normal = SubResource("AtlasTexture_uvuna")
 texture_pressed = SubResource("AtlasTexture_w1kyo")
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/Option1" to="." method="_on_option_1_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/ApplyJob" to="." method="_on_apply_job_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/Option3" to="." method="_on_option_3_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/ForwardButton" to="." method="_on_forward_button_pressed"]

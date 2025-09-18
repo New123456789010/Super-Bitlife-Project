@@ -1,5 +1,6 @@
 extends PanelContainer
 @onready var newspaper: TextureRect = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Newspaper
+@onready var apply_job: Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/ApplyJob
 
 var dock_worker_description = """[center][b]⚓ Dock Worker[/b][/center]
 
@@ -46,24 +47,38 @@ var jobs := [
 var current_idx := 0
 
 func _ready() -> void:
-	default_text = job_text.text   # remember the starting text
+	default_text = job_text.text
 
-func _on_option_1_pressed() -> void:
-	job_text.text = dock_worker_description
-
+func start() -> void:
+	apply_job.visible = true
+	newspaper.visible = false
 
 func _on_forward_button_pressed() -> void:
+	start()
 	current_idx = (current_idx + 1) % jobs.size()
 	job_text.text = jobs[current_idx]
-	newspaper.visible = false
 
 func _on_back_button_pressed() -> void:
+	start()
 	current_idx = (current_idx - 1 + jobs.size()) % jobs.size()
 	job_text.text = jobs[current_idx]
-	newspaper.visible = false
 
 
 func _on_option_3_pressed() -> void:
 	job_text.text = default_text
+	apply_job.visible = false
 	newspaper.visible = true
 	self.hide()
+
+
+func _on_apply_job_pressed() -> void:
+	apply_job.disabled = true                # prevent extra clicks
+	apply_job.text = "Applied (3)"           # starting text
+	# Countdown from 3 to 1
+	for i in range(2, -1, -1):                # 2,1,0
+		await get_tree().create_timer(1.0).timeout
+		if i > 0:
+			apply_job.text = "Applied (" + str(i) + ")"
+		else:
+			apply_job.text = "Applied"
+	hide()    # or queue_free() if you want to remove the whole node
