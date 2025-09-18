@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://chtd8x5t6mpnb"
-=======
-uid="uid://cmbkpxkysw04y"
->>>>>>> Blur
-path="res://.godot/imported/Int Icon.png-533965d91c12c975cab1f5bef8523fac.ctex"
+uid="uid://bvxj4keq1un75"
+path="res://.godot/imported/Basic Man Head.png-ded7eda6b9ae90b5b7f40d55643a3811.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_assets/Int Icon.png"
-dest_files=["res://.godot/imported/Int Icon.png-533965d91c12c975cab1f5bef8523fac.ctex"]
+source_file="res://assets/PIC/Human/Human_Modules/Basic Man Head.png"
+dest_files=["res://.godot/imported/Basic Man Head.png-ded7eda6b9ae90b5b7f40d55643a3811.ctex"]
 
 [params]
 

@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://chtd8x5t6mpnb"
-=======
-uid="uid://cmbkpxkysw04y"
->>>>>>> Blur
-path="res://.godot/imported/Int Icon.png-533965d91c12c975cab1f5bef8523fac.ctex"
+uid="uid://blj3rlaykecwp"
+path="res://.godot/imported/Plain Paper UI SpriteSheet.png-bc9d55d61d859b837cc8449a7399162a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_assets/Int Icon.png"
-dest_files=["res://.godot/imported/Int Icon.png-533965d91c12c975cab1f5bef8523fac.ctex"]
+source_file="res://assets/ui_assets/Plain Paper UI SpriteSheet.png"
+dest_files=["res://.godot/imported/Plain Paper UI SpriteSheet.png-bc9d55d61d859b837cc8449a7399162a.ctex"]
 
 [params]
 

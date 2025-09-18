@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_2nisb"]
 [ext_resource type="Texture2D" uid="uid://dyheg6cfgi4wx" path="res://assets/PIC/Cat.png" id="2_3v0g2"]
-[ext_resource type="Script" uid="uid://l1vntfo3e6b5" path="res://UI/event_ui/event_modal_first_job.gd" id="2_uvuna"]
+[ext_resource type="Script" path="res://assets/background_PNGs/event_modal_first_job.gd" id="2_uvuna"]
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="3_3v0g2"]
 [ext_resource type="Texture2D" uid="uid://dyppsnk2sb3yo" path="res://assets/background_PNGs/pixel_art_Job_ads_in_newspaper.jpeg" id="4_6k45u"]
 [ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="5_wg5tr"]

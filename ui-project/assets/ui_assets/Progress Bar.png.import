@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://ilycjpvyyaif"
+=======
+uid="uid://bi3vsmfch58ad"
+>>>>>>> Blur
 path="res://.godot/imported/Progress Bar.png-3a673a2ab7bfa13890cef3943e310ccb.ctex"
 metadata={
 "vram_texture": false

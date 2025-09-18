@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dcb6ipk4klja1"]
 
-[ext_resource type="Script" uid="uid://2ubw75xpw7eo" path="res://UI/gameplay.gd" id="1_uxk2v"]
+[ext_resource type="Script" uid="uid://2ubw75xpw7eo" path="res://scenes/gameplay/gameplay.gd" id="1_uxk2v"]
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="2_w7wln"]
 [ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="3_rdqmk"]
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="4_4jqck"]

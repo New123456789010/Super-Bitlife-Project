@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://chtd8x5t6mpnb"
-=======
-uid="uid://cmbkpxkysw04y"
->>>>>>> Blur
-path="res://.godot/imported/Int Icon.png-533965d91c12c975cab1f5bef8523fac.ctex"
+uid="uid://cajgc0hcx73p"
+path="res://.godot/imported/Folding & Cutout Paper UI SpriteSheet.png-487286425321d79b0788eee24f2483a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_assets/Int Icon.png"
-dest_files=["res://.godot/imported/Int Icon.png-533965d91c12c975cab1f5bef8523fac.ctex"]
+source_file="res://assets/ui_assets/Folding & Cutout Paper UI SpriteSheet.png"
+dest_files=["res://.godot/imported/Folding & Cutout Paper UI SpriteSheet.png-487286425321d79b0788eee24f2483a4.ctex"]
 
 [params]
 

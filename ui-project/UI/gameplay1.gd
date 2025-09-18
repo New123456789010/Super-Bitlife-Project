@@ -1,6 +1,6 @@
 extends Control
 
-@onready var control_2: Label = $Control2/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/%Label2
+@onready var money_label: Label = $Control2/HBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/%Label2
 @onready var event_modal_panel: PanelContainer = $Control/EventModalPanel
 @onready var get_money_button: Control = $GetMoneyButton
 
@@ -9,10 +9,11 @@ var money: int
 
 func _ready():
 	Dialogic.signal_event.connect(_on_dialogic_signal)
+	money_label.text = str(GameData.total_assets)
 
 func _on_money_button_pressed() -> void:
-	money += 100
-	control_2.text = "%.2f" %money
+	GameData.total_assets += 100
+	money_label.text = str(GameData.total_assets)
 
 
 func _on_action_pressed() -> void:

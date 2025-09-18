@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://chtd8x5t6mpnb"
-=======
-uid="uid://cmbkpxkysw04y"
->>>>>>> Blur
-path="res://.godot/imported/Int Icon.png-533965d91c12c975cab1f5bef8523fac.ctex"
+uid="uid://bebp0adlss362"
+path="res://.godot/imported/Basic Woman Head.png-37eea7059d19f28930842f728ae4f798.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_assets/Int Icon.png"
-dest_files=["res://.godot/imported/Int Icon.png-533965d91c12c975cab1f5bef8523fac.ctex"]
+source_file="res://assets/PIC/Human/Human_Modules/Basic Woman Head.png"
+dest_files=["res://.godot/imported/Basic Woman Head.png-37eea7059d19f28930842f728ae4f798.ctex"]
 
 [params]
 

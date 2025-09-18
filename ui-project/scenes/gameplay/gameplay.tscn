@@ -1,0 +1,192 @@
+[gd_scene load_steps=13 format=3 uid="uid://bmkdu4n5bq41i"]
+
+[ext_resource type="Script" uid="uid://2ubw75xpw7eo" path="res://scenes/gameplay/gameplay.gd" id="1_0w2j2"]
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="2_gh441"]
+[ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="3_pa1on"]
+[ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="4_elju3"]
+[ext_resource type="PackedScene" uid="uid://cq1g5ymr3ciln" path="res://UI/event_ui/event_modal.tscn" id="5_lb4ud"]
+[ext_resource type="PackedScene" uid="uid://ulnrrmnhkxt6" path="res://scenes/components/MoneyIndicator.tscn" id="6_0w2j2"]
+[ext_resource type="PackedScene" uid="uid://dn2d1kbkfmfei" path="res://scenes/components/setting_button.tscn" id="7_gh441"]
+[ext_resource type="Texture2D" uid="uid://ckpmwx15tgono" path="res://assets/ui_theme/setting_buttons_picture.tres" id="8_elju3"]
+[ext_resource type="PackedScene" uid="uid://burh7luf5a1is" path="res://scenes/components/option_menu.tscn" id="8_pa1on"]
+[ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="9_lb4ud"]
+[ext_resource type="PackedScene" uid="uid://dhgdoypcemc5l" path="res://scenes/components/stats_menu.tscn" id="11_bhb63"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhb63"]
+atlas = ExtResource("9_lb4ud")
+region = Rect2(496, 145, 16, 15)
+
+[node name="Gameplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0w2j2")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_gh441")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_pa1on")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 99)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 1.0
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"main_action_panel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+
+[node name="Button" type="Button" parent="Control/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
+theme_override_fonts/font = ExtResource("4_elju3")
+theme_override_font_sizes/font_size = 27
+text = "Stats"
+
+[node name="Action" type="Button" parent="Control/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
+theme_override_fonts/font = ExtResource("4_elju3")
+theme_override_font_sizes/font_size = 27
+text = "Action"
+
+[node name="Contact" type="Button" parent="Control/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_colors/font_color = Color(0.01365, 0.00719562, 0.000517325, 1)
+theme_override_fonts/font = ExtResource("4_elju3")
+theme_override_font_sizes/font_size = 27
+text = "Contact"
+
+[node name="EventModalPanel" parent="Control" instance=ExtResource("5_lb4ud")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -260.0
+offset_right = 150.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 189.0
+offset_bottom = 107.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+
+[node name="MoneyIndicator" parent="MarginContainer" instance=ExtResource("6_0w2j2")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="SettingButton" parent="MarginContainer2/VBoxContainer" instance=ExtResource("7_gh441")]
+layout_mode = 2
+size_flags_horizontal = 8
+button_texture = ExtResource("8_elju3")
+
+[node name="ScheduleButton" parent="MarginContainer2/VBoxContainer" instance=ExtResource("7_gh441")]
+layout_mode = 2
+size_flags_horizontal = 8
+button_texture = SubResource("AtlasTexture_bhb63")
+
+[node name="OptionMenu" parent="." instance=ExtResource("8_pa1on")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.5
+offset_top = -100.5
+offset_right = 84.5
+offset_bottom = 100.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GetMoneyButton" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="GetMoneyButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -15.5
+offset_right = 46.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_elju3")
+theme_override_font_sizes/font_size = 54
+text = "Get Money"
+
+[node name="StatsMenu" parent="." instance=ExtResource("11_bhb63")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+offset_left = 50.0
+offset_top = 200.0
+
+[connection signal="pressed" from="Control/PanelContainer/HBoxContainer/Action" to="." method="_on_action_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/ScheduleButton" to="." method="_on_schedule_button_pressed"]
+[connection signal="pressed" from="GetMoneyButton/Button" to="." method="_on_money_button_pressed"]

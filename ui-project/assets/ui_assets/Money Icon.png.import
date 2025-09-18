@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://c27l1nixrg4v2"
+=======
+uid="uid://btl1jp4883sfw"
+>>>>>>> Blur
 path="res://.godot/imported/Money Icon.png-d8ca559ad4e28088377a6ff32cdda2dc.ctex"
 metadata={
 "vram_texture": false

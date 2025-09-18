@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8q7a23ar8a74"]
+[gd_scene load_steps=6 format=3 uid="uid://b8q7a23ar8a74"]
 
 [ext_resource type="Script" uid="uid://yl6reo6alr04" path="res://scenes/main_menu/main_menu.gd" id="1_0ebjn"]
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="1_fsom3"]
 [ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="2_ob46e"]
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="4_uqeha"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uqeha"]
 atlas = ExtResource("2_ob46e")
@@ -45,6 +46,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 260.0
 grow_horizontal = 2
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("1_fsom3")
 theme_override_font_sizes/font_size = 108
 text = "Project 1"
@@ -53,6 +55,7 @@ vertical_alignment = 1
 
 [node name="MenuButtonMargin" type="MarginContainer" parent="MenuContainer"]
 layout_mode = 2
+theme = ExtResource("4_uqeha")
 
 [node name="MenuButtonContainer" type="Control" parent="MenuContainer/MenuButtonMargin"]
 layout_mode = 2
@@ -74,9 +77,13 @@ theme_override_constants/separation = 16
 alignment = 1
 
 [node name="NewGame" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
+custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
+theme = ExtResource("4_uqeha")
+theme_type_variation = &"main_action_button"
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("1_fsom3")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 36
 text = "New Game"
 
 [node name="Continue" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
@@ -88,15 +95,21 @@ text = "Continue
 "
 
 [node name="Options" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
+custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("1_fsom3")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 36
 text = "Options"
 
 [node name="Exit" type="Button" parent="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer"]
+custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("1_fsom3")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 36
 text = "Exit"
 
 [connection signal="pressed" from="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer/NewGame" to="." method="_on_new_game_pressed"]

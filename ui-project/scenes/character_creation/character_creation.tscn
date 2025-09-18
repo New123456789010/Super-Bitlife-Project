@@ -1,12 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://cedgx7yyue1ol"]
+[gd_scene load_steps=12 format=3 uid="uid://cedgx7yyue1ol"]
 
 [ext_resource type="Script" uid="uid://bdhkuvfq60yr6" path="res://scenes/character_creation/character_creation_menu.gd" id="1_4xea1"]
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="1_e0w55"]
-[ext_resource type="Texture2D" uid="uid://dyheg6cfgi4wx" path="res://assets/PIC/Cat.png" id="2_fyv5c"]
+[ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="2_x3cld"]
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="3_dg4bb"]
+[ext_resource type="Texture2D" uid="uid://b8y0gqyh4gwke" path="res://assets/PIC/Human/Dialogue Portraits/Default Portrait.png" id="5_ybud3"]
+[ext_resource type="Texture2D" uid="uid://c7lvc6xw23t1v" path="res://assets/PIC/Human/Dialogue Portraits/Soviet KGB Officer.png" id="6_dk37t"]
+[ext_resource type="Texture2D" uid="uid://bqh083fudqhx2" path="res://assets/PIC/Human/Dialogue Portraits/German Nazi Officer.png" id="7_slb67"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r51kn"]
+atlas = ExtResource("2_x3cld")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l01c1"]
-atlas = ExtResource("2_fyv5c")
-region = Rect2(15, 15, 50, 33)
+atlas = ExtResource("5_ybud3")
+region = Rect2(27, 26, 44, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c126h"]
+atlas = ExtResource("6_dk37t")
+region = Rect2(24, 12, 51, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xkkk"]
+atlas = ExtResource("7_slb67")
+region = Rect2(24, 6, 51, 90)
 
 [node name="character_creation_menu" type="Control"]
 layout_mode = 3
@@ -25,99 +40,133 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleContainer" type="MarginContainer" parent="MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
+texture = SubResource("AtlasTexture_r51kn")
 
-[node name="Control" type="Control" parent="MarginContainer/TitleContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="MarginContainer/TitleContainer/Control"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 260.0
-grow_horizontal = 2
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_dg4bb")
+theme_type_variation = &"main_action_panel"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 7
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("1_e0w55")
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 36
 text = "Select Your Character"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CharacterContainer" type="MarginContainer" parent="MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CharacterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CharacterContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/separation = 16
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/CharacterContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_l01c1")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="MarginContainer/CharacterContainer/VBoxContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("1_e0w55")
-theme_override_font_sizes/font_size = 108
+theme_override_font_sizes/font_size = 36
 text = "Character 1"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/CharacterContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/separation = 16
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/CharacterContainer/VBoxContainer/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_l01c1")
+texture = SubResource("AtlasTexture_c126h")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="MarginContainer/CharacterContainer/VBoxContainer/HBoxContainer2"]
+[node name="Button" type="Button" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("1_e0w55")
-theme_override_font_sizes/font_size = 108
+theme_override_font_sizes/font_size = 36
 text = "Character 2"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/CharacterContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/separation = 16
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/CharacterContainer/VBoxContainer/HBoxContainer3"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_l01c1")
+texture = SubResource("AtlasTexture_1xkkk")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="MarginContainer/CharacterContainer/VBoxContainer/HBoxContainer3"]
+[node name="Button" type="Button" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("1_e0w55")
-theme_override_font_sizes/font_size = 108
+theme_override_font_sizes/font_size = 36
 text = "Character 3"
 
 [node name="BackButtonContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 offset_right = 164.0
 offset_bottom = 68.0
+theme = ExtResource("3_dg4bb")
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
 [node name="BackButton" type="Button" parent="BackButtonContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("1_e0w55")
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 18
 text = "Back"
 
+[connection signal="pressed" from="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="BackButtonContainer/BackButton" to="." method="_on_back_button_pressed"]

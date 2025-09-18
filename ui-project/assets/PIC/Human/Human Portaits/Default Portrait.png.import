@@ -2,6 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD:ui-project/assets/PIC/Human/Human Portaits/Default Portrait.png.import
 <<<<<<< HEAD:ui-project/assets/PIC/Human/Dialogue Portraits/Default Portrait.png.import
 uid="uid://7guxxdk6nkrr"
 path="res://.godot/imported/Default Portrait.png-22cd7bea21e325952c68e60410060670.ctex"
@@ -9,12 +10,17 @@ path="res://.godot/imported/Default Portrait.png-22cd7bea21e325952c68e6041006067
 uid="uid://dxry1tj0cjp8h"
 path="res://.godot/imported/Default Portrait.png-b2452549eef853fcc7c366fe3151af00.ctex"
 >>>>>>> add-picture:ui-project/assets/PIC/Human/Human Portaits/Default Portrait.png.import
+=======
+uid="uid://b8y0gqyh4gwke"
+path="res://.godot/imported/Default Portrait.png-22cd7bea21e325952c68e60410060670.ctex"
+>>>>>>> Blur:ui-project/assets/PIC/Human/Dialogue Portraits/Default Portrait.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD:ui-project/assets/PIC/Human/Human Portaits/Default Portrait.png.import
 <<<<<<< HEAD:ui-project/assets/PIC/Human/Dialogue Portraits/Default Portrait.png.import
 source_file="res://assets/PIC/Human/Dialogue Portraits/Default Portrait.png"
 dest_files=["res://.godot/imported/Default Portrait.png-22cd7bea21e325952c68e60410060670.ctex"]
@@ -22,6 +28,10 @@ dest_files=["res://.godot/imported/Default Portrait.png-22cd7bea21e325952c68e604
 source_file="res://assets/PIC/Human/Human Portaits/Default Portrait.png"
 dest_files=["res://.godot/imported/Default Portrait.png-b2452549eef853fcc7c366fe3151af00.ctex"]
 >>>>>>> add-picture:ui-project/assets/PIC/Human/Human Portaits/Default Portrait.png.import
+=======
+source_file="res://assets/PIC/Human/Dialogue Portraits/Default Portrait.png"
+dest_files=["res://.godot/imported/Default Portrait.png-22cd7bea21e325952c68e60410060670.ctex"]
+>>>>>>> Blur:ui-project/assets/PIC/Human/Dialogue Portraits/Default Portrait.png.import
 
 [params]
 

@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://mcq4qiqg2xoe"
+=======
+uid="uid://b35unoo2v5g3u"
+>>>>>>> Blur
 path="res://.godot/imported/Cha Icon.png-e8b1586974adf005e1477b5e7ed5694a.ctex"
 metadata={
 "vram_texture": false

@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+GameData="*res://global/singleton/game_data.gd"
 
 [dialogic]
 
@@ -38,6 +39,12 @@ window/size/viewport_height=990
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://scenes/": "green"
+}
 
 [input]
 

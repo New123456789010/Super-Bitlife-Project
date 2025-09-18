@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhgdoypcemc5l"]
+
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_u0kk2"]
+[ext_resource type="Texture2D" uid="uid://dyheg6cfgi4wx" path="res://assets/PIC/Cat.png" id="2_u0kk2"]
+[ext_resource type="Texture2D" uid="uid://cmbkpxkysw04y" path="res://assets/ui_assets/Int Icon.png" id="3_rhod7"]
+[ext_resource type="Texture2D" uid="uid://b35unoo2v5g3u" path="res://assets/ui_assets/Cha Icon.png" id="4_ppkqe"]
+[ext_resource type="Texture2D" uid="uid://c4xcabg7erm4g" path="res://assets/ui_assets/Str Icon.png" id="5_cgo0a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhod7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="StatsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_u0kk2")
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 361.0
+offset_bottom = 574.0
+theme_type_variation = &"main_action_background_panel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="spacer" type="Control" parent="PanelContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="CharacterProtrait" type="PanelContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"main_action_panel"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer2/VBoxContainer/HBoxContainer/CharacterProtrait"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_u0kk2")
+expand_mode = 1
+
+[node name="spacer2" type="Control" parent="PanelContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SideBar" type="VBoxContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 17
+
+[node name="spacer" type="Control" parent="PanelContainer2/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("3_rhod7")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhod7")
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer2"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("4_ppkqe")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer2"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhod7")
+
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer3"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+expand_mode = 1
+
+[node name="Button" type="Button" parent="PanelContainer2/VBoxContainer/HBoxContainer/SideBar/PanelContainer3"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhod7")
+icon = ExtResource("5_cgo0a")
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"main_action_panel"
