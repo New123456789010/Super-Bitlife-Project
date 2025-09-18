@@ -1,0 +1,144 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3buw13gyeo47"]
+
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_i3xfo"]
+[ext_resource type="Script" uid="uid://dpr1t75sp67xf" path="res://scenes/components/event_modal_first_job.gd" id="2_i3xfo"]
+[ext_resource type="Texture2D" uid="uid://dyheg6cfgi4wx" path="res://assets/PIC/Cat.png" id="3_malic"]
+[ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="4_fat2q"]
+[ext_resource type="Texture2D" uid="uid://dyppsnk2sb3yo" path="res://assets/background_PNGs/pixel_art_Job_ads_in_newspaper.jpeg" id="5_exgsy"]
+[ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="6_j27rv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvuna"]
+atlas = ExtResource("6_j27rv")
+region = Rect2(57, 1496, 17, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw1t7"]
+atlas = ExtResource("6_j27rv")
+region = Rect2(105, 1496, 17, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j73ye"]
+atlas = ExtResource("3_malic")
+region = Rect2(15, 15, 50, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1kyo"]
+atlas = ExtResource("6_j27rv")
+region = Rect2(105, 1496, 17, 31)
+
+[node name="EventModalPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 470)
+offset_right = 250.0
+offset_bottom = 350.0
+theme = ExtResource("1_i3xfo")
+theme_type_variation = &"main_action_panel"
+script = ExtResource("2_i3xfo")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_uvuna")
+texture_pressed = SubResource("AtlasTexture_qw1t7")
+flip_h = true
+
+[node name="PanelContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_j73ye")
+stretch_mode = 3
+flip_h = true
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 20
+
+[node name="RichTextLabel" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_fat2q")
+theme_override_font_sizes/font_size = 36
+text = "JOBS WANTED"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Newspaper" type="TextureRect" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_exgsy")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.0509804, 0.0666667, 0.0901961, 1)
+theme_override_fonts/normal_font = ExtResource("4_fat2q")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, "
+fit_content = true
+scroll_following = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Option1" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_fat2q")
+theme_override_font_sizes/font_size = 18
+text = "Dock Worker $15/hr"
+
+[node name="ApplyJob" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_fonts/font = ExtResource("4_fat2q")
+theme_override_font_sizes/font_size = 27
+text = "Apply Job"
+
+[node name="Option3" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_fonts/font = ExtResource("4_fat2q")
+theme_override_font_sizes/font_size = 18
+text = "Go outside"
+
+[node name="ForwardButton" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_uvuna")
+texture_pressed = SubResource("AtlasTexture_w1kyo")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/Option1" to="." method="_on_option_1_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/Option3" to="." method="_on_option_3_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ForwardButton" to="." method="_on_forward_button_pressed"]

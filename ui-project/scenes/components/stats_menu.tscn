@@ -43,7 +43,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource("2_u0kk2")
-expand_mode = 1
+stretch_mode = 5
 
 [node name="spacer2" type="Control" parent="PanelContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
