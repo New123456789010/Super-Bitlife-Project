@@ -2,36 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD:ui-project/assets/PIC/Job List/Job List.png.import
-<<<<<<< HEAD:ui-project/assets/PIC/Job/Job List.png.import
-uid="uid://7v2b88ivx8q8"
-path="res://.godot/imported/Job List.png-33df17ab7527ecf0c0387b544b0ecb37.ctex"
-=======
-uid="uid://i6dqlgmcexdn"
+uid="uid://b3r247sji3kqp"
 path="res://.godot/imported/Job List.png-1137262f30329a1c5dda106ee03ab437.ctex"
->>>>>>> add-picture:ui-project/assets/PIC/Job List/Job List.png.import
-=======
-uid="uid://b31wd6lnatsdg"
-path="res://.godot/imported/Job List.png-33df17ab7527ecf0c0387b544b0ecb37.ctex"
->>>>>>> Blur:ui-project/assets/PIC/Job/Job List.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD:ui-project/assets/PIC/Job List/Job List.png.import
-<<<<<<< HEAD:ui-project/assets/PIC/Job/Job List.png.import
-source_file="res://assets/PIC/Job/Job List.png"
-dest_files=["res://.godot/imported/Job List.png-33df17ab7527ecf0c0387b544b0ecb37.ctex"]
-=======
 source_file="res://assets/PIC/Job List/Job List.png"
 dest_files=["res://.godot/imported/Job List.png-1137262f30329a1c5dda106ee03ab437.ctex"]
->>>>>>> add-picture:ui-project/assets/PIC/Job List/Job List.png.import
-=======
-source_file="res://assets/PIC/Job/Job List.png"
-dest_files=["res://.godot/imported/Job List.png-33df17ab7527ecf0c0387b544b0ecb37.ctex"]
->>>>>>> Blur:ui-project/assets/PIC/Job/Job List.png.import
 
 [params]
 

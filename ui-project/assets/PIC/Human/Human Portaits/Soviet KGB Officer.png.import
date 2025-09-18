@@ -2,36 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD:ui-project/assets/PIC/Human/Human Portaits/Soviet KGB Officer.png.import
-<<<<<<< HEAD:ui-project/assets/PIC/Human/Dialogue Portraits/Soviet KGB Officer.png.import
-uid="uid://cvtsw31inej1e"
-path="res://.godot/imported/Soviet KGB Officer.png-f681950ed28c3af77cefa89a93664c22.ctex"
-=======
-uid="uid://bsmog2a1gi5xg"
+uid="uid://dli2e3g7sum5a"
 path="res://.godot/imported/Soviet KGB Officer.png-851b5f13349ef22f693303967ff73234.ctex"
->>>>>>> add-picture:ui-project/assets/PIC/Human/Human Portaits/Soviet KGB Officer.png.import
-=======
-uid="uid://c7lvc6xw23t1v"
-path="res://.godot/imported/Soviet KGB Officer.png-f681950ed28c3af77cefa89a93664c22.ctex"
->>>>>>> Blur:ui-project/assets/PIC/Human/Dialogue Portraits/Soviet KGB Officer.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD:ui-project/assets/PIC/Human/Human Portaits/Soviet KGB Officer.png.import
-<<<<<<< HEAD:ui-project/assets/PIC/Human/Dialogue Portraits/Soviet KGB Officer.png.import
-source_file="res://assets/PIC/Human/Dialogue Portraits/Soviet KGB Officer.png"
-dest_files=["res://.godot/imported/Soviet KGB Officer.png-f681950ed28c3af77cefa89a93664c22.ctex"]
-=======
 source_file="res://assets/PIC/Human/Human Portaits/Soviet KGB Officer.png"
 dest_files=["res://.godot/imported/Soviet KGB Officer.png-851b5f13349ef22f693303967ff73234.ctex"]
->>>>>>> add-picture:ui-project/assets/PIC/Human/Human Portaits/Soviet KGB Officer.png.import
-=======
-source_file="res://assets/PIC/Human/Dialogue Portraits/Soviet KGB Officer.png"
-dest_files=["res://.godot/imported/Soviet KGB Officer.png-f681950ed28c3af77cefa89a93664c22.ctex"]
->>>>>>> Blur:ui-project/assets/PIC/Human/Dialogue Portraits/Soviet KGB Officer.png.import
 
 [params]
 

@@ -2,36 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD:ui-project/assets/PIC/Human/Human Portaits/German Nazi Officer.png.import
-<<<<<<< HEAD:ui-project/assets/PIC/Human/Dialogue Portraits/German Nazi Officer.png.import
-uid="uid://c0v0dua3p2i26"
-path="res://.godot/imported/German Nazi Officer.png-b407563ebeaa50accc01d3b538d20110.ctex"
-=======
-uid="uid://cgur7uyy1meyj"
+uid="uid://cc3tch4uckpip"
 path="res://.godot/imported/German Nazi Officer.png-e8b73c36df6f568148d6daf557807c7f.ctex"
->>>>>>> add-picture:ui-project/assets/PIC/Human/Human Portaits/German Nazi Officer.png.import
-=======
-uid="uid://bqh083fudqhx2"
-path="res://.godot/imported/German Nazi Officer.png-b407563ebeaa50accc01d3b538d20110.ctex"
->>>>>>> Blur:ui-project/assets/PIC/Human/Dialogue Portraits/German Nazi Officer.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD:ui-project/assets/PIC/Human/Human Portaits/German Nazi Officer.png.import
-<<<<<<< HEAD:ui-project/assets/PIC/Human/Dialogue Portraits/German Nazi Officer.png.import
-source_file="res://assets/PIC/Human/Dialogue Portraits/German Nazi Officer.png"
-dest_files=["res://.godot/imported/German Nazi Officer.png-b407563ebeaa50accc01d3b538d20110.ctex"]
-=======
 source_file="res://assets/PIC/Human/Human Portaits/German Nazi Officer.png"
 dest_files=["res://.godot/imported/German Nazi Officer.png-e8b73c36df6f568148d6daf557807c7f.ctex"]
->>>>>>> add-picture:ui-project/assets/PIC/Human/Human Portaits/German Nazi Officer.png.import
-=======
-source_file="res://assets/PIC/Human/Dialogue Portraits/German Nazi Officer.png"
-dest_files=["res://.godot/imported/German Nazi Officer.png-b407563ebeaa50accc01d3b538d20110.ctex"]
->>>>>>> Blur:ui-project/assets/PIC/Human/Dialogue Portraits/German Nazi Officer.png.import
 
 [params]
 

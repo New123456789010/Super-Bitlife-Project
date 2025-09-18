@@ -4,23 +4,23 @@
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="1_e0w55"]
 [ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="2_x3cld"]
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="3_dg4bb"]
-[ext_resource type="Texture2D" uid="uid://b8y0gqyh4gwke" path="res://assets/PIC/Human/Dialogue Portraits/Default Portrait.png" id="5_ybud3"]
-[ext_resource type="Texture2D" uid="uid://c7lvc6xw23t1v" path="res://assets/PIC/Human/Dialogue Portraits/Soviet KGB Officer.png" id="6_dk37t"]
-[ext_resource type="Texture2D" uid="uid://bqh083fudqhx2" path="res://assets/PIC/Human/Dialogue Portraits/German Nazi Officer.png" id="7_slb67"]
+[ext_resource type="Texture2D" uid="uid://dt5jqa8d3o6nt" path="res://assets/PIC/Human/Human Portaits/Default Portrait.png" id="5_x3cld"]
+[ext_resource type="Texture2D" uid="uid://cc3tch4uckpip" path="res://assets/PIC/Human/Human Portaits/German Nazi Officer.png" id="6_dg4bb"]
+[ext_resource type="Texture2D" uid="uid://dli2e3g7sum5a" path="res://assets/PIC/Human/Human Portaits/Soviet KGB Officer.png" id="7_ybud3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r51kn"]
 atlas = ExtResource("2_x3cld")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l01c1"]
-atlas = ExtResource("5_ybud3")
+atlas = ExtResource("5_x3cld")
 region = Rect2(27, 26, 44, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c126h"]
-atlas = ExtResource("6_dk37t")
+atlas = ExtResource("6_dg4bb")
 region = Rect2(24, 12, 51, 84)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1xkkk"]
-atlas = ExtResource("7_slb67")
+atlas = ExtResource("7_ybud3")
 region = Rect2(24, 6, 51, 90)
 
 [node name="character_creation_menu" type="Control"]
