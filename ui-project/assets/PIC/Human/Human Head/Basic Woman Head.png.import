@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7v2b88ivx8q8"
-path="res://.godot/imported/Job List.png-33df17ab7527ecf0c0387b544b0ecb37.ctex"
+uid="uid://dx4ndv6hhrhhs"
+path="res://.godot/imported/Basic Woman Head.png-3479f0a22636e3c06155064b6d25b6ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PIC/Job/Job List.png"
-dest_files=["res://.godot/imported/Job List.png-33df17ab7527ecf0c0387b544b0ecb37.ctex"]
+source_file="res://assets/PIC/Human/Human Head/Basic Woman Head.png"
+dest_files=["res://.godot/imported/Basic Woman Head.png-3479f0a22636e3c06155064b6d25b6ca.ctex"]
 
 [params]
 

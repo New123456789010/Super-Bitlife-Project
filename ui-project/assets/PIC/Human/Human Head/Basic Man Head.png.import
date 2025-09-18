@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7guxxdk6nkrr"
-path="res://.godot/imported/Default Portrait.png-22cd7bea21e325952c68e60410060670.ctex"
+uid="uid://b8j3rkj5i654e"
+path="res://.godot/imported/Basic Man Head.png-e9d3f50a0907574b44011660ece4c996.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PIC/Human/Dialogue Portraits/Default Portrait.png"
-dest_files=["res://.godot/imported/Default Portrait.png-22cd7bea21e325952c68e60410060670.ctex"]
+source_file="res://assets/PIC/Human/Human Head/Basic Man Head.png"
+dest_files=["res://.godot/imported/Basic Man Head.png-e9d3f50a0907574b44011660ece4c996.ctex"]
 
 [params]
 

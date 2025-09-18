@@ -1,0 +1,44 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+<<<<<<< HEAD:ui-project/assets/PIC/Human/Dialogue Portraits/Default Portrait.png.import
+uid="uid://7guxxdk6nkrr"
+path="res://.godot/imported/Default Portrait.png-22cd7bea21e325952c68e60410060670.ctex"
+=======
+uid="uid://dxry1tj0cjp8h"
+path="res://.godot/imported/Default Portrait.png-b2452549eef853fcc7c366fe3151af00.ctex"
+>>>>>>> add-picture:ui-project/assets/PIC/Human/Human Portaits/Default Portrait.png.import
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+<<<<<<< HEAD:ui-project/assets/PIC/Human/Dialogue Portraits/Default Portrait.png.import
+source_file="res://assets/PIC/Human/Dialogue Portraits/Default Portrait.png"
+dest_files=["res://.godot/imported/Default Portrait.png-22cd7bea21e325952c68e60410060670.ctex"]
+=======
+source_file="res://assets/PIC/Human/Human Portaits/Default Portrait.png"
+dest_files=["res://.godot/imported/Default Portrait.png-b2452549eef853fcc7c366fe3151af00.ctex"]
+>>>>>>> add-picture:ui-project/assets/PIC/Human/Human Portaits/Default Portrait.png.import
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

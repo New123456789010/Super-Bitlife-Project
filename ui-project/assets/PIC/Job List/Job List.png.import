@@ -1,0 +1,44 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+<<<<<<< HEAD:ui-project/assets/PIC/Job/Job List.png.import
+uid="uid://7v2b88ivx8q8"
+path="res://.godot/imported/Job List.png-33df17ab7527ecf0c0387b544b0ecb37.ctex"
+=======
+uid="uid://i6dqlgmcexdn"
+path="res://.godot/imported/Job List.png-1137262f30329a1c5dda106ee03ab437.ctex"
+>>>>>>> add-picture:ui-project/assets/PIC/Job List/Job List.png.import
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+<<<<<<< HEAD:ui-project/assets/PIC/Job/Job List.png.import
+source_file="res://assets/PIC/Job/Job List.png"
+dest_files=["res://.godot/imported/Job List.png-33df17ab7527ecf0c0387b544b0ecb37.ctex"]
+=======
+source_file="res://assets/PIC/Job List/Job List.png"
+dest_files=["res://.godot/imported/Job List.png-1137262f30329a1c5dda106ee03ab437.ctex"]
+>>>>>>> add-picture:ui-project/assets/PIC/Job List/Job List.png.import
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1
