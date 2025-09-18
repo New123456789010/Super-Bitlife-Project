@@ -4,7 +4,7 @@ extends Node
 # == Exported Config and Stats ==
 # ================================
 @export var stats: PlayerStats
-@export var current_job: JobResource
+@export var current_job: JobResource = load("res://global/job_resource/unemploy.tres")
 @export var income: float = 0
 @export var total_assets: float = 0
 @export var current_turn: int = 0

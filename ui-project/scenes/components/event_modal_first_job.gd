@@ -1,4 +1,5 @@
 extends PanelContainer
+
 @onready var newspaper: TextureRect = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Newspaper
 @onready var apply_job: Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/ApplyJob
 
@@ -81,4 +82,12 @@ func _on_apply_job_pressed() -> void:
 			apply_job.text = "Applied (" + str(i) + ")"
 		else:
 			apply_job.text = "Applied"
+	
+	if current_idx == 1:
+		GameData.current_job = load("res://global/job_resource/dock_worker.tres")
+		print(GameData.current_job.name)
+	elif current_idx == 2:
+		GameData.current_job = load("res://global/job_resource/store_clerk.tres")
+		print(GameData.current_job.name)
+		
 	hide()    # or queue_free() if you want to remove the whole node

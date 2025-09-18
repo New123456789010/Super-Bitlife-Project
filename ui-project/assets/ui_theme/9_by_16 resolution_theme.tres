@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bg1ma7hebf0y2"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://bg1ma7hebf0y2"]
 
 [ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="1_tnco2"]
 [ext_resource type="Texture2D" uid="uid://blj3rlaykecwp" path="res://assets/ui_assets/Plain Paper UI SpriteSheet.png" id="2_2hldv"]
@@ -43,6 +43,18 @@ texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 5.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hldv"]
+atlas = ExtResource("2_2hldv")
+region = Rect2(49, 780, 621, 503)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ewia0"]
+texture = SubResource("AtlasTexture_2hldv")
+texture_margin_left = 48.0
+texture_margin_top = 53.0
+texture_margin_right = 47.0
+texture_margin_bottom = 52.0
+region_rect = Rect2(0, 0, 621, 503)
+
 [resource]
 arrow_button/base_type = &"Button"
 arrow_button/styles/normal = SubResource("StyleBoxTexture_2hldv")
@@ -54,3 +66,5 @@ main_action_button/constants/outline_size = 7
 main_action_button/styles/normal = SubResource("StyleBoxTexture_kngm5")
 main_action_panel/base_type = &"PanelContainer"
 main_action_panel/styles/panel = SubResource("StyleBoxTexture_lm2w6")
+paper_panel/base_type = &"PanelContainer"
+paper_panel/styles/panel = SubResource("StyleBoxTexture_ewia0")

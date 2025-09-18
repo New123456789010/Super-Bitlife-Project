@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JobResource" load_steps=2 format=3 uid="uid://g27l5nqg8g7d"]
+
+[ext_resource type="Script" uid="uid://i7rvc68vq3lu" path="res://global/job_resource.gd" id="1_302x8"]
+
+[resource]
+script = ExtResource("1_302x8")
+name = "Dock Worker"
+description = "Dock Worker at Pearl Habor [b]Pay & Shifts:[/b]• [b]Wage:[/b] 15 gold/hour  • [b]Shifts:[/b] 6am–2pm / 2pm–10pm (rotating weekly) "
+base_income_per_hour = 15.0
+energy_cost_per_hour = 2.0
+required_stat = "strength"
+required_stat_min = 0.0
+start_hour = 6
+shift_length_hours = 8
+metadata/_custom_type_script = "uid://i7rvc68vq3lu"

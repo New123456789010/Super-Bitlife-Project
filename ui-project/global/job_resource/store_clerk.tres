@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JobResource" load_steps=2 format=3 uid="uid://cxambbfeu5dl1"]
+
+[ext_resource type="Script" uid="uid://i7rvc68vq3lu" path="res://global/job_resource.gd" id="1_2bgpq"]
+
+[resource]
+script = ExtResource("1_2bgpq")
+name = "Store Clerk"
+description = ""
+base_income_per_hour = 10.0
+energy_cost_per_hour = 2.0
+required_stat = ""
+required_stat_min = 0.0
+start_hour = 9
+shift_length_hours = 8
+metadata/_custom_type_script = "uid://i7rvc68vq3lu"

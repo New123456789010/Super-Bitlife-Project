@@ -13,10 +13,11 @@ var menus := []
 func _ready():
 	menus = [option_menu, stats_menu]
 	Dialogic.signal_event.connect(_on_dialogic_signal)
+	money_indicator.text = str(GameData.total_assets)
 
 func _on_money_button_pressed() -> void:
-	money += 100
-	money_indicator.text = "%.2f" %money
+	GameData.total_assets += 100
+	money_indicator.text = str(GameData.total_assets)
 
 
 func _on_action_pressed() -> void:
@@ -48,3 +49,6 @@ func _on_schedule_button_pressed() -> void:
 	else:
 		close_all()
 		stats_menu.visible = true
+	
+	stats_menu.refresh_node()
+	

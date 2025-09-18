@@ -4,7 +4,7 @@ class_name JobResource
 #@icon("res://icons/job.svg")
 
 @export var name: String = "Unnamed Job"
-@export var description: String = ""
+@export var description := """ """
 
 # Compensation
 @export var base_income_per_hour: float = 10.0
