@@ -190,6 +190,7 @@ stream = ExtResource("12_i6m2i")
 autoplay = true
 parameters/looping = true
 
+[connection signal="pressed" from="Control/PanelContainer/HBoxContainer/Button" to="." method="_on_stats_button_pressed"]
 [connection signal="pressed" from="Control/PanelContainer/HBoxContainer/Action" to="." method="_on_action_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/ScheduleButton" to="." method="_on_schedule_button_pressed"]

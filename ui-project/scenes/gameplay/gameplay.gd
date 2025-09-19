@@ -10,6 +10,8 @@ var timeline : DialogicTimeline = DialogicTimeline.new()
 var money: int
 var menus := []
 
+var show_newspaper_ads_event_fired := false
+
 func _ready():
 	menus = [option_menu, stats_menu]
 	Dialogic.signal_event.connect(_on_dialogic_signal)
@@ -23,14 +25,19 @@ func _on_money_button_pressed() -> void:
 func _on_action_pressed() -> void:
 	if Dialogic.current_timeline != null:
 		return
-	else: 
+	elif show_newspaper_ads_event_fired == false:
 		Dialogic.start("finding_first_job")
+	else:
+		event_modal_panel.visible = !event_modal_panel.visible
+		get_money_button.visible = false
 
 func _on_dialogic_signal(argument: String):
+	print(argument)
 	if argument == "show_newspaper_ads":
 		event_modal_panel.visible = true
 		get_money_button.visible = false
-		
+		show_newspaper_ads_event_fired = true
+
 
 func close_all() -> void:
 	for m in menus:
@@ -44,6 +51,18 @@ func _on_setting_button_pressed() -> void:
 		option_menu.visible = true
 	
 func _on_schedule_button_pressed() -> void:
+	pass
+	#if stats_menu.visible:
+		#close_all()
+	#else:
+		#close_all()
+		#stats_menu.visible = true
+	#
+	#stats_menu.refresh_node()
+	
+
+
+func _on_stats_button_pressed() -> void:
 	if stats_menu.visible:
 		close_all()
 	else:
@@ -51,4 +70,3 @@ func _on_schedule_button_pressed() -> void:
 		stats_menu.visible = true
 	
 	stats_menu.refresh_node()
-	

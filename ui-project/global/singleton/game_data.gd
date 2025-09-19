@@ -8,6 +8,7 @@ extends Node
 @export var income: float = 0
 @export var total_assets: float = 0
 @export var current_turn: int = 0
+@export var current_event: String
 
 @export var rent: float = 50
 @export var utilities: float = 25
