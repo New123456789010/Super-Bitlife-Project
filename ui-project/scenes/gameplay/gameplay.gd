@@ -5,6 +5,7 @@ extends Control
 @onready var get_money_button: Control = $GetMoneyButton
 @onready var option_menu: PanelContainer = $OptionMenu
 @onready var stats_menu: Control = $StatsMenu
+@onready var schedule_tracker: Control = $Control/ScheduleTracker
 
 var timeline : DialogicTimeline = DialogicTimeline.new()
 var money: int
@@ -51,15 +52,9 @@ func _on_setting_button_pressed() -> void:
 		option_menu.visible = true
 	
 func _on_schedule_button_pressed() -> void:
-	pass
-	#if stats_menu.visible:
-		#close_all()
-	#else:
-		#close_all()
-		#stats_menu.visible = true
-	#
-	#stats_menu.refresh_node()
+	schedule_tracker.visible = !schedule_tracker.visible
 	
+	schedule_tracker.refresh_node()
 
 
 func _on_stats_button_pressed() -> void:

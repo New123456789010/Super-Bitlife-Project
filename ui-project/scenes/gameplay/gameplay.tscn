@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bmkdu4n5bq41i"]
+[gd_scene load_steps=15 format=3 uid="uid://bmkdu4n5bq41i"]
 
 [ext_resource type="Script" uid="uid://2ubw75xpw7eo" path="res://scenes/gameplay/gameplay.gd" id="1_0w2j2"]
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="2_gh441"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="4_elju3"]
 [ext_resource type="PackedScene" uid="uid://ulnrrmnhkxt6" path="res://scenes/components/MoneyIndicator.tscn" id="6_0w2j2"]
 [ext_resource type="PackedScene" uid="uid://b3buw13gyeo47" path="res://scenes/components/event_modal.tscn" id="6_i6m2i"]
+[ext_resource type="PackedScene" uid="uid://ceicxxvhrqgld" path="res://scenes/components/schedule_tracker.tscn" id="6_td3fc"]
 [ext_resource type="PackedScene" uid="uid://dn2d1kbkfmfei" path="res://scenes/components/setting_button.tscn" id="7_gh441"]
 [ext_resource type="Texture2D" uid="uid://ckpmwx15tgono" path="res://assets/ui_theme/setting_buttons_picture.tres" id="8_elju3"]
 [ext_resource type="PackedScene" uid="uid://burh7luf5a1is" path="res://scenes/components/option_menu.tscn" id="8_pa1on"]
@@ -99,6 +100,21 @@ offset_left = -113.5
 offset_top = -166.5
 offset_right = 113.5
 offset_bottom = 166.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScheduleTracker" parent="Control" instance=ExtResource("6_td3fc")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -295.0
+offset_right = -220.0
+offset_bottom = -295.0
 grow_horizontal = 2
 grow_vertical = 2
 

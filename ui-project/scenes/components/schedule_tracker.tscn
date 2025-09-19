@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://ceicxxvhrqgld"]
+
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_0iu2v"]
+[ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="2_3t75d"]
+[ext_resource type="Script" uid="uid://bx66yptsqe4v" path="res://scenes/components/schedule_tracker.gd" id="2_prkul"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prkul"]
+atlas = ExtResource("2_3t75d")
+region = Rect2(57, 1496, 17, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujuu4"]
+atlas = ExtResource("2_3t75d")
+region = Rect2(105, 1496, 17, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3k4p2"]
+atlas = ExtResource("2_3t75d")
+region = Rect2(57, 1496, 17, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72qs0"]
+atlas = ExtResource("2_3t75d")
+region = Rect2(105, 1496, 17, 31)
+
+[node name="ScheduleTracker" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_0iu2v")
+script = ExtResource("2_prkul")
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+offset_right = 366.0
+offset_bottom = 574.0
+theme_type_variation = &"main_action_background_panel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2"]
+layout_mode = 2
+
+[node name="StatsWindow" type="VBoxContainer" parent="PanelContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="CharacterProtrait" type="PanelContainer" parent="PanelContainer2/VBoxContainer/StatsWindow"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"main_action_panel"
+
+[node name="SchedulePanel" type="PanelContainer" parent="PanelContainer2/VBoxContainer/StatsWindow"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"main_action_panel"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer2/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 413)
+layout_mode = 2
+theme_type_variation = &"paper_panel"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_top = 9
+
+[node name="ButtonBox" type="HBoxContainer" parent="PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BackButton" type="TextureButton" parent="PanelContainer2/VBoxContainer/MarginContainer/ButtonBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_prkul")
+texture_pressed = SubResource("AtlasTexture_ujuu4")
+flip_h = true
+
+[node name="Spacer" type="Control" parent="PanelContainer2/VBoxContainer/MarginContainer/ButtonBox"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="ForwardButton" type="TextureButton" parent="PanelContainer2/VBoxContainer/MarginContainer/ButtonBox"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_3k4p2")
+texture_pressed = SubResource("AtlasTexture_72qs0")
