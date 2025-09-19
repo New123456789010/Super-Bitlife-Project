@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8q7a23ar8a74"]
+[gd_scene load_steps=7 format=3 uid="uid://b8q7a23ar8a74"]
 
 [ext_resource type="Script" uid="uid://yl6reo6alr04" path="res://scenes/main_menu/main_menu.gd" id="1_0ebjn"]
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="1_fsom3"]
 [ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="2_ob46e"]
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="4_uqeha"]
+[ext_resource type="AudioStream" uid="uid://b0dng14wche1b" path="res://assets/bgm/BGM.mp3" id="5_wem23"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uqeha"]
 atlas = ExtResource("2_ob46e")
@@ -113,6 +114,12 @@ theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("1_fsom3")
 theme_override_font_sizes/font_size = 36
 text = "Exit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_wem23")
+volume_db = 1.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonMargin/MenuButtonContainer/BoxContainer/Exit" to="." method="_on_exit_pressed"]
