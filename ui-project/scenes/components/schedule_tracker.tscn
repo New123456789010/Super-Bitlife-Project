@@ -27,6 +27,7 @@ theme = ExtResource("1_0iu2v")
 script = ExtResource("2_prkul")
 
 [node name="PanelContainer2" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_right = 366.0
 offset_bottom = 574.0
 theme_type_variation = &"main_action_background_panel"
