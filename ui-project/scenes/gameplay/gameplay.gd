@@ -6,6 +6,8 @@ extends Control
 @onready var option_menu: PanelContainer = $OptionMenu
 @onready var stats_menu: Control = $StatsMenu
 @onready var schedule_tracker: Control = $Control/ScheduleTracker
+@onready var bgm: AudioStreamPlayer = $BGM
+
 
 var timeline : DialogicTimeline = DialogicTimeline.new()
 var money: int
@@ -17,6 +19,15 @@ func _ready():
 	menus = [option_menu, stats_menu]
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 	money_indicator.text = str(GameData.total_assets)
+	option_menu.bgm_volume_changed.connect(_on_child_volume_changed)
+	_on_child_volume_changed(100)  # or whatever default
+	connect("pressed", Callable(self, "_on_button_pressed"))
+
+
+func _on_child_volume_changed(value: float) -> void:
+	var linear = value / 100.0
+	bgm.volume_db = -80.0 if linear <= 0.0 else linear_to_db(linear)
+	
 
 func _on_money_button_pressed() -> void:
 	GameData.total_assets += 100
@@ -45,6 +56,7 @@ func close_all() -> void:
 		m.visible = false
 	
 func _on_setting_button_pressed() -> void:
+	GlobalSound.play_click()
 	if option_menu.visible:
 		close_all()
 	else:

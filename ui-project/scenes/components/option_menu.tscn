@@ -37,10 +37,11 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_fjlei")
 theme_override_font_sizes/font_size = 18
-text = "Volume"
+text = "BGM"
 
-[node name="HSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="BGMvolume" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+value = 100.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
