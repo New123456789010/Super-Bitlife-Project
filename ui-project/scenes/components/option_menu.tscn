@@ -61,6 +61,6 @@ layout_mode = 2
 theme_type_variation = &"main_action_button"
 theme_override_fonts/font = ExtResource("2_fjlei")
 theme_override_font_sizes/font_size = 18
-text = "Save Exit"
+text = "Close"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
