@@ -30,12 +30,12 @@ func play_other() -> void:
 		player.stream = other_sound
 		player.play()
 
-func play_sound(name: String, stream: AudioStream) -> void:
-	# General method: you can play any given stream
-	var player = _audio_players.get(name)
-	if not player:
-		player = AudioStreamPlayer.new()
-		add_child(player)
-		_audio_players[name] = player
-	player.stream = stream
-	player.play()
+#func play_sound(name: String, stream: AudioStream) -> void:
+	## General method: you can play any given stream
+	#var player = _audio_players.get(name)
+	#if not player:
+		#player = AudioStreamPlayer.new()
+		#add_child(player)
+		#_audio_players[name] = player
+	#player.stream = stream
+	#player.play()
