@@ -5,11 +5,13 @@ var map_data : Dictionary = {}
 var map_seed: int = 12345
 
 @onready var generator = preload("res://scenes/map_components/script/map_generator.gd").new()
+@onready var regenerate_button: Button = $RegenerateButton
 
 func _ready() -> void:
 	# Generate the map when scene starts
 	map_data = generator.generate_map(map_seed)
 	queue_redraw()  # trigger _draw
+	_on_regenerate_button_pressed()
 	
 	## Ensure GameState autoload exists (scripts/MapState.gd)
 	#if MapState.map_data == null:
@@ -34,11 +36,13 @@ func _draw() -> void:
 			colors.append(district["color"])
 		draw_polygon(pts, colors)
 
-	# Draw roads (lines)
 	for road in map_data["roads"]:
-		var a = road[0] * size
-		var b = road[1] * size
-		draw_line(a, b, Color8(80, 80, 80), 6)
+		var a = road["from_pos"] * size
+		var b = road["to_pos"] * size
+		var col = Color8(80, 80, 80)  # default gray
+		if road["from"].begins_with("poi_"):
+			col = Color8(150, 100, 220)  # purple for poi → district
+		draw_line(a, b, col, 4)
 
 	# Draw POIs
 	for district in map_data["districts"]:
@@ -73,3 +77,9 @@ func _remove_later(node:Node, delay:float) -> void:
 	await get_tree().create_timer(delay).timeout
 	if node.is_inside_tree():
 		node.queue_free()
+
+
+func _on_regenerate_button_pressed() -> void:
+	map_seed = randi() % 100000
+	map_data = generator.generate_map(map_seed)
+	queue_redraw()
