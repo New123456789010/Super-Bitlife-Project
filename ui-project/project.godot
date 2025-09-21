@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 GameData="*res://global/singleton/game_data.gd"
 GlobalSound="*res://global/singleton/global_sound.gd"
+MapState="*res://scenes/map_components/script/map_state.gd"
 
 [dialogic]
 
