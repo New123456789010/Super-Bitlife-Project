@@ -2,7 +2,7 @@ extends Control
 
 @onready var stats_window: VBoxContainer = $PanelContainer2/VBoxContainer/StatsWindow
 @onready var paper_panel: PanelContainer = $PanelContainer2/VBoxContainer/PanelContainer
-@onready var rich_text_label: RichTextLabel = $PanelContainer2/VBoxContainer/StatsWindow/PanelContainer/Description
+@onready var rich_text_label: RichTextLabel = $PanelContainer2/VBoxContainer/StatsWindow/PanelContainer/MarginContainer/Description
 @export var job_description : String
 
 func _ready() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhgdoypcemc5l"]
+[gd_scene load_steps=14 format=3 uid="uid://dhgdoypcemc5l"]
 
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_u0kk2"]
 [ext_resource type="Script" uid="uid://oyjba5ust23v" path="res://scenes/components/stats_menu.gd" id="2_cgo0a"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d4imkpyft56o3" path="res://assets/ui_assets/Cha Icon.png" id="4_ppkqe"]
 [ext_resource type="Texture2D" uid="uid://o6wk46reyk4c" path="res://assets/ui_assets/Str Icon.png" id="5_cgo0a"]
 [ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="7_cjhhk"]
+[ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="7_d3asa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhod7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -49,6 +50,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="spacer" type="Control" parent="PanelContainer2/VBoxContainer/StatsWindow/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -124,9 +126,18 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"main_action_panel"
 
-[node name="Description" type="RichTextLabel" parent="PanelContainer2/VBoxContainer/StatsWindow/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2/VBoxContainer/StatsWindow/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Description" type="RichTextLabel" parent="PanelContainer2/VBoxContainer/StatsWindow/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("7_d3asa")
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer2/VBoxContainer"]
