@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bmkdu4n5bq41i"]
+[gd_scene load_steps=19 format=3 uid="uid://bmkdu4n5bq41i"]
 
 [ext_resource type="Script" uid="uid://2ubw75xpw7eo" path="res://scenes/gameplay/gameplay.gd" id="1_0w2j2"]
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="2_gh441"]
@@ -8,11 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://b3buw13gyeo47" path="res://scenes/components/event_modal.tscn" id="6_i6m2i"]
 [ext_resource type="PackedScene" uid="uid://ceicxxvhrqgld" path="res://scenes/components/schedule_tracker.tscn" id="6_td3fc"]
 [ext_resource type="PackedScene" uid="uid://dn2d1kbkfmfei" path="res://scenes/components/setting_button.tscn" id="7_gh441"]
+[ext_resource type="Texture2D" uid="uid://dt5jqa8d3o6nt" path="res://assets/PIC/Human/Human Portaits/Default Portrait.png" id="8_216mg"]
 [ext_resource type="Texture2D" uid="uid://ckpmwx15tgono" path="res://assets/ui_theme/setting_buttons_picture.tres" id="8_elju3"]
 [ext_resource type="PackedScene" uid="uid://burh7luf5a1is" path="res://scenes/components/option_menu.tscn" id="8_pa1on"]
+[ext_resource type="PackedScene" uid="uid://bk3gefn8tfly5" path="res://scenes/components/date_time_indicator.tscn" id="9_krs01"]
 [ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="9_lb4ud"]
 [ext_resource type="PackedScene" uid="uid://dhgdoypcemc5l" path="res://scenes/components/stats_menu.tscn" id="11_bhb63"]
 [ext_resource type="AudioStream" uid="uid://dslpbs15mdw02" path="res://assets/bgm/BGM2.mp3" id="12_i6m2i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krs01"]
+atlas = ExtResource("8_216mg")
+region = Rect2(27, 26, 44, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2eo0c"]
+atlas = ExtResource("8_216mg")
+region = Rect2(27, 26, 44, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhb63"]
 atlas = ExtResource("9_lb4ud")
@@ -63,14 +73,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 14
-
-[node name="Button" type="Button" parent="Control/PanelContainer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-theme_type_variation = &"main_action_button"
-theme_override_fonts/font = ExtResource("4_elju3")
-theme_override_font_sizes/font_size = 27
-text = "Stats"
 
 [node name="Action" type="Button" parent="Control/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
@@ -125,8 +127,35 @@ offset_bottom = 107.0
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 
-[node name="MoneyIndicator" parent="MarginContainer" instance=ExtResource("6_0w2j2")]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme = ExtResource("2_gh441")
+
+[node name="SettingButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("7_gh441")]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+button_texture = SubResource("AtlasTexture_krs01")
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"main_action_panel"
+icon = SubResource("AtlasTexture_2eo0c")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="DateTimeIndicator" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("9_krs01")]
+layout_mode = 2
+
+[node name="MoneyIndicator" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("6_0w2j2")]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = null
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -206,8 +235,9 @@ stream = ExtResource("12_i6m2i")
 autoplay = true
 parameters/looping = true
 
-[connection signal="pressed" from="Control/PanelContainer/HBoxContainer/Button" to="." method="_on_stats_button_pressed"]
 [connection signal="pressed" from="Control/PanelContainer/HBoxContainer/Action" to="." method="_on_action_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/SettingButton" to="." method="_on_stats_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="." method="_on_stats_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/ScheduleButton" to="." method="_on_schedule_button_pressed"]
 [connection signal="pressed" from="GetMoneyButton/Button" to="." method="_on_money_button_pressed"]
