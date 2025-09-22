@@ -15,6 +15,9 @@ var menus := []
 
 var show_newspaper_ads_event_fired := false
 
+var map_scene = preload("res://scenes/map_components/scene/map_screen.tscn").instantiate()
+var map_scene_instantiated := false
+
 func _ready():
 	menus = [option_menu, stats_menu,schedule_tracker,event_modal_panel]
 	Dialogic.signal_event.connect(_on_dialogic_signal)
@@ -94,3 +97,12 @@ func _on_stats_button_pressed() -> void:
 		stats_menu.visible = true
 	
 	stats_menu.refresh_node()
+
+
+func _on_map_button_pressed() -> void:
+	if map_scene != null && map_scene_instantiated == false:
+		get_tree().root.add_child(map_scene)
+		map_scene_instantiated = true
+		print(map_scene_instantiated)
+	else:
+		map_scene.visible = !map_scene.visible

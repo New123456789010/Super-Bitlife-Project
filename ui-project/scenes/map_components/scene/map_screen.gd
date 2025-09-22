@@ -83,3 +83,7 @@ func _on_regenerate_button_pressed() -> void:
 	map_seed = randi() % 100000
 	map_data = generator.generate_map(map_seed)
 	queue_redraw()
+
+
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/gameplay/gameplay.tscn")
