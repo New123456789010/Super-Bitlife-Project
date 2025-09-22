@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="4_elju3"]
 [ext_resource type="PackedScene" uid="uid://ulnrrmnhkxt6" path="res://scenes/components/MoneyIndicator.tscn" id="6_0w2j2"]
 [ext_resource type="PackedScene" uid="uid://b3buw13gyeo47" path="res://scenes/components/event_modal.tscn" id="6_i6m2i"]
-[ext_resource type="PackedScene" uid="uid://ceicxxvhrqgld" path="res://scenes/components/schedule_tracker.tscn" id="6_td3fc"]
+[ext_resource type="PackedScene" uid="uid://ceicxxvhrqgld" path="res://scenes/action_menu/scheduler/schedule_tracker.tscn" id="6_td3fc"]
 [ext_resource type="PackedScene" uid="uid://dn2d1kbkfmfei" path="res://scenes/components/setting_button.tscn" id="7_gh441"]
 [ext_resource type="Texture2D" uid="uid://dt5jqa8d3o6nt" path="res://assets/PIC/Human/Human Portaits/Default Portrait.png" id="8_216mg"]
 [ext_resource type="Texture2D" uid="uid://ckpmwx15tgono" path="res://assets/ui_theme/setting_buttons_picture.tres" id="8_elju3"]

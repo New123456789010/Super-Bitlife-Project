@@ -17,6 +17,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="RegenerateButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Regenerate Map"
 

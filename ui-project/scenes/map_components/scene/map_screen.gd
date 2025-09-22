@@ -5,7 +5,7 @@ var map_data : Dictionary = {}
 var map_seed: int = 12345
 
 @onready var generator = preload("res://scenes/map_components/script/map_generator.gd").new()
-@onready var regenerate_button: Button = $RegenerateButton
+@onready var regenerate_button: Button = %RegenerateButton
 
 func _ready() -> void:
 	# Generate the map when scene starts
