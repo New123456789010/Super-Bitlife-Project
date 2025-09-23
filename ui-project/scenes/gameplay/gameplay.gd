@@ -15,7 +15,8 @@ var menus := []
 
 var show_newspaper_ads_event_fired := false
 
-var map_scene = preload("res://scenes/map_components/scene/map_screen.tscn").instantiate()
+@export var map_scene: PackedScene 
+var map_scene_node
 var map_scene_instantiated := false
 
 func _ready():
@@ -101,8 +102,9 @@ func _on_stats_button_pressed() -> void:
 
 func _on_map_button_pressed() -> void:
 	if map_scene != null && map_scene_instantiated == false:
-		get_tree().root.add_child(map_scene)
+		map_scene_node = map_scene.instantiate()
+		add_child(map_scene_node)
 		map_scene_instantiated = true
 		print(map_scene_instantiated)
 	else:
-		map_scene.visible = !map_scene.visible
+		map_scene_node.visible = !map_scene_node.visible

@@ -1,7 +1,7 @@
 extends Control
 
 @onready var action_menu: VBoxContainer = $VBoxContainer/ActionPanel/ActionList
-@onready var schedule_track: VBoxContainer = $ScheduleTrack
+@onready var schedule_track: VBoxContainer = $ScheduleTracker.action_block_list
 @onready var run_day_button: Button = $RunDayButton
 
 func _ready():

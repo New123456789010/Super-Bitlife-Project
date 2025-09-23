@@ -1,11 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://cc5g7epkt04pd"]
+[gd_scene load_steps=4 format=3 uid="uid://cc5g7epkt04pd"]
 
 [ext_resource type="Script" uid="uid://bfy33uldgjduo" path="res://scenes/action_menu/scheduler/action_block.gd" id="1_8e3k5"]
+[ext_resource type="Script" uid="uid://d0ih5aaw326y6" path="res://global/action_resource.gd" id="2_y1hk7"]
+
+[sub_resource type="Resource" id="Resource_rsox4"]
+script = ExtResource("2_y1hk7")
+name = "Unnamed Action"
+description = ""
+default_length = 4
+energy_cost_per_unit = 1.0
+energy_cost = 1.0
+is_restful = false
+stat_affected = ""
+stat_gain_per_unit = 0.0
+metadata/_custom_type_script = "uid://d0ih5aaw326y6"
 
 [node name="ActionBlock" type="PanelContainer"]
 offset_right = 1.0
 offset_bottom = 27.0
 script = ExtResource("1_8e3k5")
+action = SubResource("Resource_rsox4")
+action_name = "wtf"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

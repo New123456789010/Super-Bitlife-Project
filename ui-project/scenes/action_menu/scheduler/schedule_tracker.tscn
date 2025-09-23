@@ -25,13 +25,18 @@ offset_top = 38.0
 offset_right = 76.0
 offset_bottom = 416.0
 
-[node name="CharacterProtrait" type="PanelContainer" parent="StatsWindow"]
+[node name="ScheduleBlockContainer" type="PanelContainer" parent="StatsWindow"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"main_action_panel"
 
-[node name="SchedulePanel" type="PanelContainer" parent="StatsWindow"]
+[node name="ActionBlockList" type="VBoxContainer" parent="StatsWindow/ScheduleBlockContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 2
+
+[node name="CurrentAction" type="PanelContainer" parent="StatsWindow"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 3

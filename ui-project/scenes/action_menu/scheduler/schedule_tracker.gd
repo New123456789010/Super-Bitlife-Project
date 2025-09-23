@@ -1,5 +1,7 @@
 extends Control
 
+@onready var action_block_list: VBoxContainer = %ActionBlockList
+
 func refresh_node():
 	pass
 	
