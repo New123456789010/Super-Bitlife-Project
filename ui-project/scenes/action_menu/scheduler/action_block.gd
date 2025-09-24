@@ -10,40 +10,23 @@ class_name ActionBlock
 
 func _ready():
 	label.text = action_name
+	# Ensure this control receives mouse events
+	mouse_filter = Control.MOUSE_FILTER_STOP
 
-func _get_drag_data(_pos):
-	var preview = Label.new()
+# Called by Godot when the user starts dragging this Control
+func _get_drag_data(_pos: Vector2) -> Dictionary:
+	var preview := _make_drag_preview()
 	preview.text = action_name
 	set_drag_preview(preview)
+	# Return a reference to self so ScheduleTrack can reorder
 	return {"type": "action_block", "block": self}
 
 func execute_action():
-	# For now, just print. Later this will modify stats / trigger events.
+	# placeholder: replace with stat changes / trigger events / animations late.
 	print("   ⏳ Executing action:", action_name)
 
-#func _ready():
-	#if action:
-		#update_visuals()
-#
-#func update_visuals():
-	## icon (optional, only if you add icon to ActionResource later)
-	#if action.has_meta("icon"):
-		#icon.texture = action.get_meta("icon")
-	#else:
-		#icon.visible = false
-	#
-	## label
-	#label.text = "%s (%dh)" % [action.name, action.duration_slots]
-#
-#
-#const PIXELS_PER_SLOT = 10
-#
-#func set_height_from_duration():
-	#var total_slots = action.duration_slots
-	#custom_minimum_size.y = total_slots * PIXELS_PER_SLOT
-#
-#func _get_drag_data(_pos):
-	#var preview = Label.new()
-	#preview.text = action_name
-	#set_drag_preview(preview)
-	#return {"type": "action_block", "block": self}
+func _make_drag_preview() -> Control:
+	var p := Label.new()
+	p.text = action_name
+	p.custom_minimum_size = Vector2(120, 40)
+	return p

@@ -21,3 +21,12 @@ func get_drop_index(pos: Vector2) -> int:
 		if pos.y < child.position.y + child.size.y / 2.0:
 			return i
 	return get_child_count()
+
+func _on_run_action_pressed() -> void:
+	var blocks := action_block_list.get_children()
+	# execute bottom-first (visual bottom is last rendered child when alignment=END)
+	for i in range(blocks.size() - 1, -1, -1):
+		var b := blocks[i]
+		if b is ActionBlock:
+			b.execute_action()
+			b.queue_free()
