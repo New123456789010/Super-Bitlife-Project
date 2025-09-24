@@ -20,11 +20,9 @@ theme = ExtResource("1_0iu2v")
 script = ExtResource("2_prkul")
 
 [node name="StatsWindow" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_left = 40.0
-offset_top = 38.0
-offset_right = 76.0
-offset_bottom = 416.0
+layout_mode = 1
+offset_right = 36.0
+offset_bottom = 378.0
 
 [node name="ScheduleBlockContainer" type="PanelContainer" parent="StatsWindow"]
 custom_minimum_size = Vector2(0, 300)

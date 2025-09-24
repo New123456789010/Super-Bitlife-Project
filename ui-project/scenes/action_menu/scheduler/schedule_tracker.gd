@@ -25,8 +25,13 @@ func get_drop_index(pos: Vector2) -> int:
 func _on_run_action_pressed() -> void:
 	var blocks := action_block_list.get_children()
 	# execute bottom-first (visual bottom is last rendered child when alignment=END)
-	for i in range(blocks.size() - 1, -1, -1):
-		var b := blocks[i]
-		if b is ActionBlock:
-			b.execute_action()
-			b.queue_free()
+	if blocks.size() > 0:
+		var bottom_block := blocks[blocks.size() - 1]
+		if bottom_block is ActionBlock:
+			bottom_block.execute_action()
+			bottom_block.queue_free()
+	#for i in range(blocks.size() - 1, -1, -1):
+		#var b := blocks[i]
+		#if b is ActionBlock:
+			#b.execute_action()
+			#b.queue_free()
