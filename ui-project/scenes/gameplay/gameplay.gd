@@ -15,6 +15,10 @@ var menus := []
 
 var show_newspaper_ads_event_fired := false
 
+@export var map_scene: PackedScene 
+var map_scene_node
+var map_scene_instantiated := false
+
 func _ready():
 	menus = [option_menu, stats_menu,schedule_tracker,event_modal_panel]
 	Dialogic.signal_event.connect(_on_dialogic_signal)
@@ -94,3 +98,13 @@ func _on_stats_button_pressed() -> void:
 		stats_menu.visible = true
 	
 	stats_menu.refresh_node()
+
+
+func _on_map_button_pressed() -> void:
+	if map_scene != null && map_scene_instantiated == false:
+		map_scene_node = map_scene.instantiate()
+		add_child(map_scene_node)
+		map_scene_instantiated = true
+		print(map_scene_instantiated)
+	else:
+		map_scene_node.visible = !map_scene_node.visible

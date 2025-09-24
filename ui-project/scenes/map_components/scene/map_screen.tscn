@@ -10,3 +10,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7urmv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RegenerateButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Regenerate Map"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Go Back"
+
+[connection signal="pressed" from="VBoxContainer/RegenerateButton" to="." method="_on_regenerate_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
