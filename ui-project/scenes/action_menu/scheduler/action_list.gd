@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 @export var action_block_scene: PackedScene
-@onready var tracker: Control = $"../../../ScheduleTracker"
+@onready var tracker: Control = $"../../ScheduleTracker"
 var schedule_ref
 
 # Example data (later you’ll replace with ActionResource list from GameData)

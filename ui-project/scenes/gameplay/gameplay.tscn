@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://2ubw75xpw7eo" path="res://scenes/gameplay/gameplay.gd" id="1_0w2j2"]
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="2_gh441"]
-[ext_resource type="PackedScene" uid="uid://cpeaww65swda4" path="res://scenes/map_components/scene/map_screen.tscn" id="2_pimn4"]
 [ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="3_pa1on"]
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="4_elju3"]
 [ext_resource type="PackedScene" uid="uid://ulnrrmnhkxt6" path="res://scenes/components/MoneyIndicator.tscn" id="6_0w2j2"]
@@ -17,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dhgdoypcemc5l" path="res://scenes/components/stats_menu.tscn" id="11_bhb63"]
 [ext_resource type="AudioStream" uid="uid://dslpbs15mdw02" path="res://assets/bgm/BGM2.mp3" id="12_i6m2i"]
 [ext_resource type="Texture2D" uid="uid://naekkfh2gnhn" path="res://assets/ui_assets/Map Icon.png" id="13_2eo0c"]
+[ext_resource type="PackedScene" uid="uid://c525a1purwymb" path="res://scenes/action_menu/scheduler/schedule_panel.tscn" id="17_pimn4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_krs01"]
 atlas = ExtResource("8_216mg")
@@ -38,7 +38,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0w2j2")
-map_scene = ExtResource("2_pimn4")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -204,6 +203,26 @@ offset_bottom = 100.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="StatsMenu" parent="." instance=ExtResource("11_bhb63")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -226.5
+offset_top = -309.0
+offset_right = 226.5
+offset_bottom = 309.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_i6m2i")
+autoplay = true
+parameters/looping = true
+
 [node name="GetMoneyButton" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -231,7 +250,7 @@ theme_override_fonts/font = ExtResource("4_elju3")
 theme_override_font_sizes/font_size = 54
 text = "Get Money"
 
-[node name="StatsMenu" parent="." instance=ExtResource("11_bhb63")]
+[node name="SchedulePanel" parent="." instance=ExtResource("17_pimn4")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -239,17 +258,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -226.5
-offset_top = -309.0
-offset_right = 226.5
-offset_bottom = 309.0
+offset_left = -197.5
+offset_top = -252.5
+offset_right = 197.5
+offset_bottom = 252.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="BGM" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_i6m2i")
-autoplay = true
-parameters/looping = true
 
 [connection signal="pressed" from="Control/PanelContainer/HBoxContainer/Action" to="." method="_on_action_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/SettingButton" to="." method="_on_stats_button_pressed"]

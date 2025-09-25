@@ -16,12 +16,14 @@ region = Rect2(105, 1496, 17, 31)
 [node name="ScheduleTracker" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 378.0
 theme = ExtResource("1_0iu2v")
 script = ExtResource("2_prkul")
 
 [node name="StatsWindow" type="VBoxContainer" parent="."]
-layout_mode = 1
-offset_right = 36.0
+layout_mode = 2
+offset_right = 100.0
 offset_bottom = 378.0
 
 [node name="ScheduleBlockContainer" type="PanelContainer" parent="StatsWindow"]
