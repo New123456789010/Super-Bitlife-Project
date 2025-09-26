@@ -1,0 +1,99 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnslpwgud307v"]
+
+[ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="1_3xebe"]
+
+[node name="Job_Event" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 493.0
+offset_bottom = 990.0
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.5
+offset_top = 37.0
+offset_right = 76.5
+offset_bottom = 77.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="PanelContainer/ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_3xebe")
+theme_override_font_sizes/font_size = 40
+text = "WORKING"
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/ColorRect"]
+layout_mode = 1
+offset_top = 81.0
+offset_right = 817.0
+offset_bottom = 828.0
+
+[node name="Label" type="Label" parent="PanelContainer/ColorRect/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_3xebe")
+theme_override_font_sizes/font_size = 17
+text = "Good event:
+1: Customer greeted you friendly
+Result: You greet them back and feel happy.
+2: Customer tip you for your hard work.
+Result: You thank them and feel more motivate.
+3: While on the break someone from food store give you free drink on hot day.
+Result: 1: You thank them and feel happy meeting nice people.
+     2: You feel less tired if you got bad event that make you tired before.)
+4: A child wave at you while you make delivery.
+Result: You greet back and think what a nice kid.
+5: You were thanked personally for fast service.
+Result: You feel appreciated and more motivate.
+6: You enjoyed a nice weather during your shift.
+Result: You feel clam and more motivate.
+7: You finish all deliveries safely and on time.
+Result:(Increase change of compliment event or tip event)
+8: A loyal costumer recognized you and said \"You always do a greats job\".
+Result: You feel appreciated and more motivate.
+9: Your supervisor give you a bonus for your great job. (Only happen if you get compliment event 20 time or get event 8 for 7 time.)
+Result: You feel great and feel very rewarding.
+10: Your supervisor buy you a lunch for no reason.
+Result: Free food nice.
+Bad event:
+1: A dog barked at you while approaching a house.
+Result: You feel terrify.
+2: A dog chased after you down the street.
+Result: Your day feel ruin and now you tired.
+3: Your bike broke down during delivery.
+Result: You walk back to delivery station.
+4: You caught in heavy rain while delivery.
+Result: 1: You completely soak and cold.
+     2: Lucky you drive a truck.
+5: You stuck in traffic for a long time.
+Result: You are late now costumer is very angry.
+6: You were given a wrong address.
+Result: 1: (If event 5 happen before this event.) You feel very upset at your supervisor and tired.
+     2: You go back to your delivery station tired.
+7: You drop the package while delivering.
+Result: 1: (If event 5 or 6 happen before this event) Costumer very mad at you.
+     2: (If event 5 and 6 happen before this event (worst case)) Costumer is very furious at you and call your company about your incompetent. After return to delivery station your supervisor also mads at you.
+     3: You broke costumer package now they are very angry.
+8: You got yell by angry customer.
+Result: 1: (If worst case) You feel very tired and sad now you want to quit.
+     2: (If event 5 and 7 happen before) You feel very guilty and sad.
+     3: You feel mad but can't do anything.
+9: Your back is injured while try to lift heavy package.
+Result: 1: You feel terrible all day.
+10: You almost got hit by a car. (Near Death)
+Result: 1: Lucky god cat does not claim me yet.
+     2: You die (Only when your hp is very low or 0.01% chance.)"
