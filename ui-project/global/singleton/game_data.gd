@@ -105,3 +105,13 @@ func _ready():
 				#if action is ActionResource:
 					#available_actions.append(action)
 			#file = dir.get_next()
+
+# =======================
+# == Global removal mode signal + state ==
+# =======================
+signal removal_mode_changed(enabled: bool)
+var removal_mode: bool = false
+
+func toggle_removal_mode() -> void:
+	removal_mode = not removal_mode
+	emit_signal("removal_mode_changed", removal_mode)

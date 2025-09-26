@@ -1,14 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc5g7epkt04pd"]
+[gd_scene load_steps=2 format=3 uid="uid://cc5g7epkt04pd"]
 
 [ext_resource type="Script" uid="uid://bfy33uldgjduo" path="res://scenes/action_menu/scheduler/action_block.gd" id="1_8e3k5"]
-[ext_resource type="Resource" uid="uid://dg46ajvwxdau" path="res://global/action_resource/sleep_action.tres" id="2_y1hk7"]
 
 [node name="ActionBlock" type="PanelContainer"]
 offset_right = 1.0
 offset_bottom = 27.0
 script = ExtResource("1_8e3k5")
-action = ExtResource("2_y1hk7")
-action_name = "Sleep"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
