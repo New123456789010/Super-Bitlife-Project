@@ -23,7 +23,15 @@ func _get_drag_data(_pos: Vector2) -> Dictionary:
 
 func execute_action():
 	# placeholder: replace with stat changes / trigger events / animations late.
-	print("   ⏳ Executing action:", action_name)
+	if action:
+		print("   ⏳ Executing action:", action_name)
+		action.apply(GameData.player_stats)
+		print("Player Stats after action: ",
+				"💪", GameData.player_stats.strength,
+				" 🧠", GameData.player_stats.intelligence,
+				" 😎", GameData.player_stats.charisma,
+				" ⚡", GameData.player_stats.energy
+)
 
 func _make_drag_preview() -> Control:
 	var p := Label.new()

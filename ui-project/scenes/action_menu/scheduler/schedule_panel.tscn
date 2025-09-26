@@ -32,6 +32,7 @@ theme_type_variation = &"main_action_panel"
 layout_mode = 2
 script = ExtResource("3_o8gv7")
 action_block_scene = ExtResource("4_o8gv7")
+actions_folder = "res://global/action_resource/"
 
 [node name="ScheduleTracker" parent="PanelContainer/HBoxContainer" instance=ExtResource("2_ccelt")]
 layout_mode = 2

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ActionResource" load_steps=2 format=3 uid="uid://dg46ajvwxdau"]
+
+[ext_resource type="Script" uid="uid://d0ih5aaw326y6" path="res://global/action_resource.gd" id="1_qy8cl"]
+
+[resource]
+script = ExtResource("1_qy8cl")
+name = "Sleep"
+description = "go to sleep motherfucker"
+default_length = 4
+energy_cost_per_unit = 80.0
+energy_cost = 1.0
+is_restful = true
+stat_affected = ""
+stat_gain_per_unit = 0.0
+metadata/_custom_type_script = "uid://d0ih5aaw326y6"

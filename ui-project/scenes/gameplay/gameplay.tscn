@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://bmkdu4n5bq41i"]
+[gd_scene load_steps=22 format=3 uid="uid://bmkdu4n5bq41i"]
 
 [ext_resource type="Script" uid="uid://2ubw75xpw7eo" path="res://scenes/gameplay/gameplay.gd" id="1_0w2j2"]
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="2_gh441"]
+[ext_resource type="PackedScene" uid="uid://cpeaww65swda4" path="res://scenes/map_components/scene/map_screen.tscn" id="2_moho6"]
 [ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="3_pa1on"]
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="4_elju3"]
 [ext_resource type="PackedScene" uid="uid://ulnrrmnhkxt6" path="res://scenes/components/MoneyIndicator.tscn" id="6_0w2j2"]
@@ -38,6 +39,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0w2j2")
+map_scene = ExtResource("2_moho6")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
