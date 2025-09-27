@@ -20,7 +20,7 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 GameData="*res://global/singleton/game_data.gd"
 GlobalSound="*res://global/singleton/global_sound.gd"
 MapState="*res://scenes/map_components/script/map_state.gd"
-SignalBus="*res://global/signal_bus.gd"
+SignalBus="*res://global/singleton/signal_bus.gd"
 
 [dialogic]
 
