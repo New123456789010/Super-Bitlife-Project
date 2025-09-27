@@ -8,6 +8,7 @@ extends Control
 @onready var schedule_tracker: Control = $Control/ScheduleTracker
 @onready var bgm: AudioStreamPlayer = $BGM
 @onready var schedule_panel: PanelContainer = $SchedulePanel
+@onready var map_button: Button = $MarginContainer2/VBoxContainer/MapButton
 
 
 var timeline : DialogicTimeline = DialogicTimeline.new()
@@ -47,20 +48,21 @@ func _on_money_button_pressed() -> void:
 	GameData.total_assets += 100
 	money_indicator.text = str(GameData.total_assets)
 
-
+var first_game_event := false
 func _on_action_pressed() -> void:
-	if Dialogic.current_timeline != null:
-		return
-	elif show_newspaper_ads_event_fired == false:
-		close_all()
-		Dialogic.start("finding_first_job")
-	else:
-		if event_modal_panel.visible:
+	if first_game_event == false:
+		if Dialogic.current_timeline != null:
+			return
+		elif show_newspaper_ads_event_fired == false:
 			close_all()
+			Dialogic.start("finding_first_job")
 		else:
-			close_all()
-			event_modal_panel.visible = true
-		get_money_button.visible = false
+			if event_modal_panel.visible:
+				close_all()
+			else:
+				close_all()
+				event_modal_panel.visible = true
+			get_money_button.visible = false
 
 func _on_dialogic_signal(argument: String):
 	print(argument)
@@ -68,6 +70,10 @@ func _on_dialogic_signal(argument: String):
 		event_modal_panel.visible = true
 		get_money_button.visible = false
 		show_newspaper_ads_event_fired = true
+	
+	if argument == "map_enabled":
+		map_button.visible = true
+		_on_map_button_pressed()
 
 
 func close_all() -> void:

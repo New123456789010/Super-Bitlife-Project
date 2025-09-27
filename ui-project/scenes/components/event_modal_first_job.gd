@@ -2,6 +2,11 @@ extends PanelContainer
 
 @onready var newspaper: TextureRect = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/Newspaper
 @onready var apply_job: Button = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer/ApplyJob
+@onready var event_modal_panel_title: Label = $MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer3/EventModalPanelTitle
+
+@export var event_title := "JOBS WANTED"
+@export var event_front_picture: Texture
+@export var event_body_text := """Empty"""
 
 var dock_worker_description = """[center][b]⚓ Dock Worker[/b][/center]
 
@@ -49,6 +54,8 @@ var current_idx := 0
 
 func _ready() -> void:
 	default_text = job_text.text
+	event_modal_panel_title.text = event_title
+	Dialogic.signal_event.connect(_on_dialogic_signal)
 
 func start() -> void:
 	apply_job.visible = true
@@ -64,12 +71,14 @@ func _on_back_button_pressed() -> void:
 	current_idx = (current_idx - 1 + jobs.size()) % jobs.size()
 	job_text.text = jobs[current_idx]
 
-
+var got_out_side_1st_time := false
+var initial_map_showcase := false
 func _on_option_3_pressed() -> void:
 	job_text.text = default_text
 	apply_job.visible = false
 	newspaper.visible = true
-	self.hide()
+	if got_out_side_1st_time == false:
+		Dialogic.start("got_out_side_1st_time")
 
 
 func _on_apply_job_pressed() -> void:
@@ -91,3 +100,7 @@ func _on_apply_job_pressed() -> void:
 		print(GameData.current_job.name)
 		
 	hide()    # or queue_free() if you want to remove the whole node
+
+func _on_dialogic_signal(argument: String):
+	if argument == "map_enabled":
+		got_out_side_1st_time = true

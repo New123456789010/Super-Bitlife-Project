@@ -28,7 +28,8 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "finding_first_job": "res://dialogic_timeline/finding_first_job.dtl",
-"finding_first_job_2": "res://dialogic_timeline/finding_first_job_2.dtl"
+"finding_first_job_2": "res://dialogic_timeline/finding_first_job_2.dtl",
+"got_out_side_1st_time": "res://dialogic_timeline/got_out_side_1st_time.dtl"
 }
 variables={
 "weird_cat_question_1": ""
