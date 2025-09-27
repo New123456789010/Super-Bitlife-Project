@@ -116,7 +116,10 @@ func _pick_first_event() -> String:
 # Pick good or bad (for remaining events)
 # ==========================
 func _pick_good_or_bad() -> String:
-	return (randf() < 0.5) ? "good" : "bad"
+	if (randf() < 0.5): 
+		return String("good") 
+	else: 
+		return String("bad") 
 
 # ==========================
 # Grab random event from category
