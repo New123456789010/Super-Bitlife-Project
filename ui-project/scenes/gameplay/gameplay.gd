@@ -1,12 +1,13 @@
 extends Control
 
-@onready var money_indicator: Label = $MarginContainer/MoneyIndicator/MarginContainer/VBoxContainer/%Label2
+@onready var money_indicator: Label = $MarginContainer/HBoxContainer/VBoxContainer/MoneyIndicator/MarginContainer/VBoxContainer/%Label2
 @onready var event_modal_panel: PanelContainer = $Control/EventModalPanel
 @onready var get_money_button: Control = $GetMoneyButton
 @onready var option_menu: PanelContainer = $OptionMenu
 @onready var stats_menu: Control = $StatsMenu
 @onready var schedule_tracker: Control = $Control/ScheduleTracker
 @onready var bgm: AudioStreamPlayer = $BGM
+@onready var schedule_panel: PanelContainer = $SchedulePanel
 
 
 var timeline : DialogicTimeline = DialogicTimeline.new()
@@ -15,8 +16,12 @@ var menus := []
 
 var show_newspaper_ads_event_fired := false
 
+@export var map_scene: PackedScene 
+var map_scene_node
+var map_scene_instantiated := false
+
 func _ready():
-	menus = [option_menu, stats_menu]
+	menus = [option_menu, stats_menu,schedule_tracker,event_modal_panel,schedule_panel]
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 	money_indicator.text = str(GameData.total_assets)
 	option_menu.bgm_volume_changed.connect(_on_child_volume_changed)
@@ -47,9 +52,14 @@ func _on_action_pressed() -> void:
 	if Dialogic.current_timeline != null:
 		return
 	elif show_newspaper_ads_event_fired == false:
+		close_all()
 		Dialogic.start("finding_first_job")
 	else:
-		event_modal_panel.visible = !event_modal_panel.visible
+		if event_modal_panel.visible:
+			close_all()
+		else:
+			close_all()
+			event_modal_panel.visible = true
 		get_money_button.visible = false
 
 func _on_dialogic_signal(argument: String):
@@ -72,8 +82,13 @@ func _on_setting_button_pressed() -> void:
 		option_menu.visible = true
 	
 func _on_schedule_button_pressed() -> void:
-	schedule_tracker.visible = !schedule_tracker.visible
-	
+	if schedule_panel.visible:
+		close_all()
+	else:
+		close_all()
+		schedule_panel.visible = true
+		#schedule_tracker.visible = true
+		
 	schedule_tracker.refresh_node()
 
 
@@ -85,3 +100,13 @@ func _on_stats_button_pressed() -> void:
 		stats_menu.visible = true
 	
 	stats_menu.refresh_node()
+
+
+func _on_map_button_pressed() -> void:
+	if map_scene != null && map_scene_instantiated == false:
+		map_scene_node = map_scene.instantiate()
+		add_child(map_scene_node)
+		map_scene_instantiated = true
+		print(map_scene_instantiated)
+	else:
+		map_scene_node.visible = !map_scene_node.visible

@@ -3,11 +3,11 @@ extends Node
 # ================================
 # == Exported Config and Stats ==
 # ================================
-@export var stats: PlayerStats
+@export var player_stats: PlayerStats
 @export var current_job: JobResource = load("res://global/job_resource/unemploy.tres")
 @export var income: float = 0
 @export var total_assets: float = 0
-@export var current_turn: int = 0
+@export var current_day: int = 0
 @export var current_event: String
 
 @export var rent: float = 50
@@ -35,33 +35,16 @@ var bills: float:
 # == Init ==
 # =========
 func _ready():
-	if stats == null:
-		stats = PlayerStats.new()
+	if player_stats == null:
+		player_stats = PlayerStats.new()
 	# Optionally reset stats here
 	# stats.reset()
 
 # =======================
 # == Action Scheduling ==
 # =======================
-#func try_schedule_action(action: ActionResource, length: int) -> bool:
-	#var start_slot := find_next_available_slot(length)
-	#if start_slot == -1:
-		#printerr("❌ No room for", action.name, "for", length, "slots")
-		#return false
-#
-	#var scheduled := ScheduledAction.new()
-	#scheduled.action = action
-	#scheduled.start_slot = start_slot
-	#scheduled.length = length
-#
-	#scheduled_actions.append(scheduled)
-	#return true
-#
-#func find_next_available_slot(length: int) -> int:
-	#for i in range(96 - length + 1):
-		#if !scheduled_actions.any(func(a): return i < a.start_slot + a.length and a.start_slot < i + length):
-			#return i
-	#return -1
+
+
 
 # =============================
 # == Apply and Execute Turn ==
@@ -122,3 +105,13 @@ func _ready():
 				#if action is ActionResource:
 					#available_actions.append(action)
 			#file = dir.get_next()
+
+# =======================
+# == Global removal mode signal + state ==
+# =======================
+signal removal_mode_changed(enabled: bool)
+var removal_mode: bool = false
+
+func toggle_removal_mode() -> void:
+	removal_mode = not removal_mode
+	emit_signal("removal_mode_changed", removal_mode)

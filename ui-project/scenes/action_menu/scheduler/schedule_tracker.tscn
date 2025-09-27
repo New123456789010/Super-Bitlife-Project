@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://ceicxxvhrqgld"]
+
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_0iu2v"]
+[ext_resource type="Texture2D" uid="uid://c75kn82n35gad" path="res://assets/ui_assets/SpriteSheet.png" id="2_3t75d"]
+[ext_resource type="Script" uid="uid://bx66yptsqe4v" path="res://scenes/action_menu/scheduler/schedule_tracker.gd" id="2_prkul"]
+[ext_resource type="Script" uid="uid://2454garjftm3" path="res://scenes/action_menu/scheduler/action_block_list_schedule_tracker.gd" id="3_8cx66"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3k4p2"]
+atlas = ExtResource("2_3t75d")
+region = Rect2(57, 1496, 17, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72qs0"]
+atlas = ExtResource("2_3t75d")
+region = Rect2(105, 1496, 17, 31)
+
+[node name="ScheduleTracker" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 378.0
+theme = ExtResource("1_0iu2v")
+script = ExtResource("2_prkul")
+
+[node name="StatsWindow" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 378.0
+
+[node name="ScheduleBlockContainer" type="PanelContainer" parent="StatsWindow"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"main_action_panel"
+
+[node name="ActionBlockList" type="VBoxContainer" parent="StatsWindow/ScheduleBlockContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 2
+script = ExtResource("3_8cx66")
+
+[node name="CurrentAction" type="PanelContainer" parent="StatsWindow"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"main_action_panel"
+
+[node name="MarginContainer" type="MarginContainer" parent="StatsWindow"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_top = 9
+
+[node name="RunAction" type="TextureButton" parent="StatsWindow/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_3k4p2")
+texture_pressed = SubResource("AtlasTexture_72qs0")
+
+[connection signal="pressed" from="StatsWindow/MarginContainer/RunAction" to="." method="_on_run_action_pressed"]

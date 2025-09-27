@@ -1,9 +1,9 @@
 extends Resource
 class_name ActionResource
-#@icon("res://icons/action.svg")
 
 @export var name: String = "Unnamed Action"
 @export var description: String = ""
+@export var icon: Texture
 
 # Time & cost
 @export_range(1, 96) var default_length: int = 4 # In 15-min slots (e.g., 1h = 4 slots)
