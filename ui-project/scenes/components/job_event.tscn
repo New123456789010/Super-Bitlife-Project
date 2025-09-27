@@ -37,16 +37,30 @@ theme_override_fonts/font = ExtResource("1_3xebe")
 theme_override_font_sizes/font_size = 40
 text = "WORKING"
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/ColorRect"]
-layout_mode = 1
-offset_top = 81.0
-offset_right = 817.0
-offset_bottom = 828.0
-
-[node name="Label" type="Label" parent="PanelContainer/ColorRect/MarginContainer2"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 2
+offset_left = 845.0
+offset_top = 963.0
+offset_right = 2605.0
+offset_bottom = 1168.0
 theme_override_fonts/font = ExtResource("1_3xebe")
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 22
+text = "Universal Event:
+God Cat Event:
+1: You found a weird cat and try to pet it. Result: 1: (If you got in to near death event happen before.) You feel bless for some reason and happy then you go back to work.
+     2: You feel happy then you go back to work.
+     3: Weird cat ignore you and run away.
+    3.1: You feel sad and curse maybe try do be nicer to other people. (Near death happen more often change of this happen is very low or karma point is very low)
+    3.2: You feel sad and go back to work."
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+offset_left = 843.0
+offset_top = 1204.0
+offset_right = 3110.0
+offset_bottom = 2361.0
+theme_override_fonts/font = ExtResource("1_3xebe")
+theme_override_font_sizes/font_size = 22
 text = "Good event:
 1: Customer greeted you friendly
 Result: You greet them back and feel happy.
