@@ -10,4 +10,4 @@ func _on_back_button_pressed() -> void:
 
 func _on_button_pressed() -> void:
 	self.visible = !self.visible
-	#get_tree().change_scene_to_file("res://scenes/gameplay/gameplay.tscn")
+	get_tree().change_scene_to_file("res://scenes/gameplay/gameplay.tscn")

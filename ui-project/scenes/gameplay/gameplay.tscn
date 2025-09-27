@@ -19,12 +19,9 @@
 [ext_resource type="AudioStream" uid="uid://dslpbs15mdw02" path="res://assets/bgm/BGM2.mp3" id="12_i6m2i"]
 [ext_resource type="Texture2D" uid="uid://naekkfh2gnhn" path="res://assets/ui_assets/Map Icon.png" id="13_2eo0c"]
 [ext_resource type="PackedScene" uid="uid://c525a1purwymb" path="res://scenes/action_menu/scheduler/schedule_panel.tscn" id="17_pimn4"]
+[ext_resource type="PackedScene" path="res://scenes/components/inventory_modal.tscn" id="19_uqtxl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_krs01"]
-atlas = ExtResource("8_216mg")
-region = Rect2(27, 26, 44, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2eo0c"]
 atlas = ExtResource("8_216mg")
 region = Rect2(27, 26, 44, 70)
 
@@ -96,6 +93,14 @@ theme_override_fonts/font = ExtResource("4_elju3")
 theme_override_font_sizes/font_size = 27
 text = "Contact"
 
+[node name="Inventory" type="Button" parent="Control/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+theme_type_variation = &"main_action_button"
+theme_override_fonts/font = ExtResource("4_elju3")
+theme_override_font_sizes/font_size = 27
+text = "Inventory"
+
 [node name="EventModalPanel" parent="Control" instance=ExtResource("6_i6m2i")]
 visible = false
 layout_mode = 1
@@ -137,20 +142,10 @@ theme_override_constants/margin_top = 50
 layout_mode = 2
 theme = ExtResource("2_gh441")
 
-[node name="SettingButton" parent="MarginContainer/HBoxContainer" instance=ExtResource("7_gh441")]
+[node name="Stats" parent="MarginContainer/HBoxContainer" instance=ExtResource("7_gh441")]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 button_texture = SubResource("AtlasTexture_krs01")
-
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_type_variation = &"main_action_panel"
-icon = SubResource("AtlasTexture_2eo0c")
-icon_alignment = 1
-vertical_icon_alignment = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -270,9 +265,23 @@ offset_bottom = 252.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Inventory" parent="." instance=ExtResource("19_uqtxl")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -120.5
+offset_right = 150.0
+offset_bottom = 120.5
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="pressed" from="Control/PanelContainer/HBoxContainer/Action" to="." method="_on_action_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/SettingButton" to="." method="_on_stats_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="." method="_on_stats_button_pressed"]
+[connection signal="pressed" from="Control/PanelContainer/HBoxContainer/Inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Stats" to="." method="_on_stats_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/ScheduleButton" to="." method="_on_schedule_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/MapButton" to="." method="_on_map_button_pressed"]
