@@ -119,6 +119,7 @@ theme_override_font_sizes/font_size = 27
 text = "Apply Job"
 
 [node name="Option3" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_type_variation = &"main_action_button"

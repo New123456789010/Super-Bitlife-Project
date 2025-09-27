@@ -77,8 +77,12 @@ func _on_option_3_pressed() -> void:
 	job_text.text = default_text
 	apply_job.visible = false
 	newspaper.visible = true
+	
 	if got_out_side_1st_time == false:
 		Dialogic.start("got_out_side_1st_time")
+	else:
+		SignalBus.got_out_side_1st_time_signal.emit("got_out_side_1st_time")
+		self.hide()
 
 
 func _on_apply_job_pressed() -> void:

@@ -17,9 +17,14 @@ var menus := []
 
 var show_newspaper_ads_event_fired := false
 
+#Importing map
 @export var map_scene: PackedScene 
 var map_scene_node
 var map_scene_instantiated := false
+
+#Importing event scene
+@export var event_scene: PackedScene
+var event_scene_node
 
 func _ready():
 	menus = [option_menu, stats_menu,schedule_tracker,event_modal_panel,schedule_panel]
@@ -28,6 +33,8 @@ func _ready():
 	option_menu.bgm_volume_changed.connect(_on_child_volume_changed)
 	_on_child_volume_changed(100)
 	_connect_buttons(self)
+	
+	SignalBus.got_out_side_1st_time_signal.connect(_on_got_out_side_1st_time_signal)
 
 func _on_child_volume_changed(value: float) -> void:
 	var linear = value / 100.0
@@ -116,3 +123,9 @@ func _on_map_button_pressed() -> void:
 		print(map_scene_instantiated)
 	else:
 		map_scene_node.visible = !map_scene_node.visible
+
+func _on_got_out_side_1st_time_signal(data):
+	if event_scene != null:
+		event_scene_node = event_scene.instantiate()
+		add_child(event_scene_node)
+	
