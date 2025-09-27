@@ -8,6 +8,7 @@ extends Control
 @onready var schedule_tracker: Control = $Control/ScheduleTracker
 @onready var bgm: AudioStreamPlayer = $BGM
 @onready var schedule_panel: PanelContainer = $SchedulePanel
+@onready var inventory: PanelContainer = $Inventory
 
 
 var timeline : DialogicTimeline = DialogicTimeline.new()
@@ -21,7 +22,7 @@ var map_scene_node
 var map_scene_instantiated := false
 
 func _ready():
-	menus = [option_menu, stats_menu,schedule_tracker,event_modal_panel,schedule_panel]
+	menus = [option_menu, stats_menu,schedule_tracker,event_modal_panel,schedule_panel,inventory]
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 	money_indicator.text = str(GameData.total_assets)
 	option_menu.bgm_volume_changed.connect(_on_child_volume_changed)
@@ -89,7 +90,7 @@ func _on_schedule_button_pressed() -> void:
 		schedule_panel.visible = true
 		#schedule_tracker.visible = true
 		
-	schedule_tracker.refresh_node()
+	schedule_panel.refresh_node()
 
 
 func _on_stats_button_pressed() -> void:
@@ -110,3 +111,11 @@ func _on_map_button_pressed() -> void:
 		print(map_scene_instantiated)
 	else:
 		map_scene_node.visible = !map_scene_node.visible
+
+
+func _on_inventory_pressed() -> void:
+	if inventory.visible:
+		close_all()
+	else:
+		close_all()
+		inventory.visible = true
