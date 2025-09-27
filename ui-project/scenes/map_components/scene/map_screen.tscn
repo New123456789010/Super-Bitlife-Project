@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpeaww65swda4"]
+[gd_scene load_steps=3 format=3 uid="uid://cpeaww65swda4"]
 
 [ext_resource type="Script" uid="uid://dw6pb0fpbbpas" path="res://scenes/map_components/scene/map_screen.gd" id="1_7urmv"]
+[ext_resource type="Texture2D" uid="uid://bqdjyw4uch4cp" path="res://assets/ui_assets/papar.png" id="2_qephg"]
 
 [node name="MapScreen" type="Control"]
 layout_mode = 3
@@ -24,6 +25,17 @@ text = "Regenerate Map"
 [node name="BackButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Go Back"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_qephg")
 
 [connection signal="pressed" from="VBoxContainer/RegenerateButton" to="." method="_on_regenerate_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

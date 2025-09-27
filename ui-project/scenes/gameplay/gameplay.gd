@@ -9,6 +9,7 @@ extends Control
 @onready var bgm: AudioStreamPlayer = $BGM
 @onready var schedule_panel: PanelContainer = $SchedulePanel
 @onready var inventory: PanelContainer = $Inventory
+@onready var map_button: Button = $MarginContainer2/VBoxContainer/MapButton
 
 
 var timeline : DialogicTimeline = DialogicTimeline.new()
@@ -17,9 +18,14 @@ var menus := []
 
 var show_newspaper_ads_event_fired := false
 
+#Importing map
 @export var map_scene: PackedScene 
 var map_scene_node
 var map_scene_instantiated := false
+
+#Importing event scene
+@export var event_scene: PackedScene
+var event_scene_node
 
 func _ready():
 	menus = [option_menu, stats_menu,schedule_tracker,event_modal_panel,schedule_panel,inventory]
@@ -28,6 +34,8 @@ func _ready():
 	option_menu.bgm_volume_changed.connect(_on_child_volume_changed)
 	_on_child_volume_changed(100)
 	_connect_buttons(self)
+	
+	SignalBus.got_out_side_1st_time_signal.connect(_on_got_out_side_1st_time_signal)
 
 func _on_child_volume_changed(value: float) -> void:
 	var linear = value / 100.0
@@ -48,20 +56,21 @@ func _on_money_button_pressed() -> void:
 	GameData.total_assets += 100
 	money_indicator.text = str(GameData.total_assets)
 
-
+var first_game_event := false
 func _on_action_pressed() -> void:
-	if Dialogic.current_timeline != null:
-		return
-	elif show_newspaper_ads_event_fired == false:
-		close_all()
-		Dialogic.start("finding_first_job")
-	else:
-		if event_modal_panel.visible:
+	if first_game_event == false:
+		if Dialogic.current_timeline != null:
+			return
+		elif show_newspaper_ads_event_fired == false:
 			close_all()
+			Dialogic.start("finding_first_job")
 		else:
-			close_all()
-			event_modal_panel.visible = true
-		get_money_button.visible = false
+			if event_modal_panel.visible:
+				close_all()
+			else:
+				close_all()
+				event_modal_panel.visible = true
+			get_money_button.visible = false
 
 func _on_dialogic_signal(argument: String):
 	print(argument)
@@ -69,6 +78,10 @@ func _on_dialogic_signal(argument: String):
 		event_modal_panel.visible = true
 		get_money_button.visible = false
 		show_newspaper_ads_event_fired = true
+	
+	if argument == "map_enabled":
+		map_button.visible = true
+		_on_map_button_pressed()
 
 
 func close_all() -> void:
@@ -112,10 +125,13 @@ func _on_map_button_pressed() -> void:
 	else:
 		map_scene_node.visible = !map_scene_node.visible
 
-
 func _on_inventory_pressed() -> void:
 	if inventory.visible:
 		close_all()
 	else:
 		close_all()
 		inventory.visible = true
+func _on_got_out_side_1st_time_signal(data):
+	if event_scene != null:
+		event_scene_node = event_scene.instantiate()
+		add_child(event_scene_node)

@@ -67,7 +67,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_top = 20
 
-[node name="RichTextLabel" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer3"]
+[node name="EventModalPanelTitle" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer3"]
 layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_fat2q")
@@ -119,6 +119,7 @@ theme_override_font_sizes/font_size = 27
 text = "Apply Job"
 
 [node name="Option3" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer/MarginContainer2/PanelContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_type_variation = &"main_action_button"

@@ -140,10 +140,10 @@ func _on_event_text_gui_input(event: InputEvent) -> void:
 			_run_event_sequence()
 			print("Input detected: _run_event_sequence")
 		elif event.pressed && end_of_event == true:
-			get_tree().current_scene.free()
+			self.queue_free()
 	elif event is InputEventScreenTouch && end_of_event == false:
 		if event.pressed:
 			_run_event_sequence()
 			print("Input detected: _run_event_sequence")
 		elif event.pressed && end_of_event == true:
-			get_tree().current_scene.free()
+			self.queue_free()
