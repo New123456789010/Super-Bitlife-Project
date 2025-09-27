@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnslpwgud307v"]
+[gd_scene load_steps=3 format=3 uid="uid://bnslpwgud307v"]
 
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="1_3xebe"]
+[ext_resource type="Script" uid="uid://dm87jmwcwy2ru" path="res://scenes/components/job_event.gd" id="1_kx52h"]
 
 [node name="Job_Event" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kx52h")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
