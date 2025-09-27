@@ -1,12 +1,13 @@
 extends PanelContainer
 
-@onready var event_text: RichTextLabel = $MarginContainer/VBoxContainer/EventLabel
-@onready var run_button: Button = $MarginContainer/VBoxContainer/RunEvents
+@onready var event_text: RichTextLabel = $ColorRect/VBoxContainer/MarginContainer2/EventText
 
 # Adjustable first-event chances
 var first_event_chance_uneventful := 0.5
 var first_event_chance_good := 0.25
 var first_event_chance_bad := 0.25
+
+var end_of_event := false
 
 # ==========================
 # Event definitions (Good / Bad / Reduced Uneventful) with conditional results
@@ -67,7 +68,8 @@ var events := {
 # ==========================
 func _ready() -> void:
 	randomize()
-	run_button.pressed.connect(_run_event_sequence)
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	end_of_event = false
 	event_text.text = "[i]Press Run to generate 6 events[/i]"
 
 # ==========================
@@ -80,23 +82,29 @@ func _run_event_sequence() -> void:
 	output += "[b]1. Event:[/b] " + first_event["description"] + "\n[b]Result:[/b] " + _format_result(first_event["result"]) + "\n\n"
 
 	# If the first event is uneventful, stop here
-	if first_category == "uneventful":
+	if first_category == "uneventful" && end_of_event == false:
 		event_text.text = output
+		print(output)
+		end_of_event = true
 		return
 
 	# Remaining 5 events: only good or bad
-	for i in range(2, 7):
+	if first_category != "uneventful" && end_of_event == false:
+		#for i in range(2, 7):
+		var i = randi_range(2, 7)
 		var category = _pick_good_or_bad()
 		var e = _get_random_event(category)
 		output += "[b]" + str(i) + ". Event:[/b] " + e["description"] + "\n[b]Result:[/b] " + _format_result(e["result"]) + "\n\n"
-
+		end_of_event = true
+		print(output)
+		
 	event_text.text = output
 
 # ==========================
 # Format result (handle multiple results)
 # ==========================
-func _format_result(result) -> String:
-	if typeof(result) == TYPE_ARRAY:
+func _format_result(result: Variant) -> String:
+	if result is Array:
 		return "\n".join(result)
 	return str(result)
 
@@ -116,10 +124,7 @@ func _pick_first_event() -> String:
 # Pick good or bad (for remaining events)
 # ==========================
 func _pick_good_or_bad() -> String:
-	if (randf() < 0.5): 
-		return String("good") 
-	else: 
-		return String("bad") 
+	return "good" if randf() < 0.5 else "bad"
 
 # ==========================
 # Grab random event from category
@@ -127,3 +132,18 @@ func _pick_good_or_bad() -> String:
 func _get_random_event(category: String) -> Dictionary:
 	var idx = randi() % events[category].size()
 	return events[category][idx]
+
+
+func _on_event_text_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed && end_of_event == false:
+			_run_event_sequence()
+			print("Input detected: _run_event_sequence")
+		elif event.pressed && end_of_event == true:
+			get_tree().current_scene.free()
+	elif event is InputEventScreenTouch && end_of_event == false:
+		if event.pressed:
+			_run_event_sequence()
+			print("Input detected: _run_event_sequence")
+		elif event.pressed && end_of_event == true:
+			get_tree().current_scene.free()
