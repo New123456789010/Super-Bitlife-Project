@@ -1,0 +1,6 @@
+{
+    "uneventful": [
+    {"description": "A calm day passes with no major incidents", "result": ["You complete your shift quietly."]},
+    {"description": "A routine day on the road", "result": ["Everything goes smoothly."]}
+  ]
+}
