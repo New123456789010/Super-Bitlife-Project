@@ -5,7 +5,7 @@ extends PanelContainer
 @onready var run_day_button: Button = $RunDayButton
 
 func _ready():
-	run_day_button.pressed.connect(_on_run_day_pressed)
+	pass
 
 func _on_run_day_pressed():
 	print("▶ Starting daily schedule")
