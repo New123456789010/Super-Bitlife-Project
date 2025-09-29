@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cakk7aelwf60d"
-path="res://.godot/imported/Human_3.png-37b0fa7361709333b78d0b7130a73f4e.ctex"
+uid="uid://dor23osmiqrfh"
+path="res://.godot/imported/Human_UI.png-7f19878d9d436a6d2b5ed5450e5ac114.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PIC/Human/Human Portaits/Human_3.png"
-dest_files=["res://.godot/imported/Human_3.png-37b0fa7361709333b78d0b7130a73f4e.ctex"]
+source_file="res://assets/PIC/Human/Human Portaits/Human_UI.png"
+dest_files=["res://.godot/imported/Human_UI.png-7f19878d9d436a6d2b5ed5450e5ac114.ctex"]
 
 [params]
 
