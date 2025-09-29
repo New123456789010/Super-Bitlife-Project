@@ -16,19 +16,19 @@ static var _district_counter: int = 0
 static var _poi_counter: int = 0
 
 # Top-level generator. seed=0 => randomize
-static func generate_map(seed:int = 0) -> Dictionary:
+static func generate_map(current_seed:int = 0) -> Dictionary:
 	_district_counter = 0
 	_poi_counter = 0
 	
 	var rng = RandomNumberGenerator.new()
-	if seed == 0:
+	if current_seed == 0:
 		rng.randomize()
-		seed = rng.randi()
+		current_seed = rng.randi()
 	else:
-		rng.seed = seed
+		rng.seed = current_seed
 
 	var map = {
-		"seed": seed,
+		"seed": current_seed,
 		"districts": [],
 		"roads": []
 	}

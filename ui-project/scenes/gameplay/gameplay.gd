@@ -8,9 +8,8 @@ extends Control
 @onready var schedule_tracker: Control = $Control/ScheduleTracker
 @onready var bgm: AudioStreamPlayer = $BGM
 @onready var schedule_panel: PanelContainer = $SchedulePanel
-@onready var inventory: PanelContainer = $Inventory
 @onready var map_button: Button = $MarginContainer2/VBoxContainer/MapButton
-
+@onready var inventory: PanelContainer = $Inventory
 
 var timeline : DialogicTimeline = DialogicTimeline.new()
 var money: int
@@ -125,13 +124,15 @@ func _on_map_button_pressed() -> void:
 	else:
 		map_scene_node.visible = !map_scene_node.visible
 
+func _on_got_out_side_1st_time_signal(data):
+	if event_scene != null:
+		event_scene_node = event_scene.instantiate()
+		add_child(event_scene_node)
+		event_scene_node.get_child(0).start_dialogue("weird_cat_intro") #%timeline
+
 func _on_inventory_pressed() -> void:
 	if inventory.visible:
 		close_all()
 	else:
 		close_all()
 		inventory.visible = true
-func _on_got_out_side_1st_time_signal(data):
-	if event_scene != null:
-		event_scene_node = event_scene.instantiate()
-		add_child(event_scene_node)

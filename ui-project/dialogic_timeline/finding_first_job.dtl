@@ -8,3 +8,4 @@ if {weird_cat_question_1} != "3.14159":
 	weird_cat: ...Welp. There's a newspaper on the table. It got some job ads there you can check out.
 	[signal arg="show_newspaper_ads"]
 	[signal arg="show_newspaper_ads_event_fired"]
+[end_timeline]

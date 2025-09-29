@@ -1,0 +1,27 @@
+# character enters
+join weird_cat leftmost
+
+# greeting lines
+weird_cat: Yo! Welcome to your new house. It's a bit bare, but I'm sure you'll cozy it up in no time.
+weird_cat: Make sure you’ve got enough for rent, utilities, food, phone, etc.
+
+# a choice
+weird_cat: So… what do you want to do first?
+- Unpack your stuff
+	weird_cat: Nice! Let's make the place feel like home.
+- Take a nap
+	weird_cat: Already tired? Fair enough, moving is exhausting.
+- Go outside
+	weird_cat: Fresh air is always a good idea!
+
+# text input
+[text_input text="What’s your secret password?" var="secret_code" default="1234"]
+
+if {secret_code} != "3.14159":
+	weird_cat: Hmm… that’s not the magic number I was expecting.
+	[signal arg="wrong_password"]
+else:
+	weird_cat: Whoa! You cracked the code! 🐱
+
+# timeline ends
+[end_timeline]
