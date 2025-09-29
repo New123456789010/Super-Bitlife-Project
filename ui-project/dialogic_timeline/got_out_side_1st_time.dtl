@@ -2,3 +2,4 @@ join weird_cat leftmost
 weird_cat: Hey, before you go out there, here's a map of the city.
 weird_cat: Lots to do and explore. Good luck!
 [signal arg="map_enabled"]
+[end_timeline]

@@ -129,6 +129,7 @@ func _on_got_out_side_1st_time_signal(data):
 	if event_scene != null:
 		event_scene_node = event_scene.instantiate()
 		add_child(event_scene_node)
+		event_scene_node.get_child(0).start_dialogue("weird_cat_intro") #%timeline
 
 func _on_inventory_pressed() -> void:
 	if inventory.visible:

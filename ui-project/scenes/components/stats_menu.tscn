@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_u0kk2"]
 [ext_resource type="Script" uid="uid://oyjba5ust23v" path="res://scenes/components/stats_menu.gd" id="2_cgo0a"]
-[ext_resource type="Texture2D" uid="uid://dt5jqa8d3o6nt" path="res://assets/PIC/Human/Human Portaits/Default Portrait.png" id="3_cjhhk"]
+[ext_resource type="Texture2D" uid="uid://cw70xwuhy07dy" path="res://assets/PIC/Human/Human Portaits/Human_1.png" id="3_d3asa"]
 [ext_resource type="Texture2D" uid="uid://dc62eikll5qg" path="res://assets/ui_assets/Int Icon.png" id="3_rhod7"]
 [ext_resource type="Texture2D" uid="uid://d4imkpyft56o3" path="res://assets/ui_assets/Cha Icon.png" id="4_ppkqe"]
 [ext_resource type="Texture2D" uid="uid://o6wk46reyk4c" path="res://assets/ui_assets/Str Icon.png" id="5_cgo0a"]
@@ -11,8 +11,8 @@
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="7_d3asa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3bt0t"]
-atlas = ExtResource("3_cjhhk")
-region = Rect2(16, 16, 64, 80)
+atlas = ExtResource("3_d3asa")
+region = Rect2(20.1011, 21.8171, 22.8071, 26.1925)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2b0kc"]
 atlas = ExtResource("3_rhod7")
