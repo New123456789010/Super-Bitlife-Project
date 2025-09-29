@@ -1,0 +1,85 @@
+{
+  "events": [
+	{
+	  "event_type": "dialogue",
+	  "character": "weird_cat",
+	  "text": "Yo! Welcome to your new house. It's a bit bare, but I'm sure you'll cozy it up in no time."
+	},
+	{
+	  "event_type": "dialogue",
+	  "character": "weird_cat",
+	  "text": "Make sure you’ve got enough for rent, utilities, food, phone, etc."
+	},
+	{
+	  "event_type": "dialogue",
+	  "character": "weird_cat",
+	  "text": "So… what do you want to do first?"
+	},
+	{
+	  "event_type": "choice",
+	  "options": [
+		{
+		  "text": "Unpack your stuff",
+		  "events": [
+			{
+			  "event_type": "dialogue",
+			  "character": "weird_cat",
+			  "text": "Nice! Let's make the place feel like home."
+			}
+		  ]
+		},
+		{
+		  "text": "Take a nap",
+		  "events": [
+			{
+			  "event_type": "dialogue",
+			  "character": "weird_cat",
+			  "text": "Already tired? Fair enough, moving is exhausting."
+			}
+		  ]
+		},
+		{
+		  "text": "Go outside",
+		  "events": [
+			{
+			  "event_type": "dialogue",
+			  "character": "weird_cat",
+			  "text": "Fresh air is always a good idea!"
+			}
+		  ]
+		}
+	  ]
+	},
+	{
+	  "event_type": "text_input",
+	  "text": "What’s your secret password?",
+	  "var": "secret_code",
+	  "default": "1234"
+	},
+	{
+	  "event_type": "condition",
+	  "expression": "{secret_code} != 3.14159",
+	  "events_true": [
+		{
+		  "event_type": "dialogue",
+		  "character": "weird_cat",
+		  "text": "Hmm… that’s not the magic number I was expecting."
+		},
+		{
+		  "event_type": "signal",
+		  "arg": "wrong_password"
+		}
+	  ],
+	  "events_false": [
+		{
+		  "event_type": "dialogue",
+		  "character": "weird_cat",
+		  "text": "Whoa! You cracked the code! 🐱"
+		}
+	  ]
+	},
+	{
+	  "event_type": "end_timeline"
+	}
+  ]
+}

@@ -23,6 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_twpgm")
+timeline_file = "res://dialogic_timeline/demo_timeline.json"
 
 [node name="ColorRect" type="ColorRect" parent="Panel"]
 layout_mode = 2
