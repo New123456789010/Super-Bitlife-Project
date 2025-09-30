@@ -1,20 +1,34 @@
 extends RichTextLabel
-class_name Choice
-signal choice_selected(index: int)
+class_name ChoiceLabel
+
+signal choice_chosen(index: int)
+
+var options: Array = []
 
 func _ready() -> void:
 	bbcode_enabled = true
-	meta_clicked.connect(_on_choice_clicked)
+	# meta_clicked fires when a [url=meta] tag is clicked
+	meta_clicked.connect(Callable(self, "_on_meta_clicked"))
 
-func show_choices(choices: Array) -> void:
+# opts = [ { "text": "Option A", "results": ["line1","line2"] }, ... ]
+func show_options(opts: Array) -> void:
+	options = opts
 	clear()
-	for i in range(choices.size()):
-		append_text("[url=%d]%d. %s[/url]\n" % [i, i+1, choices[i].get("text", "")])
+	self.bbcode_enabled = true
+	for i in range(options.size()):
+		var opt = options[i]
+		# append_bbcode so [url=...] is parsed as BBCode
+		append_text("[url=%d]%d. %s[/url]\n" % [i, i+1, opt.get("text", "")])
 
-func _on_choice_clicked(meta):
-	if typeof(meta) == TYPE_INT:
-		emit_signal("choice_selected", meta)
+func clear_options() -> void:
+	options = []
 	clear()
+
+func _on_meta_clicked(meta) -> void:
+	# meta comes as string; convert to index
+	var idx := int(meta)
+	if idx >= 0 and idx < options.size():
+		emit_signal("choice_chosen", idx)
 
 
 

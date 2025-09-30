@@ -1,82 +1,109 @@
 {
-  "events": [
+  "timeline": [
 	{
 	  "event_type": "dialogue",
-	  "character": "weird_cat",
-	  "text": "Yo! Welcome to your new house. It's a bit bare, but I'm sure you'll cozy it up in no time."
+	  "character": "guide",
+	  "text": "Welcome, traveler. Before we begin, what is your name?"
 	},
 	{
 	  "event_type": "dialogue",
-	  "character": "weird_cat",
-	  "text": "Make sure you’ve got enough for rent, utilities, food, phone, etc."
+	  "character": "guide",
+	  "text": "Welcome, traveler. Before we begin, what is your name?"
+	},
+	{
+	  "event_type": "text_input",
+	  "text": "Please type your name:",
+	  "var": "player_name",
+	  "default": "Alex"
 	},
 	{
 	  "event_type": "dialogue",
-	  "character": "weird_cat",
-	  "text": "So… what do you want to do first?"
+	  "character": "guide",
+	  "text": "Ah, {player_name}! A fine name indeed."
 	},
 	{
 	  "event_type": "choice",
 	  "options": [
 		{
-		  "text": "Unpack your stuff",
+		  "text": "Ask about this world",
 		  "events": [
 			{
 			  "event_type": "dialogue",
-			  "character": "weird_cat",
-			  "text": "Nice! Let's make the place feel like home."
+			  "character": "guide",
+			  "text": "This is the Realm of Echoes, where choices ripple into fate."
 			}
 		  ]
 		},
 		{
-		  "text": "Take a nap",
+		  "text": "Stay silent",
 		  "events": [
 			{
 			  "event_type": "dialogue",
-			  "character": "weird_cat",
-			  "text": "Already tired? Fair enough, moving is exhausting."
-			}
-		  ]
-		},
-		{
-		  "text": "Go outside",
-		  "events": [
-			{
-			  "event_type": "dialogue",
-			  "character": "weird_cat",
-			  "text": "Fresh air is always a good idea!"
+			  "character": "guide",
+			  "text": "Silence is also an answer, {player_name}."
 			}
 		  ]
 		}
 	  ]
 	},
 	{
+	  "event_type": "dialogue",
+	  "character": "guide",
+	  "text": "Tell me, {player_name}, what is the secret number?"
+	},
+	{
 	  "event_type": "text_input",
-	  "text": "What’s your secret password?",
-	  "var": "secret_code",
-	  "default": "1234"
+	  "text": "Enter a number:",
+	  "var": "secret_num",
+	  "default": "0"
 	},
 	{
 	  "event_type": "condition",
-	  "expression": "{secret_code} != 3.14159",
+	  "expression": "{secret_num} == 7",
 	  "events_true": [
 		{
 		  "event_type": "dialogue",
-		  "character": "weird_cat",
-		  "text": "Hmm… that’s not the magic number I was expecting."
-		},
-		{
-		  "event_type": "signal",
-		  "arg": "wrong_password"
+		  "character": "guide",
+		  "text": "Seven! The number of destiny!"
 		}
 	  ],
 	  "events_false": [
 		{
 		  "event_type": "dialogue",
-		  "character": "weird_cat",
-		  "text": "Whoa! You cracked the code! 🐱"
+		  "character": "guide",
+		  "text": "{secret_num}? Curious choice."
+		},
+		{
+		  "event_type": "choice",
+		  "options": [
+			{
+			  "text": "Say it was a mistake",
+			  "events": [
+				{
+				  "event_type": "dialogue",
+				  "character": "guide",
+				  "text": "Honesty is good, {player_name}."
+				}
+			  ]
+			},
+			{
+			  "text": "Stick with it",
+			  "events": [
+				{
+				  "event_type": "dialogue",
+				  "character": "guide",
+				  "text": "Conviction is stronger than correctness."
+				}
+			  ]
+			}
+		  ]
 		}
 	  ]
+	},
+	{
+	  "event_type": "dialogue",
+	  "character": "guide",
+	  "text": "Your journey begins now, {player_name}..."
 	},
 	{
 	  "event_type": "end_timeline"

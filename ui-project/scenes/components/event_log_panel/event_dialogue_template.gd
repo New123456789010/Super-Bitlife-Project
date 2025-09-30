@@ -1,94 +1,120 @@
-# DialogueController.gd
 extends Panel
+class_name DialogueController
 
-@onready var event_text: EventText = %EventText
-@onready var choice_container: VBoxContainer = $ChoiceContainer
-@export var timeline_file: String
+@export var event_text: EventText
+@export var choice_label: ChoiceLabel
+@export var input_line: LineEdit
 
-var timeline = []
-var variables = {}
-var current_index = 0
+var variables := {}
 
-func _ready():
-	load_timeline(timeline_file)
-	play_next()
+func _ready() -> void:
+	if not choice_label.is_connected("choice_chosen", Callable(self, "_on_choice_chosen")):
+		choice_label.choice_chosen.connect(Callable(self, "_on_choice_chosen"))
 
-func load_timeline(file_path):
-	var f = FileAccess.open(file_path, FileAccess.READ)
-	var json_text = f.get_as_text()
-	f.close()
-	var data = JSON.parse_string(json_text)
-	if data.error != OK:
-		push_error("Failed to parse timeline JSON")
-		return
-	timeline = data.result["timeline"]
+	input_line.text_submitted.connect(Callable(self, "_on_input_submitted"))
+	input_line.visible = false
 
-func play_next():
-	if current_index >= timeline.size():
-		print("Timeline ended")
-		return
-	var evt = timeline[current_index]
-	match evt["type"]:
-		"dialogue":
-			event_text.add_t("%s: %s" % [evt["character"], evt["text"]])
-			current_index += 1
-		"choice":
-			show_choices(evt)
-		"text_input":
-			request_text_input(evt)
-		"conditional":
-			handle_conditional(evt)
-		"signal":
-			emit_signal(evt["arg"])
-			current_index += 1
-		"action":
-			# handle join, leave, etc
-			current_index += 1
-		"end_timeline":
-			print("Timeline finished")
-			return
+	call_deferred("_start_demo")
 
-func show_choices(evt):
-	choice_container.clear()
-	for opt in evt["options"]:
-		var choice_label = Choice.new()
-		choice_label.set_bbcode("[url]%s[/url]" % opt["text"])
-		choice_label.connect("meta_clicked", Callable(self, "_on_choice_selected"))
-		choice_container.add_child(choice_label)
+# -------------------------
+# Demo flow with input
+# -------------------------
+func _start_demo() -> void:
+	await event_text.append_line_typed("weird_cat: Let's test text input now…")
+	await event_text.append_line_typed("weird_cat: What's your secret password?")
 
-func _on_choice_selected(option):
-	choice_container.clear()
-	# Insert option.result events into timeline at current_index
-	timeline = timeline.slice(0, current_index + 1) + option["result"] + timeline.slice(current_index + 1, timeline.size())
-	current_index += 1
-	play_next()
+	# request input for variable "secret_code"
+	request_input("secret_code", "1234")
 
-func request_text_input(evt):
-	# Simple dialog for input
-	var popup = AcceptDialog.new()
-	popup.dialog_text = evt["text"]
-	var input = LineEdit.new()
-	input.text = evt.get("default", "")
-	popup.add_child(input)
-	popup.connect("confirmed", func():
-		_on_text_input_confirmed(evt, input)
-	)
-	add_child(popup)
-	popup.popup_centered()
+# -------------------------
+# Input handling
+# -------------------------
+func request_input(var_name: String, default_val: String = "") -> void:
+	variables[var_name] = default_val
+	input_line.text = default_val
+	input_line.visible = true
+	input_line.grab_focus()
 
-func _on_text_input_confirmed(evt, input):
-	variables[evt["var"]] = input.text
-	current_index += 1
-	play_next()
+func _on_input_submitted(new_text: String) -> void:
+	# hide input
+	input_line.visible = false
 
-func handle_conditional(evt):
-	# Replace variables in condition
-	var cond = evt["condition"]
-	for key in variables.keys():
-		cond = cond.replace("{%s}" % key, "\"" + variables[key] + "\"")
-	if Expression.new().parse(cond) == OK and Expression.new().execute() == true:
-		timeline = timeline.slice(0, current_index + 1) + evt["true"] + timeline.slice(current_index + 1, timeline.size())
+	var var_name := "secret_code"  # later, this will come from the timeline
+	variables[var_name] = new_text
+
+	# mirror back the player's response with typing animation
+	await event_text.append_line_typed("you: " + new_text)
+
+	# continue demo with smooth typing
+	if new_text != "3.14159":
+		await event_text.append_line_typed("weird_cat: Hmm… that’s not the magic number I was expecting.")
 	else:
-		timeline = timeline.slice(0, current_index + 1) + evt["false"] + timeline.slice(current_index + 1, timeline.size())
-	current_index += 1
-	play_next()
+		await event_text.append_line_typed("weird_cat: Whoa! You cracked the code! 🐱")
+
+	await event_text.append_line_typed("⚡ End of demo with input.")
+
+#extends Panel
+#class_name DialogueController
+#
+#@export var event_text: EventText
+#@export var choice_label: ChoiceLabel
+#
+#func _ready() -> void:
+	## Ensure the signal is connected once
+	#if not choice_label.is_connected("choice_chosen", Callable(self, "_on_choice_chosen")):
+		#choice_label.choice_chosen.connect(Callable(self, "_on_choice_chosen"))
+	## start demo after ready
+	#call_deferred("_start_demo")
+#
+## -------------------------
+## Simple demo flow
+## -------------------------
+#func _start_demo() -> void:
+	#await event_text.append_line_typed("weird_cat: Yo! Welcome to your new house. It's a bit bare, but I'm sure you'll cozy it up in no time.")
+	#await event_text.append_line_typed("weird_cat: Make sure you’ve got enough for rent, utilities, food, phone, etc.")
+	#await event_text.append_line_typed("weird_cat: So… what do you want to do first?")
+#
+	#var opts := [
+		#{
+			#"text": "Unpack your stuff",
+			#"results": [
+				#"you: I'll start unpacking.",
+				#"weird_cat: Nice! Let's make the place feel like home."
+			#]
+		#},
+		#{
+			#"text": "Take a nap",
+			#"results": [
+				#"you: I need a quick nap.",
+				#"weird_cat: Already tired? Fair enough, moving is exhausting."
+			#]
+		#},
+		#{
+			#"text": "Go outside",
+			#"results": [
+				#"you: I'll go get some fresh air.",
+				#"weird_cat: Fresh air is always a good idea!"
+			#]
+		#}
+	#]
+#
+	#choice_label.show_options(opts)
+	## wait for user click — flow continues in _on_choice_chosen
+	#return
+#
+## -------------------------
+## Choice handling
+## -------------------------
+#func _on_choice_chosen(index: int) -> void:
+	#var opt = choice_label.options[index]
+	## clear UI choices
+	#choice_label.clear_options()
+#
+	## play branch results
+	#if opt.has("results"):
+		#for line in opt["results"]:
+			#await event_text.append_line_typed(line)
+#
+	## continue the conversation
+	#await event_text.append_line_typed("weird_cat: Alright — that's settled. Let's move on.")
+	#await event_text.append_line_typed("⚡ End of demo.")
