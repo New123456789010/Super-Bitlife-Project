@@ -280,6 +280,21 @@ offset_bottom = 120.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="AddItem" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -15.5
+offset_right = 26.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "+Item"
+
 [connection signal="pressed" from="Control/PanelContainer/HBoxContainer/Action" to="." method="_on_action_pressed"]
 [connection signal="pressed" from="Control/PanelContainer/HBoxContainer/Inventory" to="." method="_on_inventory_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Stats" to="." method="_on_stats_button_pressed"]
@@ -287,3 +302,4 @@ grow_vertical = 2
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/ScheduleButton" to="." method="_on_schedule_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/MapButton" to="." method="_on_map_button_pressed"]
 [connection signal="pressed" from="GetMoneyButton/Button" to="." method="_on_money_button_pressed"]
+[connection signal="pressed" from="AddItem" to="Inventory" method="_on_add_item_pressed"]
