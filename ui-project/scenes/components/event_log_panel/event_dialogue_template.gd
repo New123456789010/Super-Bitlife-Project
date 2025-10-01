@@ -1,253 +1,120 @@
 extends Panel
+class_name DialogueController
 
-@onready var event_text: RichTextLabel = %EventText
-@onready var choice_label: RichTextLabel = %Choice
+@export var event_text: EventText
+@export var choice_label: ChoiceLabel
+@export var input_line: LineEdit
 
-var end_of_event := false
-var timeline_index := 0
-var timeline_data := []
+var variables := {}
 
 func _ready() -> void:
-	randomize()
-	mouse_filter = Control.MOUSE_FILTER_STOP
-	end_of_event = false
-	event_text.text = "[i]Click anywhere to start the demo timeline[/i]"
+	if not choice_label.is_connected("choice_chosen", Callable(self, "_on_choice_chosen")):
+		choice_label.choice_chosen.connect(Callable(self, "_on_choice_chosen"))
 
-	# Setup a demo timeline
-	timeline_data = [
-		{"type":"text","character":"weird_cat","line":"Yo! Welcome to your new house. It's a bit bare, but you'll cozy it up."},
-		{"type":"text","character":"weird_cat","line":"Make sure you have enough for rent, food, utilities, etc."},
-		{"type":"choice","options":["Unpack your stuff","Take a nap","Go outside"]},
-		{"type":"text_input","prompt":"What's your secret password?","variable":"secret_code","default":"1234"},
-		{"type":"signal","arg":"timeline_demo_signal"},
-		{"type":"text","character":"weird_cat","line":"That's the end of the demo timeline."},
-	]
+	input_line.text_submitted.connect(Callable(self, "_on_input_submitted"))
+	input_line.visible = false
 
-	# Connect Choice click
-	choice_label.connect("meta_clicked", Callable(self, "_on_choice_selected"))
+	call_deferred("_start_demo")
 
+# -------------------------
+# Demo flow with input
+# -------------------------
+func _start_demo() -> void:
+	await event_text.append_line_typed("weird_cat: Let's test text input now…")
+	await event_text.append_line_typed("weird_cat: What's your secret password?")
 
-# ==========================
-# Input to advance timeline
-# ==========================
-func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed:
-		print("Press detected")
-		if end_of_event:
-			self.queue_free()
-			return
-		_run_next_timeline_event()
-	elif event is InputEventScreenTouch and event.pressed:
-		print("Press detected")
-		if end_of_event:
-			self.queue_free()
-			return
-		_run_next_timeline_event()
-		
+	# request input for variable "secret_code"
+	request_input("secret_code", "1234")
 
+# -------------------------
+# Input handling
+# -------------------------
+func request_input(var_name: String, default_val: String = "") -> void:
+	variables[var_name] = default_val
+	input_line.text = default_val
+	input_line.visible = true
+	input_line.grab_focus()
 
-# ==========================
-# Timeline runner
-# ==========================
-func _run_next_timeline_event() -> void:
-	if timeline_index >= timeline_data.size():
-		end_of_event = true
-		event_text.add_t("[i]Timeline finished[/i]")
-		_scroll_event_text()
-		return
+func _on_input_submitted(new_text: String) -> void:
+	# hide input
+	input_line.visible = false
 
-	var item = timeline_data[timeline_index]
-	timeline_index += 1
+	var var_name := "secret_code"  # later, this will come from the timeline
+	variables[var_name] = new_text
 
-	match item.type:
-		"text":
-			var character = item.get("character","")
-			var line = item.get("line","")
-			if character != "":
-				event_text.add_t("[b]%s:[/b] %s" % [character, line])
-			else:
-				event_text.add_t(line)
-			_scroll_event_text()
+	# mirror back the player's response with typing animation
+	await event_text.append_line_typed("you: " + new_text)
 
-		"choice":
-			_show_choice(item.options)
+	# continue demo with smooth typing
+	if new_text != "3.14159":
+		await event_text.append_line_typed("weird_cat: Hmm… that’s not the magic number I was expecting.")
+	else:
+		await event_text.append_line_typed("weird_cat: Whoa! You cracked the code! 🐱")
 
-		"text_input":
-			_show_text_input(item)
-
-		"signal":
-			event_text.add_t("[i]Signal fired: %s[/i]" % item.arg)
-			_scroll_event_text()
-
-
-# ==========================
-# Choice handler
-# ==========================
-func _show_choice(options:Array) -> void:
-	choice_label.clear()
-	for i in range(options.size()):
-		# clickable with meta = option index
-		choice_label.append_text("[url=%d]%d. %s[/url]\n" % [i, i+1, options[i]])
-	choice_label.on_option()
-
-
-func _on_choice_selected(meta: Variant) -> void:
-	event_text.add_t("[i]Choice selected: %s[/i]" % meta)
-	choice_label.clear()
-	_scroll_event_text()
-	_run_next_timeline_event()
-
-
-# ==========================
-# Text input handler
-# ==========================
-func _show_text_input(item:Dictionary) -> void:
-	var prompt = item.prompt
-	var default_value = item.default
-	event_text.add_t("%s (default: %s)" % [prompt, default_value])
-	_scroll_event_text()
-	# auto-fill default
-	_run_next_timeline_event()
-
-
-# ==========================
-# Tween scrolling for EventText
-# ==========================
-func _scroll_event_text() -> void:
-	var scroll: ScrollBar = event_text.get_v_scroll_bar()
-	var tween: Tween = create_tween()
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_method(scroll.set_value, scroll.get_value(), scroll.get_max(), 0.5)
-
+	await event_text.append_line_typed("⚡ End of demo with input.")
 
 #extends Panel
+#class_name DialogueController
 #
-#@onready var event_text: RichTextLabel = %EventText
-#@onready var choice_label: RichTextLabel = %Choice
-#
-#var end_of_event := false
+#@export var event_text: EventText
+#@export var choice_label: ChoiceLabel
 #
 #func _ready() -> void:
-	#randomize()
-	#mouse_filter = Control.MOUSE_FILTER_STOP
-	#end_of_event = false
-	#event_text.text = "[i]Press Run to start a timeline[/i]"
+	## Ensure the signal is connected once
+	#if not choice_label.is_connected("choice_chosen", Callable(self, "_on_choice_chosen")):
+		#choice_label.choice_chosen.connect(Callable(self, "_on_choice_chosen"))
+	## start demo after ready
+	#call_deferred("_start_demo")
 #
+## -------------------------
+## Simple demo flow
+## -------------------------
+#func _start_demo() -> void:
+	#await event_text.append_line_typed("weird_cat: Yo! Welcome to your new house. It's a bit bare, but I'm sure you'll cozy it up in no time.")
+	#await event_text.append_line_typed("weird_cat: Make sure you’ve got enough for rent, utilities, food, phone, etc.")
+	#await event_text.append_line_typed("weird_cat: So… what do you want to do first?")
 #
-## ==========================
-## Start timeline dynamically
-## ==========================
-#func start_dialogue(timeline_name: String) -> void:
-	#end_of_event = false
-	#event_text.clear()
-	#choice_label.clear()
-	#
-	#var handler := Dialogic.start(timeline_name)
-	#
-		## connect signals on this handler
-	#handler.timeline_ended.connect(_on_timeline_end)
-	#handler.dialogic_signal.connect(_on_signal)         # for [signal arg=...]
-	#handler.textbox_signal.connect(_on_text)            # character + line
-	#handler.choice_selected_signal.connect(_on_choice)  # choices
-	#handler.text_input_signal.connect(_on_text_input)   # text input
+	#var opts := [
+		#{
+			#"text": "Unpack your stuff",
+			#"results": [
+				#"you: I'll start unpacking.",
+				#"weird_cat: Nice! Let's make the place feel like home."
+			#]
+		#},
+		#{
+			#"text": "Take a nap",
+			#"results": [
+				#"you: I need a quick nap.",
+				#"weird_cat: Already tired? Fair enough, moving is exhausting."
+			#]
+		#},
+		#{
+			#"text": "Go outside",
+			#"results": [
+				#"you: I'll go get some fresh air.",
+				#"weird_cat: Fresh air is always a good idea!"
+			#]
+		#}
+	#]
 #
+	#choice_label.show_options(opts)
+	## wait for user click — flow continues in _on_choice_chosen
+	#return
 #
-## ==========================
-## Signal Handlers
-## ==========================
-#func _on_timeline_end(timeline_name: String) -> void:
-	#end_of_event = true
-	#event_text.add_t("[i]End of timeline: %s[/i]" % timeline_name)
+## -------------------------
+## Choice handling
+## -------------------------
+#func _on_choice_chosen(index: int) -> void:
+	#var opt = choice_label.options[index]
+	## clear UI choices
+	#choice_label.clear_options()
 #
+	## play branch results
+	#if opt.has("results"):
+		#for line in opt["results"]:
+			#await event_text.append_line_typed(line)
 #
-#func _on_text(line: String, character: String) -> void:
-	#if character != "":
-		#event_text.add_t("[b]%s:[/b] %s" % [character, line])
-	#else:
-		#event_text.add_t(line)
-#
-#
-#func _on_choice(choices: Array) -> void:
-	#choice_label.clear()
-	#for i in range(choices.size()):
-		#var text = "[url=%d]%d. %s[/url]\n" % [i, i+1, choices[i]]
-		#choice_label.append_text(text)
-	#choice_label.on_option()
-#
-#
-#func _on_signal(arg: String) -> void:
-	## For custom events like [signal arg="show_newspaper_ads"]
-	#event_text.add_t("[i]Signal fired:[/i] %s" % arg)
-	## TODO: Trigger game logic here (like opening a panel)
-#
-#
-#func _on_text_input(prompt: String, variable: String, default_value: String) -> void:
-	## For [text_input ...]
-	#event_text.add_t("%s (default: %s)" % [prompt, default_value])
-	## For now just auto-answer with default
-	#Dialogic.set_variable(variable, default_value)
-	#Dialogic.continue()
-
-
-#extends Panel
-#
-#@onready var event_text: RichTextLabel = %EventText
-#
-## Adjustable first-event chances
-#
-#var end_of_event := false
-#
-## ==========================
-## Ready function
-## ==========================
-#func _ready() -> void:
-	#randomize()
-	#mouse_filter = Control.MOUSE_FILTER_STOP
-	#end_of_event = false
-	#event_text.text = "[i]Press Run to generate 6 events[/i]"
-	#
-	## Connect to dialogic signals
-	#Dialogic.timeline_ended.connect(_on_timeline_end)
-	#Dialogic.text_signal.connect(_on_text)        # when text updates
-	#Dialogic.choice_signal.connect(_on_choice)    # when choices appear
-#
-## ==========================
-## Gui Input
-## ==========================
-#func _on_event_text_gui_input(event: InputEvent) -> void:
-	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		#if event.pressed && end_of_event == false:
-			#event_text.text += 'add more text\n'
-			#event_text.on_option()
-			#return
-			#print("Input detected: _run_event_sequence")
-		#elif event.pressed && end_of_event == true:
-			#self.queue_free()
-	#elif event is InputEventScreenTouch && end_of_event == false:
-		#if event.pressed:
-			#event_text.text += 'add more text\n'
-			#event_text.on_option()
-			#return
-			#print("Input detected: _run_event_sequence")
-		#elif event.pressed && end_of_event == true:
-			#self.queue_free()
-			#
-			#
-#func _on_timeline_end(timeline_name: String) -> void:
-	#end_of_event = true
-	#event_text.add_t("[i]End of timeline: %s[/i]" % timeline_name)
-#
-#
-#func _on_text(line: String) -> void:
-	#event_text.add_t(line)
-#
-#
-#func _on_choice(choices: Array) -> void:
-	#var choice_label: RichTextLabel = %Choice
-	#choice_label.clear()
-	#for i in range(choices.size()):
-		#var text = "[url=%d]%d. %s[/url]\n" % [i, i+1, choices[i]]
-		#choice_label.append_text(text)
-#
-	#choice_label.on_option()
-#
+	## continue the conversation
+	#await event_text.append_line_typed("weird_cat: Alright — that's settled. Let's move on.")
+	#await event_text.append_line_typed("⚡ End of demo.")

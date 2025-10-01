@@ -1,0 +1,96 @@
+{
+  "good": [
+    {
+      "description": "You got praised by supervisor for your hard work.",
+      "result": ["You feel more motivated."]
+    },
+    {
+      "description": "You finished unloading earlier than expected.",
+      "result": ["You got more time to rest before next task."]
+    },
+    {
+      "description": "Ship's crew kindly give you free lunch.",
+      "result": ["You enjoy the meal happily."]
+    },
+    {
+      "description": "(If event 2 happen before) Ship crew thank you for your quick unload.",
+      "result": ["You feel more motivated."]
+    },
+    {
+      "description": "A Shipment arrive in time and in good condition.",
+      "result": ["You work easily and not need to worry about over timed."]
+    },
+    {
+      "description": "Your coworker shares you a drink and snack during break.",
+      "result": ["You and coworker feel a little closer."]
+    },
+    {
+      "description": "Your supervisor assigns you a lighter duty after long week of hard work.",
+      "result": ["You feel happy."]
+    },
+    {
+      "description": "While working your coworker help you lift a heavy load.",
+      "result": ["You less tired knowing that you got some help."]
+    },
+    {
+      "description": "The weather is pleasant today.",
+      "result": ["What a nice day to work."]
+    },
+    {
+      "description": "You save your coworker from accident.",
+      "result": ["He thanks you."]
+    }
+  ],
+  "bad": [
+    {
+      "description": "The heavy rain suddenly pours down.",
+      "result": ["You wet and cold."]
+    },
+    {
+      "description": "A container was too heavy to move, and no one is helping you.",
+      "result": ["You feel tired and need to work longer."]
+    },
+    {
+      "description": "You slipped on wet surface.",
+      "result": ["You feel hurt."]
+    },
+    {
+      "description": "A shipment was late.",
+      "result": ["You need to wait extra time."]
+    },
+    {
+      "description": "Your gloves tore apart making work harder.",
+      "result": ["You feel more tired."]
+    },
+    {
+      "description": "Your coworker called in sick your supervisor assigns more work in your shift.",
+      "result": ["You tired that you need to work more."]
+    },
+    {
+      "description": "Your coworker drops a box almost hitting him.",
+      "result": ["You feel lucky and fear at the same time."]
+    },
+    {
+      "description": "You supervisor shout at you because of your in competent.",
+      "result": ["You feel sad and unmotivated."]
+    },
+    {
+      "description": "A forked lift broke down cause delay.",
+      "result": ["You need to wait for need forked lift."]
+    },
+    {
+      "description": "A container's seal broke spilling goods everywhere.",
+      "result": ["Chaos happen make your work harder."]
+    }
+  ],
+  "uneventful": [
+    {
+      "description": "A calm day passes with no major incidents.",
+      "result": ["You complete your shift quietly."]
+    },
+    {
+      "description": "A routine day at the dock.",
+      "result": ["Everything goes smoothly."]
+    }
+  ]
+}

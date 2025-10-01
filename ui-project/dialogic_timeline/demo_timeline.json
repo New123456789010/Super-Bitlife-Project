@@ -1,0 +1,112 @@
+{
+  "timeline": [
+	{
+	  "event_type": "dialogue",
+	  "character": "guide",
+	  "text": "Welcome, traveler. Before we begin, what is your name?"
+	},
+	{
+	  "event_type": "dialogue",
+	  "character": "guide",
+	  "text": "Welcome, traveler. Before we begin, what is your name?"
+	},
+	{
+	  "event_type": "text_input",
+	  "text": "Please type your name:",
+	  "var": "player_name",
+	  "default": "Alex"
+	},
+	{
+	  "event_type": "dialogue",
+	  "character": "guide",
+	  "text": "Ah, {player_name}! A fine name indeed."
+	},
+	{
+	  "event_type": "choice",
+	  "options": [
+		{
+		  "text": "Ask about this world",
+		  "events": [
+			{
+			  "event_type": "dialogue",
+			  "character": "guide",
+			  "text": "This is the Realm of Echoes, where choices ripple into fate."
+			}
+		  ]
+		},
+		{
+		  "text": "Stay silent",
+		  "events": [
+			{
+			  "event_type": "dialogue",
+			  "character": "guide",
+			  "text": "Silence is also an answer, {player_name}."
+			}
+		  ]
+		}
+	  ]
+	},
+	{
+	  "event_type": "dialogue",
+	  "character": "guide",
+	  "text": "Tell me, {player_name}, what is the secret number?"
+	},
+	{
+	  "event_type": "text_input",
+	  "text": "Enter a number:",
+	  "var": "secret_num",
+	  "default": "0"
+	},
+	{
+	  "event_type": "condition",
+	  "expression": "{secret_num} == 7",
+	  "events_true": [
+		{
+		  "event_type": "dialogue",
+		  "character": "guide",
+		  "text": "Seven! The number of destiny!"
+		}
+	  ],
+	  "events_false": [
+		{
+		  "event_type": "dialogue",
+		  "character": "guide",
+		  "text": "{secret_num}? Curious choice."
+		},
+		{
+		  "event_type": "choice",
+		  "options": [
+			{
+			  "text": "Say it was a mistake",
+			  "events": [
+				{
+				  "event_type": "dialogue",
+				  "character": "guide",
+				  "text": "Honesty is good, {player_name}."
+				}
+			  ]
+			},
+			{
+			  "text": "Stick with it",
+			  "events": [
+				{
+				  "event_type": "dialogue",
+				  "character": "guide",
+				  "text": "Conviction is stronger than correctness."
+				}
+			  ]
+			}
+		  ]
+		}
+	  ]
+	},
+	{
+	  "event_type": "dialogue",
+	  "character": "guide",
+	  "text": "Your journey begins now, {player_name}..."
+	},
+	{
+	  "event_type": "end_timeline"
+	}
+  ]
+}
