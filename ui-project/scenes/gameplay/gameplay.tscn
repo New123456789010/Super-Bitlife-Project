@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bmkdu4n5bq41i"]
+[gd_scene load_steps=26 format=3 uid="uid://bmkdu4n5bq41i"]
 
 [ext_resource type="Script" uid="uid://2ubw75xpw7eo" path="res://scenes/gameplay/gameplay.gd" id="1_0w2j2"]
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="2_gh441"]
@@ -18,8 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://dhgdoypcemc5l" path="res://scenes/components/stats_menu.tscn" id="11_bhb63"]
 [ext_resource type="AudioStream" uid="uid://dslpbs15mdw02" path="res://assets/bgm/BGM2.mp3" id="12_i6m2i"]
 [ext_resource type="Texture2D" uid="uid://naekkfh2gnhn" path="res://assets/ui_assets/Map Icon.png" id="13_2eo0c"]
+[ext_resource type="Texture2D" uid="uid://blj3rlaykecwp" path="res://assets/ui_assets/Plain Paper UI SpriteSheet.png" id="15_kq854"]
 [ext_resource type="PackedScene" uid="uid://c525a1purwymb" path="res://scenes/action_menu/scheduler/schedule_panel.tscn" id="17_pimn4"]
 [ext_resource type="PackedScene" uid="uid://dk1n34vy11bi7" path="res://scenes/components/inventory_modal.tscn" id="19_uqtxl"]
+[ext_resource type="PackedScene" uid="uid://d4scmxbjaypr" path="res://scenes/components/shop_modal.tscn" id="22_4haps"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_krs01"]
 atlas = ExtResource("8_216mg")
@@ -28,6 +30,10 @@ region = Rect2(27, 26, 44, 70)
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhb63"]
 atlas = ExtResource("9_lb4ud")
 region = Rect2(496, 145, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4haps"]
+atlas = ExtResource("15_kq854")
+region = Rect2(689, 3712, 14, 16)
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -182,6 +188,10 @@ layout_mode = 2
 size_flags_horizontal = 8
 button_texture = SubResource("AtlasTexture_bhb63")
 
+[node name="ShopButton" parent="MarginContainer2/VBoxContainer" instance=ExtResource("7_gh441")]
+layout_mode = 2
+button_texture = SubResource("AtlasTexture_4haps")
+
 [node name="MapButton" parent="MarginContainer2/VBoxContainer" instance=ExtResource("7_gh441")]
 visible = false
 layout_mode = 2
@@ -280,7 +290,23 @@ offset_bottom = 120.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Shop" parent="." instance=ExtResource("22_4haps")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -38.0
+offset_right = 27.5
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="AddItem" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -300,6 +326,7 @@ text = "+Item"
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Stats" to="." method="_on_stats_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/ScheduleButton" to="." method="_on_schedule_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/MapButton" to="." method="_on_map_button_pressed"]
 [connection signal="pressed" from="GetMoneyButton/Button" to="." method="_on_money_button_pressed"]
 [connection signal="pressed" from="AddItem" to="Inventory" method="_on_add_item_pressed"]

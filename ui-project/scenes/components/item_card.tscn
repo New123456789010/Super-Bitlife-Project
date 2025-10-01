@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxj4i2kkuandq"]
+
+[ext_resource type="Script" uid="uid://biuy7h55sf6ry" path="res://scenes/components/item_card.gd" id="1_03epw"]
+
+[node name="ItemCard" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_03epw")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 2
+
+[node name="PriceLabel" type="Label" parent="."]
+layout_mode = 2
+
+[node name="BuyButton" type="Button" parent="."]
+layout_mode = 2
