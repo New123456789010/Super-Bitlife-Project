@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ofbujleoa12c"]
+[gd_scene load_steps=7 format=3 uid="uid://ofbujleoa12c"]
 
-[ext_resource type="Script" path="res://scenes/components/event_log_panel/event_log_panel.gd" id="1_ob1lq"]
+[ext_resource type="Script" uid="uid://b1slwlnmgmytp" path="res://scenes/components/event_log_panel/event_log_panel.gd" id="1_ob1lq"]
 [ext_resource type="Script" uid="uid://c4wnjt3hrp14y" path="res://scenes/components/event_log_panel/event_dialogue_template.gd" id="1_twpgm"]
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="2_g8xad"]
 [ext_resource type="Script" uid="uid://o4q645t3an0o" path="res://scenes/components/event_log_panel/test_dialogue_template.gd" id="3_ob1lq"]
 [ext_resource type="Script" uid="uid://dp3v28dovfp27" path="res://scenes/components/event_log_panel/choice.gd" id="5_ob1lq"]
+[ext_resource type="Script" uid="uid://bmfe0hndc1vpf" path="res://scenes/components/event_log_panel/inline_input.gd" id="6_nq6jq"]
 
 [node name="EventLogPanel" type="Control"]
 layout_mode = 3
@@ -15,7 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ob1lq")
 
-[node name="Panel" type="Panel" parent="." node_paths=PackedStringArray("event_text", "choice_label", "input_line")]
+[node name="Panel" type="Panel" parent="." node_paths=PackedStringArray("dialogue_label", "choice_label", "input_box")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,9 +24,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_twpgm")
-event_text = NodePath("MarginContainer2/VBoxContainer/EventText")
-choice_label = NodePath("MarginContainer2/VBoxContainer/Choice")
-input_line = NodePath("MarginContainer2/VBoxContainer/LineEdit")
+dialogue_label = NodePath("EventText")
+choice_label = NodePath("ChoiceContainer/Choice")
+input_box = NodePath("ChoiceContainer/LineEdit")
 
 [node name="ColorRect" type="ColorRect" parent="Panel"]
 layout_mode = 2
@@ -47,28 +48,14 @@ theme_override_fonts/font = ExtResource("2_g8xad")
 theme_override_font_sizes/font_size = 40
 text = "WORKING"
 
-[node name="MarginContainer2" type="MarginContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_left = 75
-theme_override_constants/margin_top = 75
-theme_override_constants/margin_right = 75
-theme_override_constants/margin_bottom = 75
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer2"]
-layout_mode = 2
-size_flags_vertical = 5
-
-[node name="EventText" type="RichTextLabel" parent="Panel/MarginContainer2/VBoxContainer"]
+[node name="EventText" type="RichTextLabel" parent="Panel"]
 unique_name_in_owner = true
 clip_contents = false
 layout_mode = 2
+offset_left = 75.0
+offset_top = 75.0
+offset_right = 465.0
+offset_bottom = 729.0
 size_flags_vertical = 7
 mouse_filter = 1
 bbcode_enabled = true
@@ -76,17 +63,52 @@ fit_content = true
 vertical_alignment = 2
 script = ExtResource("3_ob1lq")
 
-[node name="Choice" type="RichTextLabel" parent="Panel/MarginContainer2/VBoxContainer"]
+[node name="ChoiceContainer" type="Control" parent="Panel"]
+layout_mode = 1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 0.8
+offset_bottom = 197.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 5
+
+[node name="Choice" type="RichTextLabel" parent="Panel/ChoiceContainer"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.0
+offset_top = -59.5
+offset_right = 213.0
+offset_bottom = 59.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 7
 bbcode_enabled = true
+text = "dwadasdcxacafefwf
+"
 script = ExtResource("5_ob1lq")
 
-[node name="LineEdit" type="LineEdit" parent="Panel/MarginContainer2/VBoxContainer"]
-layout_mode = 2
+[node name="LineEdit" type="LineEdit" parent="Panel/ChoiceContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -195.0
+offset_top = -47.0
+offset_right = 195.0
+grow_horizontal = 2
+grow_vertical = 0
 mouse_filter = 2
 theme_override_colors/clear_button_color = Color(1, 0, 0, 1)
 placeholder_text = "cscsccs"
+script = ExtResource("6_nq6jq")
 
-[connection signal="gui_input" from="Panel/MarginContainer2/VBoxContainer/EventText" to="Panel" method="_on_event_text_gui_input"]
+[connection signal="gui_input" from="Panel/EventText" to="Panel" method="_on_event_text_gui_input"]
+[connection signal="text_submitted" from="Panel/ChoiceContainer/LineEdit" to="Panel" method="_on_input_submitted"]
