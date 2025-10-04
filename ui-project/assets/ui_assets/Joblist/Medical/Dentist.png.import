@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nbouddxmdagr"
-path="res://.godot/imported/Veterinarian.png-d63bc670292859dde2150a3f9ed16e66.ctex"
+uid="uid://sytr1sxssqxr"
+path="res://.godot/imported/Dentist.png-d6820b998dee85fc37dc7768a9c33bc6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_assets/Joblist/Public Order/Veterinarian.png"
-dest_files=["res://.godot/imported/Veterinarian.png-d63bc670292859dde2150a3f9ed16e66.ctex"]
+source_file="res://assets/ui_assets/Joblist/Medical/Dentist.png"
+dest_files=["res://.godot/imported/Dentist.png-d6820b998dee85fc37dc7768a9c33bc6.ctex"]
 
 [params]
 

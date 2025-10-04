@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyuik6p2ukrbr"
-path="res://.godot/imported/Psychologist.png-1ad11853136bb5cd5db8ca26011ebd25.ctex"
+uid="uid://nbouddxmdagr"
+path="res://.godot/imported/Veterinarian.png-f6bb4f6d39e2059d6688cb00fe3810d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_assets/Joblist/Public Order/Psychologist.png"
-dest_files=["res://.godot/imported/Psychologist.png-1ad11853136bb5cd5db8ca26011ebd25.ctex"]
+source_file="res://assets/ui_assets/Joblist/Medical/Veterinarian.png"
+dest_files=["res://.godot/imported/Veterinarian.png-f6bb4f6d39e2059d6688cb00fe3810d6.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8pnk8y0bdaey"
-path="res://.godot/imported/Doctor Icon.png-1a198bc6099a9c70c4737ff3f0a25c19.ctex"
+uid="uid://c2o87ec8mpapu"
+path="res://.godot/imported/Pharmacist.png-618ba584fb006c813fd5bed703937539.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_assets/Joblist/Public Order/Doctor Icon.png"
-dest_files=["res://.godot/imported/Doctor Icon.png-1a198bc6099a9c70c4737ff3f0a25c19.ctex"]
+source_file="res://assets/ui_assets/Joblist/Medical/Pharmacist.png"
+dest_files=["res://.godot/imported/Pharmacist.png-618ba584fb006c813fd5bed703937539.ctex"]
 
 [params]
 

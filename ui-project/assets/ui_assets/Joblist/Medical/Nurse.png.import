@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2o87ec8mpapu"
-path="res://.godot/imported/Pharmacist.png-a41fc26a26ef8d3bdc7fddd80c59dd27.ctex"
+uid="uid://cn5q0dtgxcqjl"
+path="res://.godot/imported/Nurse.png-fbd82dd1101ce0d33e6dd87e7960e291.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_assets/Joblist/Public Order/Pharmacist.png"
-dest_files=["res://.godot/imported/Pharmacist.png-a41fc26a26ef8d3bdc7fddd80c59dd27.ctex"]
+source_file="res://assets/ui_assets/Joblist/Medical/Nurse.png"
+dest_files=["res://.godot/imported/Nurse.png-fbd82dd1101ce0d33e6dd87e7960e291.ctex"]
 
 [params]
 
