@@ -19,7 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://dslpbs15mdw02" path="res://assets/bgm/BGM2.mp3" id="12_i6m2i"]
 [ext_resource type="Texture2D" uid="uid://naekkfh2gnhn" path="res://assets/ui_assets/Map Icon.png" id="13_2eo0c"]
 [ext_resource type="PackedScene" uid="uid://c525a1purwymb" path="res://scenes/action_menu/scheduler/schedule_panel.tscn" id="17_pimn4"]
-[ext_resource type="PackedScene" path="res://scenes/components/inventory_modal.tscn" id="19_uqtxl"]
+[ext_resource type="PackedScene" uid="uid://dk1n34vy11bi7" path="res://scenes/components/inventory_modal.tscn" id="19_uqtxl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_krs01"]
 atlas = ExtResource("8_216mg")

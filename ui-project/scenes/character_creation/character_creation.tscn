@@ -1,27 +1,25 @@
-[gd_scene load_steps=12 format=3 uid="uid://cedgx7yyue1ol"]
+[gd_scene load_steps=10 format=3 uid="uid://cedgx7yyue1ol"]
 
 [ext_resource type="Script" uid="uid://bdhkuvfq60yr6" path="res://scenes/character_creation/character_creation_menu.gd" id="1_4xea1"]
 [ext_resource type="FontFile" uid="uid://cfmwj35m6m24q" path="res://assets/font/pixelFont-7-8x14-sproutLands.ttf" id="1_e0w55"]
 [ext_resource type="Texture2D" uid="uid://denp4d4ehwnps" path="res://assets/background_PNGs/pixel_art_Early_20th_century_o (1).jpeg" id="2_x3cld"]
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="3_dg4bb"]
-[ext_resource type="Texture2D" uid="uid://dt5jqa8d3o6nt" path="res://assets/PIC/Human/Human Portaits/Default Portrait.png" id="5_x3cld"]
-[ext_resource type="Texture2D" uid="uid://cc3tch4uckpip" path="res://assets/PIC/Human/Human Portaits/German Nazi Officer.png" id="6_dg4bb"]
-[ext_resource type="Texture2D" uid="uid://dli2e3g7sum5a" path="res://assets/PIC/Human/Human Portaits/Soviet KGB Officer.png" id="7_ybud3"]
+[ext_resource type="Texture2D" uid="uid://dor23osmiqrfh" path="res://assets/PIC/Human/Human Portaits/Human_UI.png" id="5_eib03"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r51kn"]
 atlas = ExtResource("2_x3cld")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l01c1"]
-atlas = ExtResource("5_x3cld")
-region = Rect2(27, 26, 44, 70)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cndol"]
+atlas = ExtResource("5_eib03")
+region = Rect2(22.906, 26.6677, 17.1627, 21.3902)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c126h"]
-atlas = ExtResource("6_dg4bb")
-region = Rect2(24, 12, 51, 84)
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3cld"]
+atlas = ExtResource("5_eib03")
+region = Rect2(54.937, 27.0096, 17.0935, 21.0408)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1xkkk"]
-atlas = ExtResource("7_ybud3")
-region = Rect2(24, 6, 51, 90)
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg4bb"]
+atlas = ExtResource("5_eib03")
+region = Rect2(86.926, 27.0102, 17.1353, 21.1269)
 
 [node name="character_creation_menu" type="Control"]
 layout_mode = 3
@@ -95,7 +93,7 @@ theme_override_constants/separation = 16
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_l01c1")
+texture = SubResource("AtlasTexture_cndol")
 expand_mode = 3
 stretch_mode = 5
 
@@ -116,7 +114,7 @@ theme_override_constants/separation = 16
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_c126h")
+texture = SubResource("AtlasTexture_x3cld")
 expand_mode = 3
 stretch_mode = 5
 
@@ -137,7 +135,7 @@ theme_override_constants/separation = 16
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_1xkkk")
+texture = SubResource("AtlasTexture_dg4bb")
 expand_mode = 3
 stretch_mode = 5
 

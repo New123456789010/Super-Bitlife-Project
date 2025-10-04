@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8pnk8y0bdaey"
-path="res://.godot/imported/Doctor Icon.png-1a198bc6099a9c70c4737ff3f0a25c19.ctex"
+uid="uid://dm54hlfgynixm"
+path="res://.godot/imported/Composer.png-ba55fd1fc777c4ca75237dfa25cfa03c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_assets/Joblist/Public Order/Doctor Icon.png"
-dest_files=["res://.godot/imported/Doctor Icon.png-1a198bc6099a9c70c4737ff3f0a25c19.ctex"]
+source_file="res://assets/ui_assets/Joblist/Art/Composer.png"
+dest_files=["res://.godot/imported/Composer.png-ba55fd1fc777c4ca75237dfa25cfa03c.ctex"]
 
 [params]
 
