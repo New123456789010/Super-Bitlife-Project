@@ -1,0 +1,24 @@
+[
+  { "id": "start", "type": "dialogue", "text": "Welcome, {player_name}. You have {coins} coins." },
+  {
+	"type": "choice",
+	"options": [
+	  { "text": "Check wealth", "next": "check_status" },
+	  { "text": "Say goodbye", "next": "goodbye" }
+	]
+  },
+  {
+	"id": "check_status",
+	"type": "dialogue",
+	"condition": "GameData.total_assets >= 100",
+	"text": "You're doing great, {player_name}! Wealth suits you."
+  },
+  {
+	"id": "check_status",
+	"type": "dialogue",
+	"condition": "GameData.total_assets < 100",
+	"text": "You might want to earn some more coins."
+  },
+  { "id": "goodbye", "type": "dialogue", "text": "Goodbye, {player_name}." },
+  { "type": "end" }
+]

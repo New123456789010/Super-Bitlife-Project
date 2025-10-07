@@ -51,6 +51,10 @@ func _run_timeline() -> void:
 		if typeof(evt) != TYPE_DICTIONARY:
 			index += 1
 			continue
+			
+		if evt.has("condition") and not _evaluate_condition(evt["condition"]):
+			index += 1
+			continue
 
 		var t = evt.get("type", "dialogue")
 		match t:
@@ -77,12 +81,13 @@ func _run_timeline() -> void:
 				# Resolve next: if choice_data.next is label or index
 				if choice_data.has("next"):
 					var nxt = choice_data["next"]
-					if typeof(nxt) == TYPE_STRING and id_map.has(nxt):
-						index = int(id_map[nxt])
+					if typeof(nxt) == TYPE_STRING:
+						index = _find_next_valid_event(nxt)
 					elif typeof(nxt) in [TYPE_INT, TYPE_FLOAT]:
 						index = int(nxt)
 					else:
 						index += 1
+
 				else:
 					# fallback: insert events (if provided) next inline
 					if choice_data.has("events") and typeof(choice_data["events"]) == TYPE_ARRAY:
@@ -136,6 +141,28 @@ func _run_timeline() -> void:
 	# runner finished
 	_running = false
 	return
+
+func _evaluate_condition(expr: String) -> bool:
+	if expr == "" or expr == null:
+		return true
+	var expression := Expression.new()
+	var result := expression.parse(expr, ["GameData"])
+	if result != OK:
+		push_error("❌ Condition parse error: %s" % expr)
+		return false
+	var value = expression.execute([GameData])
+	if expression.has_execute_failed():
+		push_error("❌ Condition execution failed for: %s" % expr)
+		return false
+	return bool(value)
+
+func _find_next_valid_event(target_id: String) -> int:
+	for i in range(timeline.size()):
+		var e = timeline[i]
+		if typeof(e) == TYPE_DICTIONARY and e.get("id", "") == target_id:
+			if not e.has("condition") or _evaluate_condition(e["condition"]):
+				return i
+	return index + 1
 
 # format text with variables (live)
 func _format_text(text: String) -> String:
