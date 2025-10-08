@@ -11,5 +11,5 @@
   { "id": "goodbye", "type": "dialogue", "text": "Goodbye, {player_name}." },
   { "type": "input", "prompt": "What is your secret code?", "var": "secret_code", "default": "0000" },
   { "type": "dialogue", "text": "You entered: {secret_code}" },
-  { "type": "end" }
+  { "type": "end", "text": "[Dialogue complete]", "exit_text": "Exit dialogue" }
 ]

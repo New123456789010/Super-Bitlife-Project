@@ -4,6 +4,8 @@ extends Panel
 @export var choice_label: ChoiceLabel        # drag the ChoiceLabel node
 @export var input_box: InlineInput           # drag the InlineInput node
 
+@export var end_choice_text: String = "Close"
+
 var timeline: Array = []
 var index: int = 0
 var id_map: Dictionary = {}
@@ -130,7 +132,28 @@ func _run_timeline() -> void:
 				continue
 
 			"end":
-				await dialogue_label.append_line_typed("[End]")
+				# Optional custom text for [End] message
+				var end_text = evt.get("text", "[End]")
+				await dialogue_label.append_line_typed(end_text)
+
+				# Custom exit choice text (fallback to exported var)
+				var exit_choice = evt.get("exit_text", end_choice_text)
+
+				# Show a final choice that acts as the exit confirmation
+				choice_label.show_options([{ "text": exit_choice, "next": null }])
+				choice_label.visible = true
+				await choice_label.choice_chosen
+				choice_label.clear_options()
+				choice_label.visible = false
+
+				# Emit dialogue_finished for logic chaining (optional next timeline)
+				if SignalBus.has_signal("dialogue_finished"):
+					SignalBus.dialogue_finished.emit()
+
+				# Wait a moment, then animate and end the timeline
+				await _animate_timeline_end()
+				if SignalBus.has_signal("timeline_ended"):
+					SignalBus.timeline_ended.emit()
 				break
 
 			_:
@@ -163,6 +186,13 @@ func _find_next_valid_event(target_id: String) -> int:
 			if not e.has("condition") or _evaluate_condition(e["condition"]):
 				return i
 	return index + 1
+
+func _animate_timeline_end() -> void:
+	var tween := create_tween()
+	tween.tween_property(self, "modulate:a", 0.0, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
+	queue_free()  # safely remove panel after fade
+
 
 # format text with variables (live)
 func _format_text(text: String) -> String:
