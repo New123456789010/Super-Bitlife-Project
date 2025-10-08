@@ -4,6 +4,7 @@ extends Node
 # == Exported Config and Stats ==
 # ================================
 @export var player_stats: PlayerStats
+@export var player_name: String
 @export var current_job: JobResource = load("res://global/job_resource/unemploy.tres")
 @export var income: float = 0
 @export var total_assets: float = 0
@@ -39,6 +40,48 @@ func _ready():
 		player_stats = PlayerStats.new()
 	# Optionally reset stats here
 	# stats.reset()
+
+# ========================
+# == Timeline Utilities ==
+# ========================
+
+var _timeline_cache: Dictionary = {}
+
+## Loads a timeline JSON file or returns a cached one.
+func load_timeline(path: String) -> Array:
+	if _timeline_cache.has(path):
+		return _timeline_cache[path]
+
+	var file := FileAccess.open(path, FileAccess.READ)
+	if not file:
+		push_error("TimelineLoader: Cannot open %s" % path)
+		return []
+	var text := file.get_as_text()
+	file.close()
+
+	var data = JSON.parse_string(text)
+	if data == null:
+		push_error("TimelineLoader: Invalid JSON in %s" % path)
+		return []
+
+	# Accept Array or Dictionary with "events"
+	var result: Array
+	match typeof(data):
+		TYPE_ARRAY:
+			result = data
+		TYPE_DICTIONARY:
+			if data.has("events") and typeof(data["events"]) == TYPE_ARRAY:
+				result = data["events"]
+			else:
+				push_error("TimelineLoader: Dictionary in %s missing 'events' array" % path)
+				return []
+		_:
+			push_error("TimelineLoader: Unexpected root type %s in %s" % [typeof(data), path])
+			return []
+
+	_timeline_cache[path] = result
+	return result
+
 
 # =======================
 # == Action Scheduling ==
@@ -115,3 +158,8 @@ var removal_mode: bool = false
 func toggle_removal_mode() -> void:
 	removal_mode = not removal_mode
 	emit_signal("removal_mode_changed", removal_mode)
+
+var variables := {
+	"player_name": "Traveler",
+	"coins": 0
+}
