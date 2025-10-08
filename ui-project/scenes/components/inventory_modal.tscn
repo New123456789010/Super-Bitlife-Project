@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dk1n34vy11bi7"]
 
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_lb6j6"]
-[ext_resource type="Script" uid="uid://dfekq3xgbikr5" path="res://scenes/components/inventory_modal.gd" id="2_bbhyy"]
+[ext_resource type="Script" path="res://scenes/components/inventory_modal.gd" id="2_bbhyy"]
 
 [node name="Inventory" type="PanelContainer"]
 custom_minimum_size = Vector2(400, 400)

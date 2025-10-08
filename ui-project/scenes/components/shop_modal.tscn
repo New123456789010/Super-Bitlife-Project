@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4scmxbjaypr"]
+[gd_scene load_steps=3 format=3 uid="uid://s4jld8lwpxkj"]
 
 [ext_resource type="Script" uid="uid://cbw5j2hp6uxqb" path="res://scenes/components/shop_modal.gd" id="1_4o3fb"]
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_6gf72"]
@@ -23,8 +23,9 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="GoldLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MoneyLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+text = "Money"
 
 [node name="StatusLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

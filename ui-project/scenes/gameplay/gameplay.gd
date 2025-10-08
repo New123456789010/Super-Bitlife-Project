@@ -36,6 +36,7 @@ func _ready():
 	_connect_buttons(self)
 	
 	SignalBus.got_out_side_1st_time_signal.connect(_on_got_out_side_1st_time_signal)
+	SignalBus.money_changed.connect(_on_money_changed)
 
 func _on_child_volume_changed(value: float) -> void:
 	var linear = value / 100.0
@@ -145,3 +146,20 @@ func _on_shop_button_pressed() -> void:
 	else:
 		close_all()
 		shop.visible = true
+
+func get_money() -> int:
+	return GameData.total_assets
+
+func try_spend(amount: int) -> bool:
+	if GameData.total_assets >= amount:
+		GameData.total_assets -= amount
+		money_indicator.text = str(GameData.total_assets)
+		SignalBus.money_changed.emit(GameData.total_assets) 
+		return true
+	return false
+
+func update_money_ui() -> void:
+	money_indicator.text = str(GameData.total_assets)
+
+func _on_money_changed(value: int) -> void:
+	money_indicator.text = str(value)
