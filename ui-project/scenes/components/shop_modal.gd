@@ -12,12 +12,28 @@ var parent_ctrl: Node
 var inventory: Node
 
 var store_items: Array[Dictionary] = [
-	{"id":"potion","name":"Potion","desc":"Heals 50 HP","price":25},
-	{"id":"elixir","name":"Elixir","desc":"Restores HP&MP","price":90},
-	{"id":"sword","name":"Short Sword","desc":"A sharp blade","price":120},
-	{"id":"shield","name":"Small Shield","desc":"Blocks attacks","price":110},
-	{"id":"herb","name":"Herb","desc":"A simple remedy","price":10},
+	{
+		"id":"suit_case", "name":"Suit Case", "desc":"formal and simple", "price":50,
+		"icon": preload("res://assets/ui_assets/Action Icon/Work Icon.png")        # <—
+	},
+	{
+		"id":"book", "name":"Book", "desc":"ordinary book", "price":20,
+		"icon": preload("res://assets/ui_assets/Action Icon/Reading Icon.png")
+	},
+	{
+		"id":"milk", "name":"Milk", "desc":"made from water buffalo", "price":10,
+		"icon": preload("res://assets/ui_assets/Joblist/Delivery/Milkman.png")
+	},
+	{
+		"id":"medicine", "name":"Medicine", "desc":"cure from infection", "price":20,
+		"icon": preload("res://assets/ui_assets/Joblist/Medical/Pharmacist.png")
+	},
+	{
+		"id":"mail", "name":"Mail", "desc":"a simple mail", "price":5,
+		"icon": preload("res://assets/ui_assets/Joblist/Delivery/Mailman.png")
+	},
 ]
+
 
 func _ready() -> void:
 	parent_ctrl = get_node_or_null(parent_path)

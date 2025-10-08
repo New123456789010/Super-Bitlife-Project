@@ -158,6 +158,7 @@ layout_mode = 2
 
 [node name="DateTimeIndicator" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("9_krs01")]
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="MoneyIndicator" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("6_0w2j2")]
 layout_mode = 2
