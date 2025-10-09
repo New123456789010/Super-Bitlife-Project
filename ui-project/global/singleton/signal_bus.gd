@@ -8,3 +8,4 @@ signal advance                           # request next step
 signal input_submitted(key: String, value: String)  # generic input for any variable
 signal choice_made(index: int)           # choice selected
 signal external_signal(name: String)     # pass signals outward
+signal money_changed(value: float)

@@ -7,7 +7,7 @@ extends Node
 @export var player_name: String
 @export var current_job: JobResource = load("res://global/job_resource/unemploy.tres")
 @export var income: float = 0
-@export var total_assets: float = 0
+@export var total_assets: float = 100
 @export var current_day: int = 0
 @export var current_event: String
 
