@@ -34,11 +34,12 @@ layout_mode = 2
 
 [node name="ItemLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-text = "ItemName:"
 
 [node name="ItemDesc" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 18
-text = "<item description>
-"
+
+[node name="UseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_type_variation = &"main_action_button"

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxj4i2kkuandq"]
 
-[ext_resource type="Script" path="res://scenes/components/item_card.gd" id="1_03epw"]
+[ext_resource type="Script" uid="uid://biuy7h55sf6ry" path="res://scenes/components/item_card.gd" id="1_03epw"]
 [ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_b87s4"]
 
 [node name="ItemCard" type="VBoxContainer"]
