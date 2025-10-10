@@ -25,7 +25,7 @@ var store_items: Array[Dictionary] = [
 		"icon": preload("res://assets/ui_assets/Joblist/Delivery/Milkman.png")
 	},
 	{
-		"id":"medicine", "name":"Medicine", "desc":"cure from infection", "price":20,
+		"id":"medicine", "name":"Medicine", "desc":"cure from infection", "price":20, "type":"consumable",
 		"icon": preload("res://assets/ui_assets/Joblist/Medical/Pharmacist.png")
 	},
 	{
