@@ -1,20 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxj4i2kkuandq"]
+[gd_scene load_steps=3 format=3 uid="uid://dxj4i2kkuandq"]
 
-[ext_resource type="Script" uid="uid://biuy7h55sf6ry" path="res://scenes/components/item_card.gd" id="1_03epw"]
+[ext_resource type="Script" path="res://scenes/components/item_card.gd" id="1_03epw"]
+[ext_resource type="Theme" uid="uid://bg1ma7hebf0y2" path="res://assets/ui_theme/9_by_16 resolution_theme.tres" id="1_b87s4"]
 
 [node name="ItemCard" type="VBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("1_b87s4")
 script = ExtResource("1_03epw")
 
 [node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="PriceLabel" type="Label" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="BuyButton" type="Button" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"main_action_button"
