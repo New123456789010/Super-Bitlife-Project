@@ -4,6 +4,13 @@ extends Panel
 @export var choice_label: ChoiceLabel        # drag the ChoiceLabel node
 @export var input_box: InlineInput           # drag the InlineInput node
 
+@export var auto_advance := false   # Toggle for autoplay (can be controlled by UI)
+@export var auto_advance_delay: float = 1.0   # seconds to wait when auto_advance is true
+# Typing speed control state (used while a line is animating)
+var _typing_base_delay: float = 0.02
+var _typing_speed_multiplier: float = 1.0
+const _MAX_MULTIPLIER := 8.0   # once multiplier reaches this we force-complete the line
+
 @export var end_choice_text: String = "Close"
 
 var timeline: Array = []
@@ -60,13 +67,51 @@ func _run_timeline() -> void:
 
 		var t = evt.get("type", "dialogue")
 		match t:
+			#"dialogue":
+				#var raw = evt.get("text", "")
+				#var formatted := _format_text(raw)
+				# await the typing animation
+				#await dialogue_label.append_line_typed(formatted)
+				# wait for player input unless auto_advance is true
+				#if not auto_advance:
+					#await SignalBus.advance  # wait for click/tap signal to continue
+				#else:
+					#await get_tree().create_timer(1.0).timeout 
+				#index += 1
+				#continue
 			"dialogue":
 				var raw = evt.get("text", "")
 				var formatted := _format_text(raw)
-				# await the typing animation
+
+				# --- Typing speed setup ---
+				_typing_base_delay = dialogue_label.char_delay
+				_typing_speed_multiplier = 1.0
+
+				# connect advance handler (only while typing)
+				var advance_handler = Callable(self, "_on_advance_during_typing")
+				if not SignalBus.advance.is_connected(advance_handler):
+					SignalBus.advance.connect(advance_handler)
+
+				# await the typing animation (EventText uses dialogue_label.char_delay each loop)
 				await dialogue_label.append_line_typed(formatted)
+
+				# disconnect the handler (safe even if it was triggered)
+				if SignalBus.advance.is_connected(advance_handler):
+					SignalBus.advance.disconnect(advance_handler)
+
+				# restore base delay and multiplier
+				dialogue_label.char_delay = _typing_base_delay
+				_typing_speed_multiplier = 1.0
+
+				# Wait for user advance (or auto advance)
+				if not auto_advance:
+					await SignalBus.advance
+				else:
+					await get_tree().create_timer(auto_advance_delay).timeout
+
 				index += 1
 				continue
+
 
 			"choice":
 				var options = evt.get("options", [])
@@ -201,56 +246,17 @@ func _format_text(text: String) -> String:
 	return text
 
 
+func _on_autoplay_toggled(pressed: bool):
+	auto_advance = pressed
+	
+# handler called when advance is pressed DURING typing
+func _on_advance_during_typing() -> void:
+	# double speed each time and update dialogue_label.char_delay
+	_typing_speed_multiplier *= 2.0
+	# clamp multiplier to a reasonable max; when reached, force-complete
+	if _typing_speed_multiplier >= _MAX_MULTIPLIER:
+		dialogue_label.skip_current_typing()
+		return
 
-
-
-#func _ready() -> void:
-	#if not choice_label.is_connected("choice_chosen", Callable(self, "_on_choice_chosen")):
-		#choice_label.choice_chosen.connect(Callable(self, "_on_choice_chosen"))
-#
-	#input_line.text_submitted.connect(Callable(self, "_on_input_submitted"))
-	#input_line.visible = false
-#
-	#call_deferred("_start_demo")
-#
-## -------------------------
-## Load Scene Text
-## -------------------------
-#
-#
-## -------------------------
-## Demo flow with input
-## -------------------------
-#func _start_demo() -> void:
-	#await event_text.append_line_typed("weird_cat: Let's test text input now…")
-	#await event_text.append_line_typed("weird_cat: What's your secret password?")
-#
-	## request input for variable "secret_code"
-	#request_input("secret_code", "1234")
-#
-## -------------------------
-## Input handling
-## -------------------------
-#func request_input(var_name: String, default_val: String = "") -> void:
-	#variables[var_name] = default_val
-	#input_line.text = default_val
-	#input_line.visible = true
-	#input_line.grab_focus()
-#
-#func _on_input_submitted(new_text: String) -> void:
-	## hide input
-	#input_line.visible = false
-#
-	#var var_name := "secret_code"  # later, this will come from the timeline
-	#variables[var_name] = new_text
-#
-	## mirror back the player's response with typing animation
-	#await event_text.append_line_typed("you: " + new_text)
-#
-	## continue demo with smooth typing
-	#if new_text != "3.14159":
-		#await event_text.append_line_typed("weird_cat: Hmm… that’s not the magic number I was expecting.")
-	#else:
-		#await event_text.append_line_typed("weird_cat: Whoa! You cracked the code! 🐱")
-#
-	#await event_text.append_line_typed("⚡ End of demo with input.")
+	# set new per-character delay (smaller delay => faster typing)
+	dialogue_label.char_delay = _typing_base_delay / _typing_speed_multiplier

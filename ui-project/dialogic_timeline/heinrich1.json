@@ -1,0 +1,21 @@
+[
+  { "id": "prologue", "type": "dialogue", "text": "Ever since my earliest days, I would tell my parents that I longed to be a painter. Not merely one who dabbles in color, but an artist of such refinement that his fingertips alone might stir the hearts of the masses. A man devoted wholly to the pursuit of beauty, with a dignity befitting one who yearns for everlasting peace." },
+  { "id": "prologue", "type": "dialogue", "text": "Imagine it… The castle of Neuschwanstein, enthroned upon its mountain, while solemn pines bow in reverence to its majesty. Or the Vienna Opera House, rendered in hues so daringly abstracted from reality, and yet—still faithful, still sincere in its devotion to truth. With my brush, I believed I could breathe life into the void of an empty canvas, and perhaps one day, see my visions hung within the hallowed halls of the Staatliche Museen zu Berlin."},
+  { "id": "prologue", "type": "dialogue", "text": "In those days, the newspapers grew heavier with each passing week. Columns once devoted to art, music, and the affairs of cultured society gave way to reports of harsh rethorics, of ultimatums exchanged between nations, of alliances hardening like iron. In the cafés, men spoke in hushed tones of mobilizations and treaties, their voices carrying both pride and unease. I remember the headlines—bold, unrelenting—announcing that the world stood upon the edge of something vast and terrible. And though I was but a painter in spirit, I could not help but feel the weight of history pressing upon my shoulders." },
+  { "id": "prologue", "type": "dialogue", "text": "But as the autumn of my youth approached, the world itself was torn asunder. War swept across the land, and the brilliance of my dreams was smothered beneath a pall of gray. Like countless others, I was summoned to the army. The gentle weight of a lacquered brush was torn from my grasp, replaced by the cold, unyielding wood of a rifle. My hands, once trained to caress the canvas, were now commanded to claw through mud, rubble, and the blasted soil of a ruined earth." },
+  { "id": "prologue", "type": "dialogue", "text": "I soon understood: the wind would never again kiss my face as it had in youth. The quietude of home was lost to me, replaced by the ceaseless thunder of artillery and the shrill, merciless ringing of death. In time, I became something less than a man—hollow, godless, a creature of obedience. My life no longer belonged to me, nor to art, nor to beauty. It belonged only to the Fatherland, to the will of its leaders, to the endless demands of war." }, 
+  { "id": "prologue", "type": "dialogue", "text": "To serve. To protect. To conquer. These became the terms of my survival, the creed of my existence. A future for my people, bought with the corpses of our enemies. A fleeting rest for my soul, purchased at the cost of countless others. A dream of peace, forever deferred, forever denied." }, 
+  { "id": "prologue", "type": "dialogue", "text": "And so I march onward. A soldier, nothing more. My brush lies silent, my canvas abandoned. What remains is duty—and the faint hope that, in some distant tomorrow, I may yet dream again." }, 
+  {
+	"type": "choice",
+	"options": [
+	  { "text": "Ask about coins", "next": "coin_info" },
+	  { "text": "Say goodbye", "next": "goodbye" }
+	]
+  },
+  { "id": "coin_info", "type": "dialogue", "text": "You currently have {coins} coins. Keep an eye on your bills." },
+  { "id": "goodbye", "type": "dialogue", "text": "Goodbye, {player_name}." },
+  { "type": "input", "prompt": "What is your secret code?", "var": "secret_code", "default": "0000" },
+  { "type": "dialogue", "text": "You entered: {secret_code}" },
+  { "type": "end", "text": "[Dialogue complete]", "exit_text": "Exit dialogue" }
+]
