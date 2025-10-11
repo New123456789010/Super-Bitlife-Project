@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://blj3rlaykecwp" path="res://assets/ui_assets/Plain Paper UI SpriteSheet.png" id="15_kq854"]
 [ext_resource type="PackedScene" uid="uid://c525a1purwymb" path="res://scenes/action_menu/scheduler/schedule_panel.tscn" id="17_pimn4"]
 [ext_resource type="PackedScene" uid="uid://dk1n34vy11bi7" path="res://scenes/components/inventory_modal.tscn" id="19_uqtxl"]
-[ext_resource type="PackedScene" uid="uid://d4scmxbjaypr" path="res://scenes/components/shop_modal.tscn" id="22_4haps"]
+[ext_resource type="PackedScene" uid="uid://s4jld8lwpxkj" path="res://scenes/components/shop_modal.tscn" id="22_4haps"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_krs01"]
 atlas = ExtResource("10_4haps")
