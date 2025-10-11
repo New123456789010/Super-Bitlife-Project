@@ -150,26 +150,6 @@ static func generate_map(current_seed:int = 0) -> Dictionary:
 			"pos": district.get("hub", district["center"])
 		})
 
-	## Connect district centers with nearest neighbors (ensures connectivity basics)
-	#for i in range(map["districts"].size()):
-		#var a = map["districts"][i]
-		#var sorted = []
-		#for j in range(map["districts"].size()):
-			#if i == j:
-				#continue
-			#var b = map["districts"][j]
-			#sorted.append({"idx": j, "dist": a["center"].distance_to(b["center"])})
-		#sorted.sort_custom(func(x, y): return int(x["dist"] - y["dist"]))
-		#var n_neighbors = min(2, sorted.size())
-		#for k in range(n_neighbors):
-			#var b = map["districts"][sorted[k]["idx"]]
-			#map["roads"].append({
-				#"from": a["id"],
-				#"to": b["id"],
-				#"from_pos": a["center"],
-				#"to_pos": b["center"]
-			#})
-
 	return map
 	
 # Helper: make a jittered rectangle-like polygon (normalized coords)
@@ -253,48 +233,12 @@ static func _generate_pois_for_district(district:Dictionary, rng:RandomNumberGen
 	district["hub"] = hub
 
 	return pois
-#static func _generate_pois_for_district(district:Dictionary, rng:RandomNumberGenerator) -> Array:
-	#var type = district["type"]
-	#var count = 2
-	#match type:
-		#"DOWNTOWN":
-			#count = rng.randi_range(6, 10)
-		#"SUBURB":
-			#count = rng.randi_range(2, 4)
-		#"COAST":
-			#count = rng.randi_range(3, 6)
-		#"NATURE":
-			#count = rng.randi_range(1, 3)
-		#"SHOPPING":
-			#count = rng.randi_range(3, 5)
-		#"INDUSTRIAL":
-			#count = rng.randi_range(2, 4)
-		#_:
-			#count = rng.randi_range(2, 4)
-	#var pois = []
-	#var bbox_min = Vector2(1,1)
-	#var bbox_max = Vector2(0,0)
-	#for p in district["polygon"]:
-		#bbox_min.x = min(bbox_min.x, p.x)
-		#bbox_min.y = min(bbox_min.y, p.y)
-		#bbox_max.x = max(bbox_max.x, p.x)
-		#bbox_max.y = max(bbox_max.y, p.y)
-	#for i in range(count):
-		#_poi_counter += 1
-		#var pos = Vector2(rng.randf_range(bbox_min.x, bbox_max.x), rng.randf_range(bbox_min.y, bbox_max.y))
-		#pois.append({
-			#"id": "poi_%d" % _poi_counter,
-			#"name": "%s_POI_%d" % [district["name"], i],
-			#"type": _pick_poi_type_for_district(type, rng),
-			#"pos": pos
-		#})
-	#return pois
 
 static func _pick_poi_type_for_district(dtype:String, rng:RandomNumberGenerator) -> String:
 	var choices = []
 	match dtype:
 		"DOWNTOWN":
-			choices = ["Office", "Cafe", "Shop", "Station", "Mall"]
+			choices = ["Office", "Cafe", "Shop", "Station", "Mall", "Churh"]
 		"SUBURB":
 			choices = ["House", "School", "Cafe", "Grocery"]
 		"COAST":
@@ -304,7 +248,7 @@ static func _pick_poi_type_for_district(dtype:String, rng:RandomNumberGenerator)
 		"SHOPPING":
 			choices = ["Mall", "Cinema", "FoodCourt", "Market"]
 		"INDUSTRIAL":
-			choices = ["Factory", "Warehouse", "Depot"]
+			choices = ["Factory", "Warehouse", "PowerPlant"]
 		_:
 			choices = ["Shop", "Cafe"]
 	return choices[rng.randi_range(0, choices.size() - 1)]
