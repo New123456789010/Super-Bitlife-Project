@@ -1,0 +1,156 @@
+[gd_scene load_steps=2 format=3 uid="uid://h6du3xo8jrjv"]
+
+[ext_resource type="Script" uid="uid://by2dtve0xdjvw" path="res://scenes/map_components/CityMapUI.gd" id="1_3isbd"]
+
+[node name="Sidebar" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3isbd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="City Map Generator" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SeedLine" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "seed"
+
+[node name="Grid W" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Grid W"]
+layout_mode = 2
+text = "Grid W"
+
+[node name="WidthSpin" type="SpinBox" parent="VBoxContainer/Grid W"]
+layout_mode = 2
+min_value = 32.0
+max_value = 512.0
+value = 128.0
+
+[node name="Grid H" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Grid H"]
+layout_mode = 2
+text = "Grid H"
+
+[node name="HeightSpin" type="SpinBox" parent="VBoxContainer/Grid H"]
+layout_mode = 2
+min_value = 32.0
+max_value = 512.0
+value = 128.0
+
+[node name="Cell px" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Cell px"]
+layout_mode = 2
+text = "Cell px"
+
+[node name="CellSizeSpin" type="SpinBox" parent="VBoxContainer/Cell px"]
+layout_mode = 2
+min_value = 2.0
+max_value = 24.0
+value = 6.0
+
+[node name="Road spacing" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Road spacing"]
+layout_mode = 2
+text = "Road Spacing"
+
+[node name="RoadSpacingSpin" type="SpinBox" parent="VBoxContainer/Road spacing"]
+layout_mode = 2
+min_value = 6.0
+max_value = 64.0
+value = 16.0
+
+[node name="Water thr" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Water thr"]
+layout_mode = 2
+text = "Water thr"
+
+[node name="WaterSlider" type="HSlider" parent="VBoxContainer/Water thr"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.25
+
+[node name="Park thr" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Park thr"]
+layout_mode = 2
+text = "Park thr"
+
+[node name="ParkSlider" type="HSlider" parent="VBoxContainer/Park thr"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.8
+
+[node name="Comm dens thr" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Comm dens thr"]
+layout_mode = 2
+text = "Comm dens thr"
+
+[node name="CommSlider" type="HSlider" parent="VBoxContainer/Comm dens thr"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.75
+
+[node name="HighRes dens thr" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HighRes dens thr"]
+layout_mode = 2
+text = "HighRes dens thr"
+
+[node name="HighResSlider" type="HSlider" parent="VBoxContainer/HighRes dens thr"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Industrial bias" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Industrial bias"]
+layout_mode = 2
+text = "Industrial bias"
+
+[node name="IndBiasSlider" type="HSlider" parent="VBoxContainer/Industrial bias"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.65
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="GenerateButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Generate"
+
+[node name="RandomSeedButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Random seed"
+
+[node name="LegendLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MapTexture" type="TextureRect" parent="."]
+layout_mode = 2
+stretch_mode = 5
