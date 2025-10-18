@@ -1,7 +1,4 @@
-class_name CityMap
-
 extends Node2D
-
 # @tool  # optional
 
 # -------- Size & seed --------
@@ -64,8 +61,8 @@ var zone_centers: Array[Vector2] = []
 var zone_sigmas: Array[float] = []
 
 # -------- Data --------
-var major_roads: Array[PackedVector2Array] = []
-var minor_roads: Array[PackedVector2Array] = []
+@export var major_roads: Array[PackedVector2Array] = []
+@export var minor_roads: Array[PackedVector2Array] = []
 var diagonals: Array[PackedVector2Array] = []
 var river: PackedVector2Array = PackedVector2Array()
 var water_polys: Array[PackedVector2Array] = []
@@ -77,6 +74,8 @@ var pin_kind: Array[int] = []
 
 var _rng := RandomNumberGenerator.new()
 var _noise := FastNoiseLite.new()
+
+var RoadGen := preload("res://scenes/map_components/road_gen.gd").new()
 
 # -------- Lifecycle --------
 func _ready() -> void:
@@ -118,8 +117,9 @@ func generate() -> void:
 	_make_water_variant()
 	_make_parks(park_count)
 	_compute_park_centroids()
-	_make_grids(minor_spacing, major_spacing, jitter)
-	_make_diagonals(diagonal_chance)
+	
+	RoadGen.generate(self)
+	
 	_make_zones()           # NEW
 	_make_pins()            # NEW
 
@@ -225,58 +225,119 @@ func _compute_park_centroids() -> void:
 			cx /= float(poly.size()); cy /= float(poly.size())
 		park_centroids.append(Vector2(cx, cy))
 
-func _make_grids(minor_spacing: int, major_spacing: int, jitter: float) -> void:
-	var w: float = float(map_size.x)
-	var h: float = float(map_size.y)
-
-	var x: float = 0.0
-	while x <= w:
-		var pts := PackedVector2Array()
-		var segments: int = 64
-		for i in range(segments + 1):
-			var t: float = float(i) / float(segments)
-			var yv: float = t * h
-			var j: float = _noise.get_noise_2d(x, yv) * jitter
-			pts.push_back(Vector2(x + j, yv))
-		if roundi(x) % major_spacing == 0:
-			major_roads.push_back(pts)
+func _make_roads_tensor_field() -> void:
+	var field_res := 64  # lower = smoother, higher = more detail
+	var field_scale := map_size / float(field_res)
+	var directions: Array = []
+	
+	# --- Build tensor field ---
+	for y in range(field_res + 1):
+		directions.append([])
+		for x in range(field_res + 1):
+			var nx = float(x) / field_res
+			var ny = float(y) / field_res
+			
+			# base orientation curved toward city center
+			var dir = (Vector2(map_size.x * 0.5, map_size.y * 0.5) - Vector2(nx * map_size.x, ny * map_size.y)).normalized()
+			
+			# add noise perturbation for natural variation
+			var angle_noise = _noise.get_noise_2d(nx * 2.0, ny * 2.0) * PI * 0.25
+			dir = dir.rotated(angle_noise)
+			
+			directions[y].append(dir)
+	
+	# --- Road growth agents ---
+	var major_count := 40
+	var minor_count := 80
+	var max_len_major := 800.0
+	var max_len_minor := 300.0
+	
+	var road_points_major: Array[PackedVector2Array] = []
+	var road_points_minor: Array[PackedVector2Array] = []
+	
+	# --- Major road agents ---
+	for i in range(major_count):
+		var pos = Vector2(
+			_rng.randf_range(0, map_size.x),
+			_rng.randf_range(0, map_size.y)
+		)
+		# start from edge only
+		if _rng.randf() < 0.5:
+			pos.x = 0 if _rng.randf() < 0.5 else map_size.x
 		else:
-			minor_roads.push_back(pts)
-		x += float(minor_spacing)
+			pos.y = 0 if _rng.randf() < 0.5 else map_size.y
+		
+		var path = _grow_road_agent(pos, directions, field_scale, max_len_major, 16.0)
+		if path.size() > 2:
+			road_points_major.append(path)
+	
+	# --- Minor road agents ---
+	for i in range(minor_count):
+		var pos = Vector2(
+			_rng.randf_range(0, map_size.x),
+			_rng.randf_range(0, map_size.y)
+		)
+		var path = _grow_road_agent(pos, directions, field_scale, max_len_minor, 8.0)
+		if path.size() > 2:
+			road_points_minor.append(path)
+	
+	# assign results
+	major_roads = road_points_major
+	minor_roads = road_points_minor
 
-	var y: float = 0.0
-	while y <= h:
-		var pts2 := PackedVector2Array()
-		var segments2: int = 64
-		for i in range(segments2 + 1):
-			var t2: float = float(i) / float(segments2)
-			var xx: float = t2 * w
-			var j2: float = _noise.get_noise_2d(xx, y) * jitter
-			pts2.push_back(Vector2(xx, y + j2))
-		if roundi(y) % major_spacing == 0:
-			major_roads.push_back(pts2)
-		else:
-			minor_roads.push_back(pts2)
-		y += float(minor_spacing)
-
-func _make_diagonals(diagonal_chance: float) -> void:
-	var w: float = float(map_size.x)
-	var h: float = float(map_size.y)
-	var count: int = _rng.randi_range(3, 7)
-	for i in range(count):
-		if _rng.randf() > diagonal_chance:
-			continue
-		var a: Vector2 = Vector2(_rng.randf_range(-40.0, w + 40.0), -40.0)
-		var b: Vector2 = Vector2(_rng.randf_range(-40.0, w + 40.0), h + 40.0)
-		var pts := PackedVector2Array()
-		var steps: int = 80
-		for k in range(steps + 1):
-			var t: float = float(k) / float(steps)
-			var p: Vector2 = a.lerp(b, t)
-			var n: float = _noise.get_noise_2d(p.x * 1.5, p.y * 1.5)
-			p += Vector2(-n * 14.0, n * 14.0)
-			pts.push_back(p)
-		diagonals.push_back(pts)
+func _grow_road_agent(start_pos: Vector2, field: Array, field_scale: Vector2, max_length: float, step_len: float) -> PackedVector2Array:
+	var path := PackedVector2Array()
+	var pos := start_pos
+	var traveled := 0.0
+	var turn_bias := _rng.randf_range(-0.3, 0.3)
+	
+	while traveled < max_length:
+		if not _inside_margin(pos):
+			break
+		
+		var dir = _sample_field_direction(field, field_scale, pos)
+		dir = dir.rotated(turn_bias * 0.05)
+		
+		# Stop near existing roads
+		if _too_close_to_existing(pos):
+			break
+		
+		path.append(pos)
+		pos += dir * step_len
+		traveled += step_len
+		
+		# small branching chance
+		if _rng.randf() < 0.02 and path.size() > 20:
+			var branch_dir = dir.rotated(_rng.randf_range(-PI/3, PI/3))
+			var branch_path = _grow_road_agent(pos, field, field_scale, max_length * 0.5, step_len)
+			if branch_path.size() > 2:
+				minor_roads.append(branch_path)
+	
+	return path
+	
+func _sample_field_direction(field: Array, field_scale: Vector2, pos: Vector2) -> Vector2:
+	var xi = clamp(int(pos.x / field_scale.x), 0, field.size() - 2)
+	var yi = clamp(int(pos.y / field_scale.y), 0, field.size() - 2)
+	var fracx = fposmod(pos.x / field_scale.x, 1.0)
+	var fracy = fposmod(pos.y / field_scale.y, 1.0)
+	var d00 = field[yi][xi]
+	var d10 = field[yi][xi + 1]
+	var d01 = field[yi + 1][xi]
+	var d11 = field[yi + 1][xi + 1]
+	var dx0 = d00.lerp(d10, fracx)
+	var dx1 = d01.lerp(d11, fracx)
+	return dx0.lerp(dx1, fracy).normalized()
+	
+func _too_close_to_existing(pos: Vector2) -> bool:
+	for arr in major_roads:
+		for p in arr:
+			if p.distance_to(pos) < 20.0:
+				return true
+	for arr in minor_roads:
+		for p in arr:
+			if p.distance_to(pos) < 10.0:
+				return true
+	return false
 
 # -------- Zoning --------
 func _make_zones() -> void:
