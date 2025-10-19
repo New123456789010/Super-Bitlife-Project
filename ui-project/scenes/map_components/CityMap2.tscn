@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbtlnnyxtmw5d"]
+
+[ext_resource type="Script" uid="uid://cvurctingg3vu" path="res://scenes/map_components/city_map_2.gd" id="1_xjabc"]
+
+[node name="CityMap" type="Node2D"]
+script = ExtResource("1_xjabc")
+map_size = null
+randomize_on_play = null
+fixed_seed = null
+color_land = null
+color_water = null
+color_park = null
+color_road_major = null
+color_road_minor = null
+width_river = null
+width_road_major = null
+width_road_minor = null
+water_mode = null
+count_cafe = null
+count_office = null
+count_market = null
+count_park_pin = null
+count_amusement = null
+count_home = null
+pin_radius = null
+pin_outline = null
+min_dist_office = null
+min_dist_market = null
+min_dist_amuse = null
+per_path_cap_office = null
+per_path_cap_market = null
+per_path_cap_amuse = null
+edge_margin = null
+major_roads = null
+minor_roads = null
