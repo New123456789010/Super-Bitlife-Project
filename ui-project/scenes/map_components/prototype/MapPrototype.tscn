@@ -8,6 +8,8 @@
 [node name="TerrainGenerator" type="Node2D" parent="."]
 position = Vector2(265, 495)
 script = ExtResource("2_ctfon")
+base_seed = 1336
+continent_ratio = 0.9
 
 [node name="MapVisualizer" type="Node2D" parent="."]
 position = Vector2(13, 43)
@@ -22,4 +24,4 @@ offset_right = 57.0
 offset_bottom = 31.0
 text = "Regenerate"
 
-[connection signal="pressed" from="MapVisualizer/Button" to="TerrainGenerator" method="_on_button_pressed"]
+[connection signal="pressed" from="MapVisualizer/Button" to="TerrainGenerator" method="regenerate"]
