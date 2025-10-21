@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://h0yx0hu04dk7"]
+
+[ext_resource type="Script" uid="uid://bw7hy66r8bxkr" path="res://scenes/map_components/prototype/scripts/map_visualizer.gd" id="1_rp3xa"]
+[ext_resource type="Script" uid="uid://0axdbiy034k4" path="res://scenes/map_components/prototype/scripts/terrain_generator.gd" id="2_ctfon"]
+
+[node name="MapPrototype" type="Node2D"]
+
+[node name="TerrainGenerator" type="Node2D" parent="."]
+position = Vector2(265, 495)
+script = ExtResource("2_ctfon")
+base_seed = 1336
+continent_ratio = 0.9
+
+[node name="MapVisualizer" type="Node2D" parent="."]
+position = Vector2(13, 43)
+script = ExtResource("1_rp3xa")
+terrain_generator_path = NodePath("../TerrainGenerator")
+
+[node name="Node" type="Camera2D" parent="MapVisualizer"]
+position = Vector2(257, 454)
+
+[node name="Button" type="Button" parent="MapVisualizer"]
+offset_right = 57.0
+offset_bottom = 31.0
+text = "Regenerate"
+
+[connection signal="pressed" from="MapVisualizer/Button" to="TerrainGenerator" method="regenerate"]
