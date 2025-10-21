@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://0gghxgkwxpt3"]
+
+[ext_resource type="Script" uid="uid://co1cepjdef8lx" path="res://scenes/map_components/prototype/city_prototype/scripts/main_city.gd" id="1_j7qks"]
+[ext_resource type="Script" uid="uid://bvs4ai3p6xgdr" path="res://scenes/map_components/prototype/city_prototype/scripts/population_heat_map.gd" id="2_nukrv"]
+
+[node name="MainCity" type="Node2D"]
+script = ExtResource("1_j7qks")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="PopulationHeatMap" type="Node" parent="."]
+script = ExtResource("2_nukrv")
