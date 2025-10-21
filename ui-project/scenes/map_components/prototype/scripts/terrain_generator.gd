@@ -97,6 +97,7 @@ func _smooth_water_mask(passes: int) -> void:
 # Lake + river generation
 # -------------------------
 func _place_lake_and_river() -> void:
+	# --- Find main lake (highest inland peak)
 	var best_pt := Vector2i.ZERO
 	var best_h := -1.0
 	var y_lo = int(map_height * 0.25)
@@ -112,7 +113,7 @@ func _place_lake_and_river() -> void:
 		push_warning("No lake position found")
 		return
 
-	# create lake blob (keep lake elevation ABOVE sea_level so river can flow)
+	# --- Create a shallow lake
 	var ln := FastNoiseLite.new()
 	ln.seed = int(base_seed) + 101
 	ln.frequency = 0.18
@@ -124,35 +125,68 @@ func _place_lake_and_river() -> void:
 			var py = lake_position.y + oy
 			if px < 0 or py < 0 or px >= map_width or py >= map_height:
 				continue
-			var d = sqrt(float(ox*ox + oy*oy)) / float(radius)
+			var d = sqrt(float(ox * ox + oy * oy)) / float(radius)
 			var noisev = ln.get_noise_2d(px, py) * 0.5 + 0.5
 			var threshold = 0.85 * (1.0 - d) + 0.25 * noisev
 			if threshold > 0.5:
-				W.set_pixel(px, py, Color(1,0,0))
-				# IMPORTANT: keep lake at or above sea_level + small margin
+				W.set_pixel(px, py, Color(1, 0, 0))
 				var old_h = H.get_pixel(px, py).r
 				var lake_h = max(old_h, sea_level + 0.05)
-				H.set_pixel(px, py, Color(lake_h,0,0))
+				H.set_pixel(px, py, Color(lake_h, 0, 0))
 
-	# river mouth selection (lenient)
-	var edge_y = 3 if ocean_at_top else map_height - 4
-	var mouths := []
-	for x in range(10, map_width - 10):
-		if H.get_pixel(x, edge_y).r < sea_level + 0.08:
-			mouths.append(Vector2i(x, edge_y))
+	# --- Find river mouths near coast
+	var mouths: Array[Vector2i] = []
+	var edge_margin = 3
+	for x in range(map_width):
+		if H.get_pixel(x, map_height - edge_margin - 1).r <= sea_level + 0.05:
+			mouths.append(Vector2i(x, map_height - edge_margin - 1))
 	if mouths.is_empty():
-		for x in range(map_width):
-			if W.get_pixel(x, edge_y).r > 0.5:
-				mouths.append(Vector2i(x, edge_y))
-	if mouths.is_empty():
-		push_warning("No river mouth found")
+		push_warning("No river mouths found")
 		return
-	river_mouth = mouths[randi() % mouths.size()]
 
-	# Trace the river
-	river_path = _trace_river_to_sea(lake_position)
+	river_path.clear()
 
-	# carve river into heightmap and mark water — clamp so we don't dig below sea level by much
+	# --- Main river from lake to sea
+	var main_mouth = mouths.pick_random()
+	var main_path = _trace_river_to_sea(lake_position, main_mouth)
+	river_path.append_array(main_path)
+
+	# --- Secondary rivers (tributaries)
+	for i in range(3): # 3 smaller rivers joining main one
+		var tries = 0
+		var source = Vector2i.ZERO
+		while tries < 500:
+			var x = randi_range(int(map_width * 0.2), int(map_width * 0.8))
+			var y = randi_range(int(map_height * 0.2), int(map_height * 0.8))
+			var h = H.get_pixel(x, y).r
+			if h > 0.55:
+				source = Vector2i(x, y)
+				break
+			tries += 1
+		if source == Vector2i.ZERO:
+			continue
+
+		# Pick nearest point on main river as join target
+		var nearest = main_path[0]
+		var best_dist = 999999.0
+		for p in main_path:
+			var d = source.distance_to(p)
+			if d < best_dist:
+				best_dist = d
+				nearest = p
+
+		var trib_path = _trace_river_to_sea(source, nearest)
+		river_path.append_array(trib_path)
+	
+	# Force river to visually connect to ocean
+	var end = river_path[-1]
+	for y in range(end.y, map_height):
+		for x in range(end.x - 2, end.x + 3):
+			if x >= 0 and x < map_width:
+				H.set_pixel(x, y, Color(sea_level * 0.9, 0, 0))
+				W.set_pixel(x, y, Color(1, 0, 0))
+
+	# --- Carve all rivers into terrain
 	for p in river_path:
 		for oy in range(-2, 3):
 			for ox in range(-2, 3):
@@ -160,20 +194,16 @@ func _place_lake_and_river() -> void:
 				var ny = p.y + oy
 				if nx >= 0 and ny >= 0 and nx < map_width and ny < map_height:
 					var old = H.get_pixel(nx, ny).r
-					var lowered = min(old, max(sea_level * 0.9, old - 0.02)) # lower gently but not below sea_level*0.9
+					var lowered = min(old, max(sea_level * 0.9, old - 0.02))
 					H.set_pixel(nx, ny, Color(lowered, 0, 0))
-					W.set_pixel(nx, ny, Color(1,0,0))
+					W.set_pixel(nx, ny, Color(1, 0, 0))
 
-	# debug info
-	var start_h = H.get_pixel(lake_position.x, lake_position.y).r if lake_position != Vector2i.ZERO else -1.0
-	var mouth_h = H.get_pixel(river_mouth.x, river_mouth.y).r if river_mouth != Vector2i.ZERO else -1.0
-	print("River start h:", start_h, " mouth:", river_mouth, " mouth_h:", mouth_h, " path_len:", river_path.size())
-
+	print("Main river length:", main_path.size(), "Total rivers:", river_path.size())
 
 # -------------------------
 # Improved downhill tracing
 # -------------------------
-func _trace_river_to_sea(start: Vector2i, max_steps: int = 20000) -> Array:
+func _trace_river_to_sea(start: Vector2i, target: Vector2i, max_steps: int = 5000) -> Array:
 	var path: Array = [start]
 	var current := start
 	var visited := {}
@@ -181,14 +211,14 @@ func _trace_river_to_sea(start: Vector2i, max_steps: int = 20000) -> Array:
 
 	for step in range(max_steps):
 		var h_here = H.get_pixel(current.x, current.y).r
-		# stop if already reached water/sea
-		if h_here <= sea_level:
+
+		# Stop if already reached ocean or coast
+		if h_here <= sea_level + 0.01 or current.y >= map_height - 2:
 			break
 
-		# evaluate neighbors by a combined score:
-		# score = neighbor_height + small_bias * distance_to_mouth_normalized
-		var best_score := 1e9
 		var best_pos := current
+		var best_score = h_here
+
 		for oy in range(-1, 2):
 			for ox in range(-1, 2):
 				if ox == 0 and oy == 0:
@@ -196,40 +226,29 @@ func _trace_river_to_sea(start: Vector2i, max_steps: int = 20000) -> Array:
 				var nx = clamp(current.x + ox, 0, map_width - 1)
 				var ny = clamp(current.y + oy, 0, map_height - 1)
 				var nh = H.get_pixel(nx, ny).r
-				# distance bias (prefer steps toward mouth)
-				var dist_to_mouth = float(Vector2(nx, ny).distance_to(Vector2(river_mouth.x, river_mouth.y)))
-				var dist_norm = dist_to_mouth / float(max(map_width, map_height))
-				var score = nh + 0.15 * dist_norm  # 0.15 weight is small but directional
+
+				# Prefer lower height and closer to ocean (bottom)
+				var height_factor = nh
+				var y_bias = float(ny) / map_height * 0.2  # prefer southward (toward ocean)
+				var noise_bias = randf_range(-0.02, 0.02)
+				var score = height_factor + y_bias + noise_bias
+
 				if score < best_score:
 					best_score = score
 					best_pos = Vector2i(nx, ny)
 
-		# if we didn't move (shouldn't happen), nudge toward mouth
-		if best_pos == current:
-			var dir = Vector2(river_mouth - current)
-			if dir.length() == 0:
-				break
-			dir = dir.normalized()
-			var nx = clamp(current.x + int(round(dir.x)), 0, map_width - 1)
-			var ny = clamp(current.y + int(round(dir.y)), 0, map_height - 1)
-			best_pos = Vector2i(nx, ny)
+		# Prevent infinite loops
+		if best_pos == current or best_pos in visited:
+			# fallback: pick any nearby pixel closer to ocean
+			var fallback := Vector2i(current.x, min(map_height - 1, current.y + 1))
+			best_pos = fallback
 
-		# Erode neighbor slightly to ensure downhill progression (but clamp to not go below sea_level*0.85)
-		var nh_now = H.get_pixel(best_pos.x, best_pos.y).r
-		var target_h = min(nh_now, h_here - 0.002)  # make it slightly lower than current
-		target_h = max(target_h, sea_level * 0.85)  # don't erode super deep below sea
-		H.set_pixel(best_pos.x, best_pos.y, Color(target_h, 0, 0))
-
-		# stop if already visited (prevent loops)
-		if best_pos in visited:
-			break
 		visited[best_pos] = true
-
-		path.append(best_pos)
 		current = best_pos
+		path.append(current)
 
-		# if near the edge (ocean pole), terminate
-		if (ocean_at_top and current.y <= 2) or (!ocean_at_top and current.y >= map_height - 3):
+		# Hard stop if reached very bottom row (guarantee connection)
+		if current.y >= map_height - 3:
 			break
 
 	return path
