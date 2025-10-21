@@ -1,6 +1,6 @@
 extends Control
 
-@onready var EventPanel: Panel = $Panel
+@onready var EventPanel: Panel = $MarginContainer/Panel
 
 func _ready():
 	var intro = GameData.load_timeline("res://dialogic_timeline/heinrich1.json")
