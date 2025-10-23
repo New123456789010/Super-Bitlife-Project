@@ -1,0 +1,156 @@
+[
+	{
+		"type": "dialogue",
+		"text": "[img]res://assets/background_PNGs/pixel_art_Job_ads_in_newspaper.jpeg[/img]\nThe day begins..."
+	},
+
+	{
+		"type": "dialogue",
+		"text": "You: *Yawns* ...Another day, another credit."
+	},
+
+	{
+		"type": "input",
+		"prompt": "Before we begin, what's your name?",
+		"var": "player_name",
+		"default": "Alex"
+	},
+
+	{
+		"type": "dialogue",
+		"text": "Welcome, {player_name}. Let's get through this day together."
+	},
+
+	{
+		"type": "dialogue",
+		"text": "[img]res://assets/ui_assets/Shop Checkout Icon.png[/img]\nYour current job: {GameData.current_job.name}",
+		"condition": "GameData.current_job != null"
+	},
+
+	{
+		"type": "dialogue",
+		"text": "You’re currently unemployed.",
+		"condition": "GameData.current_job == null"
+	},
+	
+	{
+		"type": "choice",
+		"options": [
+			{
+				"text": "Make breakfast [img]res://assets/ui_assets/Int Icon.png[/img]",
+				"events": [
+					{
+						"type": "resource",
+						"path": "res://global/action_resource/make_food.tres",
+						"method": "apply",
+						"args": ["GameData.player_stats", 2]
+					},
+					{ "type": "dialogue", "text": "You feel nourished and ready for work." },
+					{ "type": "set", "path": "GameData.player_stats.energy", "value": "GameData.player_stats.energy + 2" }
+				]
+			},
+			{
+				"text": "Skip breakfast and go straight to work [img]res://assets/ui_assets/Action Icon/Work Icon.png[/img]",
+				"events": [
+					{
+						"type": "resource",
+						"path": "res://global/job_resource/store_clerk.tres",
+						"method": "is_qualified",
+						"args": ["GameData.player_stats"],
+						"assign_to": "qualified"
+					},
+					
+					{
+						"type": "conditional",
+						"condition": "qualified == true",
+						"then": [
+							{ "type": "dialogue", "text": "Boss: You’re right on time!" }
+						],
+						"else": [
+							{ "type": "dialogue", "text": "Boss: Sorry, come back after you’ve improved your skills." }
+						]
+					},
+
+					{
+						"type": "set",
+						"path": "GameData.current_job",
+						"value": "res://global/job_resource/store_clerk.tres",
+						"condition": "qualified == true"
+					}
+				]
+			}
+		]
+	},
+
+	{
+		"type": "extension",
+		"name": "CameraSystem",
+		"method": "shake",
+		"args": [0.2, 1.5]
+	},
+
+	{
+		"type": "dialogue",
+		"text": "After breakfast, you have a few hours left before work..."
+	},
+
+	{
+		"type": "choice",
+		"options": [
+			{
+				"text": "Go to work",
+				"events": [
+					{
+						"type": "resource",
+						"path": "res://global/job_resource/store_clerk.tres",
+						"method": "apply",
+						"args": ["GameData.player_stats", 8]
+					},
+					{
+						"type": "extension",
+						"name": "JobSystem",
+						"method": "add_income",
+						"args": [80]
+					},
+					{
+						"type": "dialogue",
+						"text": "[img]res://assets/ui_assets/Money Icon.png[/img]\nYou earned 80 credits!"
+					}
+				]
+			},
+			{
+				"text": "Take a nap [img]res://assets/ui_assets/Action Icon/Sleep Icon.png[/img]",
+				"events": [
+					{
+						"type": "resource",
+						"path": "res://global/action_resource/sleep_action.tres",
+						"method": "apply",
+						"args": ["GameData.player_stats", 4]
+					},
+					{
+						"type": "dialogue",
+						"text": "You wake up feeling refreshed. Energy: {GameData.player_stats.energy}"
+					}
+				]
+			}
+		]
+	},
+
+	{
+		"type": "extension",
+		"name": "TimeSystem",
+		"method": "advance_to_evening",
+		"args": []
+	},
+
+	{
+		"type": "dialogue",
+		"text": "As the sun sets, you reflect on your choices..."
+	},
+
+	{
+		"type": "end",
+		"text": "[img]res://assets/ui_assets/Calendar Icon.png[/img]\nDay 1 Complete! Total assets: {GameData.total_assets}",
+		"exit_text": "Sleep"
+	}
+]
