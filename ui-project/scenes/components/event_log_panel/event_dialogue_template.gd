@@ -163,6 +163,56 @@ func _run_timeline() -> void:
 				# placeholder for actions (play animation, etc.)
 				index += 1
 				continue
+				
+			"set":
+				var writes = []
+
+				# Single write shorthand
+				if evt.has("path"):
+					writes.append({
+						"path": evt.get("path"),
+						"value": evt.get("value", null),
+						"if": evt.get("if", null),
+						"op": evt.get("op", "")
+					})
+				# Multi-write block
+				elif evt.has("writes"):
+					writes = evt["writes"]
+				else:
+					push_warning("Set event missing 'path' or 'writes' field.")
+					index += 1
+					continue
+
+				for w in writes:
+					var condition = w.get("if", null)
+					if condition != null and condition != "":
+						if not _evaluate_condition(condition):
+							continue  # Skip this write if condition fails
+
+					var path = w.get("path", "")
+					if path == "":
+						push_warning("Skipped set: missing path.")
+						continue
+
+					var value_expr = w.get("value", null)
+					var op = w.get("op", "")
+
+					var final_value = value_expr
+					if typeof(value_expr) == TYPE_STRING:
+						var expression := Expression.new()
+						if expression.parse(value_expr, ["GameData"]) == OK:
+							final_value = expression.execute([GameData])
+							if expression.has_execute_failed():
+								push_error("❌ Failed to evaluate value expression: %s" % value_expr)
+								continue
+						else:
+							push_warning("⚠️ Could not parse value expression: %s" % value_expr)
+
+					_set_game_data_value(path, final_value, op)
+
+				index += 1
+				continue
+
 
 			"end":
 				# Optional custom text for [End] message
@@ -248,3 +298,32 @@ func _on_advance_during_typing() -> void:
 
 	# set new per-character delay (smaller delay => faster typing)
 	dialogue_label.char_delay = _typing_base_delay / _typing_speed_multiplier
+
+func _set_game_data_value(path: String, value, op: String = "") -> void:
+	var parts = path.split(".")
+	if parts.is_empty():
+		return
+
+	var obj = GameData
+	for i in range(parts.size() - 1):
+		var key = parts[i]
+		if not obj.has(key):
+			push_error("Invalid GameData path: %s" % path)
+			return
+		obj = obj.get(key)
+
+	var last_key = parts[-1]
+	if not obj.has(last_key):
+		push_error("GameData missing key: %s" % last_key)
+		return
+
+	match op:
+		"add":
+			obj[last_key] += value
+		"sub":
+			obj[last_key] -= value
+		_:
+			obj[last_key] = value
+
+	if SignalBus.has_signal("game_data_changed"):
+		SignalBus.game_data_changed.emit(path, value)
