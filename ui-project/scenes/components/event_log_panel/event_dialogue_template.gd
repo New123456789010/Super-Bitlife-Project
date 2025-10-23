@@ -67,18 +67,6 @@ func _run_timeline() -> void:
 
 		var t = evt.get("type", "dialogue")
 		match t:
-			#"dialogue":
-				#var raw = evt.get("text", "")
-				#var formatted := _format_text(raw)
-				# await the typing animation
-				#await dialogue_label.append_line_typed(formatted)
-				# wait for player input unless auto_advance is true
-				#if not auto_advance:
-					#await SignalBus.advance  # wait for click/tap signal to continue
-				#else:
-					#await get_tree().create_timer(1.0).timeout 
-				#index += 1
-				#continue
 			"dialogue":
 				var raw = evt.get("text", "")
 				var formatted := _format_text(raw)
