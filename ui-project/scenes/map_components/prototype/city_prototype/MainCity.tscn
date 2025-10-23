@@ -9,5 +9,6 @@ script = ExtResource("1_j7qks")
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="PopulationHeatMap" type="Node" parent="."]
+[node name="HeatMap" type="Node2D" parent="."]
 script = ExtResource("2_nukrv")
+debug_layer = "CityPotential"

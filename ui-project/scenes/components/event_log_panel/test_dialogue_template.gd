@@ -65,34 +65,3 @@ func _scroll_to_bottom() -> void:
 	var sb := get_v_scroll_bar()
 	if sb:
 		sb.value = sb.max_value
-
-
-#func _scroll_to_bottom() -> void:
-	#var scroll: ScrollBar = get_v_scroll_bar()
-	#var tween: Tween = create_tween()
-	#tween.set_ease(Tween.EASE_IN_OUT)
-	#tween.tween_method(scroll.set_value, scroll.get_value(), scroll.get_max(), 0.35)
-
-
-
-#extends RichTextLabel
-#
-#func _ready() -> void:
-	#mouse_filter = Control.MOUSE_FILTER_PASS
-	#for _i in range(20):
-		#text += "\n"
-	#return
-	#
-#func on_option() -> void:
-	#var tween: Tween = create_tween()
-	#tween.set_ease(Tween.EASE_IN_OUT)
-	#var scroll: ScrollBar = get_v_scroll_bar()
-	#var v: float = scroll.get_value()
-	#var m: float = scroll.get_max()
-	#tween.tween_method(scroll.set_value, v, m, 0.55)
-	#return
-#
-#func add_t(t: String) -> void:
-	#text += t + '\n' 
-	#on_option()
-	#return
