@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ActionResource" load_steps=3 format=3 uid="uid://lvgelpxqo4lp"]
+
+[ext_resource type="Script" uid="uid://d0ih5aaw326y6" path="res://global/action_resource.gd" id="1_2mu5l"]
+[ext_resource type="Texture2D" uid="uid://o1k8chrmswci" path="res://assets/ui_assets/Action Icon/Eating Icon.png" id="1_fvlpq"]
+
+[resource]
+script = ExtResource("1_2mu5l")
+name = "Make Food"
+description = ""
+icon = ExtResource("1_fvlpq")
+default_length = 4
+energy_cost_per_unit = 1.0
+energy_cost = 1.0
+is_restful = false
+stat_affected = "strength"
+stat_gain_per_unit = 0.01
+metadata/_custom_type_script = "uid://d0ih5aaw326y6"

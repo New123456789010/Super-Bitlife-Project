@@ -3,7 +3,7 @@ extends Control
 @onready var EventPanel: Panel = $MarginContainer/Panel
 
 func _ready():
-	var intro = GameData.load_timeline("res://dialogic_timeline/heinrich1.json")
+	var intro = GameData.load_timeline("res://dialogic_timeline/demo2.json")
 	SignalBus.start_timeline.emit(intro)
 	SignalBus.timeline_ended.connect(_on_timeline_ended)
 
