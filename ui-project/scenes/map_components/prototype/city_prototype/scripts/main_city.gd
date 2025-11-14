@@ -1,16 +1,32 @@
-extends Node2D
+extends Node
+class_name CityManager
+
+@onready var env := $CityEnvironment
+@onready var zones := $CityZones
+@onready var vis := $CityVisualizer
 
 func _ready() -> void:
-	#initialize and trigger citygen, heatmap
-	#request queue_redraw() 
-	_draw()
+	print("CityManager: Starting generation sequence...")
+	
+	# Step 1 → Generate environment maps
+	env.connect("maps_generated", Callable(self, "_on_maps_generated"))
+	call_deferred("_start_generation")
 
-func _draw() -> void:
-	var start := get_random_vector2(100, 100, 500, 500)
-	var end := get_random_vector2(100, 500, 500, 100)
-	draw_line(start, end, Color.AQUA)
 
-func get_random_vector2(min_x: float, max_x: float, min_y: float, max_y: float) -> Vector2:
-	var x = randf_range(min_x, max_x)
-	var y = randf_range(min_y, max_y)
-	return Vector2(x, y)
+func _start_generation() -> void:
+	env.generate_maps()
+
+
+func _on_maps_generated(water: Image, forest: Image, height: Image, population: Image, city_potential: Image) -> void:
+	print("CityManager: Environment maps ready. Passing to zones...")
+	
+	# Step 2 → Run zoning
+	zones.connect("zones_generated", Callable(self, "_on_zones_generated"))
+	zones.generate_zones(city_potential)
+
+
+func _on_zones_generated(zone_image: Image) -> void:
+	print("CityManager: Zones ready. Drawing visualization...")
+	
+	# Step 3 → Let visualizer draw everything
+	vis.display_composite(zone_image)

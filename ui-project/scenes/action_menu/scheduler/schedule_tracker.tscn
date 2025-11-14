@@ -39,6 +39,7 @@ alignment = 2
 script = ExtResource("3_8cx66")
 
 [node name="CurrentAction" type="PanelContainer" parent="StatsWindow"]
+visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 3
